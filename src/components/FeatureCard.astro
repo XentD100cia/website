@@ -1,0 +1,17 @@
+---
+const { icon, title, text } = Astro.props;
+---
+
+<article class="group rounded-card border border-line bg-white/80 p-7 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-2 hover:border-bioTeal/40 hover:shadow-soft">
+  <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-discovery/10 to-bioTeal/10 text-3xl ring-1 ring-discovery/10 transition duration-300 group-hover:scale-110">
+    {icon}
+  </div>
+
+  <h3 class="font-heading text-xl font-bold text-ink">
+    {title}
+  </h3>
+
+  <p class="mt-3 leading-7 text-soft">
+    {text}
+  </p>
+</article>

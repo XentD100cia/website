@@ -1,0 +1,15 @@
+# Dependencias
+node_modules/
+
+#Archivos generados
+dist/
+
+#Astro
+.astro/
+
+#Variables de entorno
+.env
+.env.*
+
+#Logs 
+npm-debug.log*

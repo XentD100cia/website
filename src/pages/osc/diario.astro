@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { oscPosts } from '../../data/oscPosts.js';
+---
+
+<BaseLayout
+  title="Diario OSC | XentD100cia"
+  description="Diario de preparación de Open Science Cambre: avances, organización, participación de entidades y novedades de la feria."
+>
+  <Navbar />
+
+  <main>
+    <section class="bg-midnight px-5 pb-24 pt-40 text-white md:pb-32 md:pt-48">
+      <div class="mx-auto max-w-5xl text-center">
+        <p class="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-bioTeal">
+          Diario de preparación
+        </p>
+
+        <h1 class="font-heading text-5xl font-extrabold tracking-tight md:text-7xl">
+          Así se construye OSC
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/75">
+          Avances, decisiones y novedades sobre la organización de Open Science Cambre.
+        </p>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-5xl">
+        <div class="grid gap-8">
+          {oscPosts.map((post, index) => (
+            <article
+              id={post.href.split('#')[1]}
+              class="rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10"
+            >
+              <div class="mb-5 flex flex-wrap items-center gap-4">
+                <p class="inline-flex rounded-full bg-bioTeal/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                  {post.category}
+                </p>
+
+                <p class="text-sm font-medium text-soft">
+                  {post.date}
+                </p>
+              </div>
+
+              <h2 class="font-heading text-3xl font-extrabold text-ink md:text-4xl">
+                {post.title}
+              </h2>
+
+              <p class="mt-5 text-lg leading-8 text-soft">
+                {post.excerpt}
+              </p>
+
+              <p class="mt-5 leading-8 text-soft">
+                Esta publicación forma parte del seguimiento del proceso de preparación
+                de Open Science Cambre. Más adelante podremos ampliar este espacio con
+                textos completos, fotografías, formularios y novedades específicas de cada fase.
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 pb-28">
+      <div class="mx-auto rounded-[32px] bg-midnight px-8 py-20 text-center text-white md:max-w-7xl">
+        <h2 class="font-heading text-4xl font-extrabold md:text-5xl">
+          ¿Quieres participar en OSC?
+        </h2>
+
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/75">
+          Si formas parte de un centro, asociación, institución o proyecto científico,
+          puedes ponerte en contacto con nosotros para participar en la feria.
+        </p>
+
+        <a
+          href="/contacto#participacion"
+          class="mt-8 inline-flex rounded-button bg-discovery px-7 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+        >
+          Participar en OSC
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,956 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { oscPosts } from '../data/oscPosts.js';
+import { edicionesOSC } from '../data/edicionesOSC';
+import { participantesOSC } from '../data/participantesOSC.js';
+import { apoyosOSC } from '../data/apoyosOSC.js';
+import { experienciasOSC } from '../data/experienciasOSC.js';
+
+const experienciasDisponibles = experienciasOSC ?? [];
+
+const edicionActual =
+  edicionesOSC.find((edicion) => edicion.estado === 'actual') ?? edicionesOSC[0];
+
+const countdownTarget =
+  edicionActual?.countdownDate ?? `${edicionActual?.sortDate}T00:00:00+02:00`;
+
+const archivoOSC = edicionesOSC
+  .filter((edicion) => edicion.estado === 'archivo')
+  .sort((a, b) => b.ano - a.ano);
+
+const formularios = [
+  {
+    title: 'Entidades y centros participantes',
+    text: 'Para colegios, institutos, asociaciones, instituciones o proyectos que quieran traer una actividad divulgativa a la feria.',
+    buttonActivo: 'Participar en la OSC',
+    buttonInactivo: 'Ya tenemos a todos los participantes',
+    hrefActivo: 'https://forms.gle/TU_FORMULARIO_ENTIDADES',
+    hrefInactivo: '#participantes',
+    formularioActivo: false
+  },
+  {
+    title: 'Familias de acogida',
+    text: 'Para familias de Cambre interesadas en acoger y para participantes de otros lugares que necesiten alojamiento durante la Open Science Cambre.',
+    buttonActivo: 'Quiero acoger',
+    buttonInactivo: 'Acogidas por confirmar',
+    hrefActivo: 'https://forms.gle/TU_FORMULARIO_ACOGIDAS',
+    hrefInactivo: '/contacto#participacion',
+    formularioActivo: false
+  },
+  {
+    title: 'Voluntariado',
+    text: 'Para personas que quieran ayudar en la organización, montaje, atención al público, acompañamiento de entidades o apoyo logístico.',
+    buttonActivo: 'Quiero colaborar',
+    buttonInactivo: 'Quiero colaborar',
+    hrefActivo: 'mailto:opensciencecambre@gmail.com?subject=Voluntariado',
+    hrefInactivo: 'mailto:opensciencecambre@gmail.com?subject=Voluntariado',
+    formularioActivo: true
+  },
+  {
+    title: 'Público asistente',
+    text: 'Para familias, jóvenes o personas interesadas en conocer toda la información práctica de la Open Science Cambre.',
+    buttonActivo: 'Toda la información',
+    buttonInactivo: 'Toda la información',
+    hrefActivo: '/osc/informacion',
+    hrefInactivo: '/osc/informacion',
+    formularioActivo: true
+  }
+];
+
+const caminos = [
+  {
+    title: 'Como entidad',
+    text: 'Trae una actividad, demostración, taller o experiencia científica para compartir con el público.'
+  },
+  {
+    title: 'Como voluntario/a',
+    text: 'Ayuda en la organización, montaje, acompañamiento de entidades o atención durante la feria.'
+  },
+  {
+    title: 'Como público',
+    text: 'Ven a descubrir ciencia a través de actividades participativas, demostraciones y experiencias divulgativas.'
+  }
+];
+
+const participantesActuales = (participantesOSC ?? [])
+  .filter((participante) => participante.edition === edicionActual.ano)
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+const apoyosActuales = (apoyosOSC ?? [])
+  .filter((apoyo) => apoyo.edition === edicionActual.ano)
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+---
+
+<BaseLayout
+  title="Open Science Cambre | XentD100cia"
+  description="Open Science Cambre es una feria científica participativa coordinada por XentD100cia, con centros, asociaciones, instituciones y entidades que acercan la ciencia al público."
+>
+  <Navbar />
+
+  <main>
+    <section class="bg-midnight px-5 pb-24 pt-40 text-white md:pb-32 md:pt-48">
+      <div class="mx-auto max-w-5xl text-center">
+        <p class="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-bioTeal">
+          Open Science Cambre
+        </p>
+
+        <h1 class="font-heading text-5xl font-extrabold tracking-tight md:text-7xl">
+          Una feria científica hecha por y para jóvenes
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/75">
+          OSC reúne a centros educativos, asociaciones, instituciones y entidades
+          para compartir ciencia con el público a través de actividades participativas.
+        </p>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+        <div>
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Qué es la OSC
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Ciencia abierta, cercana y participativa
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Open Science Cambre es una feria de divulgación científica abierta al público.
+            En ella, distintas entidades participan con actividades, demostraciones y experiencias
+            para acercar la ciencia de una forma visual, práctica y accesible.
+          </p>
+        </div>
+
+        <div class="rounded-[32px] bg-white p-8 shadow-soft md:p-12">
+          <h3 class="font-heading text-2xl font-bold text-ink">
+            Una feria con muchas formas de participar
+          </h3>
+
+          <div class="mt-6 grid gap-4">
+            <div class="rounded-card border border-line bg-scienceWhite p-5">
+              <p class="font-bold text-ink">Centros educativos</p>
+              <p class="mt-2 text-soft">Colegios e institutos con actividades científicas propias.</p>
+            </div>
+
+            <div class="rounded-card border border-line bg-scienceWhite p-5">
+              <p class="font-bold text-ink">Asociaciones e instituciones</p>
+              <p class="mt-2 text-soft">Entidades que quieren acercar ciencia, tecnología y conocimiento al público.</p>
+            </div>
+
+            <div class="rounded-card border border-line bg-scienceWhite p-5">
+              <p class="font-bold text-ink">Público general</p>
+              <p class="mt-2 text-soft">Familias, jóvenes y personas curiosas que quieren experimentar y aprender.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-midnight px-5 py-24 text-white md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-12 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Nuestro papel
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold md:text-5xl">
+            Coordinamos la feria para que la ciencia llegue al público
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-white/75">
+            En la OSC, XentD100cia se encarga de la organización: coordinamos espacios,
+            participación, comunicación y necesidades para que las entidades puedan
+            compartir sus actividades con la comunidad.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <article class="rounded-card border border-white/10 bg-white/10 p-7 backdrop-blur">
+            <h3 class="font-heading text-xl font-bold">Organización</h3>
+            <p class="mt-3 leading-7 text-white/70">
+              Organizamos espacios, tiempos y necesidades para que la feria funcione de forma clara y fluida.
+            </p>
+          </article>
+
+          <article class="rounded-card border border-white/10 bg-white/10 p-7 backdrop-blur">
+            <h3 class="font-heading text-xl font-bold">Coordinación</h3>
+            <p class="mt-3 leading-7 text-white/70">
+              Facilitamos la participación de centros, asociaciones, instituciones y entidades.
+            </p>
+          </article>
+
+          <article class="rounded-card border border-white/10 bg-white/10 p-7 backdrop-blur">
+            <h3 class="font-heading text-xl font-bold">Experiencia</h3>
+            <p class="mt-3 leading-7 text-white/70">
+              Cuidamos que el público viva una feria accesible, participativa y bien estructurada.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl text-center">
+        <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+          Edición actual
+        </p>
+
+        <h2 class="mx-auto max-w-4xl font-heading text-4xl font-extrabold text-ink md:text-5xl">
+          La IX edición de la OSC está en preparación
+        </h2>
+
+        <div class="mx-auto mt-10 grid max-w-5xl gap-6 rounded-card border border-line bg-white p-8 shadow-soft md:grid-cols-3">
+          <div>
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+              Fecha
+            </p>
+          <p class="font-heading text-2xl font-bold text-ink">
+              {edicionActual.date}
+            </p>
+          </div>
+
+          <div>
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+              Lugar
+            </p>
+            <p class="font-heading text-2xl font-bold text-ink">
+              {edicionActual.lugar}
+            </p>
+          </div>
+
+          <div>
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+              Estado
+            </p>
+            <p class="font-heading text-2xl font-bold text-ink">
+              En organización
+            </p>
+          </div>
+        </div>
+
+        <div
+          id="osc-countdown"
+          data-countdown-target={countdownTarget}
+          class="mx-auto mt-10 max-w-4xl rounded-[32px] bg-midnight p-8 text-white shadow-soft md:p-10"
+        >
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Cuenta atrás
+          </p>
+
+          <h3 class="font-heading text-3xl font-extrabold md:text-4xl">
+            Faltan
+          </h3>
+
+          <div class="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div class="rounded-2xl bg-white/10 p-5 text-center">
+              <p data-days class="font-heading text-4xl font-extrabold">00</p>
+              <p class="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-white/60">
+                Días
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white/10 p-5 text-center">
+              <p data-hours class="font-heading text-4xl font-extrabold">00</p>
+              <p class="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-white/60">
+                Horas
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white/10 p-5 text-center">
+              <p data-minutes class="font-heading text-4xl font-extrabold">00</p>
+              <p class="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-white/60">
+                Minutos
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white/10 p-5 text-center">
+              <p data-seconds class="font-heading text-4xl font-extrabold">00</p>
+              <p class="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-white/60">
+                Segundos
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-12 text-center">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Diario de preparación
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Últimos avances de la OSC
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Seguimos el proceso de organización de la Open Science Cambre: avances,
+            participación de entidades, programa y novedades de la feria.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          {oscPosts.slice(0, 3).map((post) => (
+            <article class="rounded-card border border-line bg-scienceWhite p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+              <div class="mb-5 flex items-center justify-between gap-4">
+                <p class="inline-flex rounded-full bg-bioTeal/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                  {post.category}
+                </p>
+
+                <p class="text-sm font-medium text-soft">
+                  {post.date}
+                </p>
+              </div>
+
+              <h3 class="font-heading text-2xl font-bold text-ink">
+                {post.title}
+              </h3>
+
+              <p class="mt-4 leading-7 text-soft">
+                {post.excerpt}
+              </p>
+
+              <a href={post.href} class="mt-6 inline-flex font-bold text-discovery">
+                Leer más →
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-10 text-center">
+          <a
+            href="/osc/diario"
+            class="inline-flex rounded-button border border-line bg-white px-7 py-4 font-bold text-ink shadow-sm transition hover:-translate-y-1 hover:shadow-soft"
+          >
+            Ver todo el diario de la OSC
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-12 text-center">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Participación
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Formas de participar
+          </h2>
+
+          <p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-soft">
+            Según tu perfil, podrás participar en la OSC como entidad o centro participante,
+            familia de acogida, voluntariado o público asistente.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          {formularios.map((formulario) => (
+            <article class="rounded-card border border-line bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+              <h3 class="font-heading text-2xl font-bold text-ink">
+                {formulario.title}
+              </h3>
+
+              <p class="mt-4 leading-7 text-soft">
+                {formulario.text}
+              </p>
+
+              <a
+                href={formulario.formularioActivo ? formulario.hrefActivo : formulario.hrefInactivo}
+                class:list={[
+                  'mt-6 inline-flex rounded-button px-6 py-4 font-bold transition',
+                  formulario.formularioActivo
+                    ? 'bg-discovery text-white hover:-translate-y-1 hover:bg-bioTeal'
+                    : 'border border-line bg-white text-soft hover:-translate-y-1 hover:shadow-soft'
+                ]}
+              >
+                {formulario.formularioActivo ? formulario.buttonActivo : formulario.buttonInactivo}
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+        <div>
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Programa
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Actividades confirmadas
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            El programa se irá publicando a medida que se confirmen las entidades
+            participantes, las actividades, los horarios y los espacios de la feria.
+          </p>
+        </div>
+
+        <div class="rounded-[32px] border border-line bg-white p-8 shadow-soft md:p-12">
+          <p class="mb-3 inline-flex rounded-full bg-bioTeal/10 px-4 py-2 text-sm font-bold text-bioTeal">
+            Programa en preparación
+          </p>
+
+          <h3 class="font-heading text-3xl font-extrabold text-ink">
+            Muy pronto compartiremos las primeras actividades.
+          </h3>
+
+          <p class="mt-4 leading-8 text-soft">
+            Aquí aparecerán las entidades participantes, el tipo de actividad,
+            el público recomendado y la información práctica de la feria.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-20 md:py-28">
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto mb-12 max-w-3xl text-center">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Participantes
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Centros y entidades que participan en la OSC
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Open Science Cambre reúne a centros educativos, asociaciones, instituciones
+            y proyectos que comparten ciencia con el público a través de actividades participativas.
+          </p>
+        </div>
+
+        {participantesActuales.length > 0 ? (
+          <div
+            data-participants-section
+            data-page-size-mobile="4"
+            data-page-size-tablet="6"
+            data-page-size-desktop="9"
+            class="mx-auto max-w-6xl"
+          >
+
+            <div data-participant-grid-start class="scroll-mt-32"></div>
+            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {participantesActuales.map((participante) => (
+                <article
+                  data-participant-card
+                  class="relative flex h-full min-h-[280px] overflow-hidden rounded-card border border-line bg-scienceWhite p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-soft"
+                >
+                  {participante.logo && (
+                    <img
+                      src={participante.logo}
+                      alt=""
+                      aria-hidden="true"
+                      class="pointer-events-none absolute left-1/2 top-[17%] h-44 w-44 -translate-x-1/2 -tranlate-y-1/2 object-contain opacity-[0.20] md:h-56 md:w-56"
+                    />
+                  )}
+
+                  <div class="relative z-10 flex h-full w-full flex-col">
+                    <div class="mb-6 flex items-start gap-5">
+                      <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-sm">
+                        {participante.logo ? (
+                          <img
+                            src={participante.logo}
+                            alt={participante.name}
+                            class="h-full w-full object-contain p-3"
+                          />
+                        ) : (
+                          <span class="font-heading text-2xl font-extrabold text-discovery">
+                            {participante.name.slice(0, 1)}
+                          </span>
+                        )}
+                      </div>
+
+                      <div class="min-w-0">
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-bioTeal">
+                          {participante.type}
+                        </p>
+
+                        <h3 class="mt-2 font-heading text-2xl font-bold leading-tight text-ink">
+                          {participante.name}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {participante.description && (
+                      <p class="grow leading-7 text-soft">
+                        {participante.description}
+                      </p>
+                    )}
+
+                    <div class="mt-6 flex flex-wrap items-center gap-3">
+                      {participante.location && (
+                        <span class="rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-soft shadow-sm">
+                          📍 {participante.location}
+                        </span>
+                      )}
+
+                      {participante.website && (
+                        <a
+                          href={participante.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="rounded-full bg-discovery px-4 py-2 text-sm font-bold text-white transition hover:bg-bioTeal"
+                        >
+                          Ver entidad
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div class="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-8">
+              <button
+                type="button"
+                data-participant-prev
+                class="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-white font-heading text-xl font-bold text-ink shadow-sm transition hover:-translate-y-1 hover:shadow-soft disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Ver participantes anteriores"
+              >
+                ←
+              </button>
+
+              <p class="text-sm font-bold text-soft">
+                Página <span data-participant-current>1</span> / <span data-participant-total>1</span>
+              </p>
+
+              <button
+                type="button"
+                data-participant-next
+                class="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-white font-heading text-xl font-bold text-ink shadow-sm transition hover:-translate-y-1 hover:shadow-soft disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Ver más participantes"
+              >
+                →
+              </button>
+            </div>
+          </div>
+        ) : (
+          <article class="mx-auto max-w-3xl rounded-card border border-line bg-scienceWhite p-8 text-center shadow-sm">
+            <h3 class="font-heading text-2xl font-bold text-ink">
+              Participantes por confirmar
+            </h3>
+
+            <p class="mt-4 leading-7 text-soft">
+              Muy pronto iremos incorporando aquí los centros, entidades y proyectos
+              participantes en esta edición de la Open Science Cambre.
+            </p>
+          </article>
+        )}
+
+        <div class="mx-auto mt-16 max-w-5xl">
+          <div class="mb-8 text-center">
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+              Procedencias
+            </p>
+
+            <h3 class="font-heading text-3xl font-extrabold text-ink md:text-4xl">
+              Mapa de participantes
+            </h3>
+
+            <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-soft">
+              Queremos mostrar de dónde vienen los centros, entidades y proyectos que forman
+              parte de la Open Science Cambre.
+            </p>
+          </div>
+
+          {edicionActual.mapaParticipantes ? (
+            <div class="overflow-hidden rounded-[32px] border border-line bg-white shadow-soft">
+              <iframe
+                src={edicionActual.mapaParticipantes}
+                class="h-[420px] w-full"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa de procedencia de participantes de la Open Science Cambre"
+              ></iframe>
+            </div>
+          ) : (
+            <div class="rounded-[32px] border border-dashed border-line bg-scienceWhite p-10 text-center shadow-sm">
+              <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+                Mapa en preparación
+              </p>
+
+              <h4 class="font-heading text-2xl font-bold text-ink">
+                Aquí mostraremos la procedencia de las entidades participantes
+              </h4>
+
+              <p class="mx-auto mt-4 max-w-2xl leading-7 text-soft">
+                Cuando confirmemos los centros, asociaciones, instituciones y proyectos participantes,
+                incorporaremos un mapa con sus lugares de procedencia.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mx-auto mb-14 max-w-3xl text-center">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Apoyos
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Entidades que hacen posible la OSC
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Open Science Cambre es posible gracias al apoyo de instituciones,
+            colaboradores y patrocinadores que apuestan por acercar la ciencia
+            a la comunidad.
+          </p>
+        </div>
+
+        {apoyosActuales.length > 0 ? (
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {apoyosActuales.map((apoyo) => (
+              <article class="group rounded-card border border-line bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+                <div class="mx-auto flex h-24 items-center justify-center rounded-2xl bg-scienceWhite p-5">
+                  {apoyo.logo ? (
+                    <img
+                      src={apoyo.logo}
+                      alt={apoyo.name}
+                      class="max-h-16 max-w-full object-contain"
+                    />
+                  ) : (
+                    <span class="font-heading text-3xl font-extrabold text-discovery">
+                      {apoyo.name.slice(0, 1)}
+                    </span>
+                  )}
+                </div>
+
+                <p class="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-bioTeal">
+                  {apoyo.type}
+                </p>
+
+                <h3 class="mt-2 font-heading text-xl font-bold text-ink">
+                  {apoyo.name}
+                </h3>
+
+                {apoyo.website && (
+                  <a
+                    href={apoyo.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mt-4 inline-flex font-bold text-discovery transition group-hover:text-bioTeal"
+                  >
+                    Ver web →
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
+        ) : (
+          <article class="mx-auto max-w-3xl rounded-card border border-line bg-white p-8 text-center shadow-sm">
+            <h3 class="font-heading text-2xl font-bold text-ink">
+              Apoyos por confirmar
+            </h3>
+
+            <p class="mt-4 leading-7 text-soft">
+              Próximamente añadiremos aquí las entidades colaboradoras,
+              patrocinadores y apoyos institucionales de esta edición.
+            </p>
+          </article>
+        )}
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-10">
+      <div class="mx-auto max-w-6xl">
+        <div class="max-w-3x1 text-center">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Archivo
+          </p>
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Ediciones anteriores
+          </h2>
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Recuperamos aquí el archivo de otras ediciones de la Open Science Cambre.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {archivoOSC.map((edicion) => (
+            <article class="rounded-card border border-line bg-white p-6 shadow-soft">
+              <p class="text-sm font-bold uppercase tracking-[0.2em] text-bioTeal">
+                {edicion.ano}
+              </p>
+
+              <h3 class="mt-3 text-2xl font-bold text-ink">
+                {edicion.nombre}
+              </h3>
+
+              <p class="mt-4 text-soft">
+                {edicion.resumen}
+              </p>
+
+              <div class="mt-5 space-y-1 text-sm text-soft">
+                <p><span class="font-semibold text-ink">Fecha:</span> {edicion.date}</p>
+                <p><span class="font-semibold text-ink">Lugar:</span> {edicion.lugar}</p>
+              </div>
+
+              <a
+                href={edicion.href}
+                class="mt-6 inline-flex items-center font-bold text-discovery transition hover:opacity-80"
+              >
+                Ver edición →
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mx-auto mb-14 max-w-3xl text-center">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Experiencias
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Relatos de quienes vivieron la OSC
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Queremos recoger las voces de centros, entidades, familias, participantes y personas
+            voluntarias que han formado parte de la Open Science Cambre.
+          </p>
+        </div>
+
+        <div
+          data-experiences-section
+          class="mx-auto grid max-w-4xl gap-6"
+        >
+          {experienciasDisponibles.map((experiencia) => (
+            <article
+              data-experience-card
+              class="hidden rounded-[28px] border border-line bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-soft md:p-10"
+            >
+              <div class="mb-5 flex flex-wrap items-center gap-4">
+                <p class="inline-flex rounded-full bg-bioTeal/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                  {experiencia.role}
+                </p>
+
+                <h3 class="font-heading text-xl font-bold text-ink">
+                  {experiencia.name}
+                </h3>
+
+                {experiencia.edition && (
+                  <span class="rounded-full bg-scienceWhite px-4 py-2 text-xs font-bold text-soft">
+                    OSC {experiencia.edition}
+                  </span>
+                )}
+              </div>
+
+              <p class="text-lg leading-8 text-soft md:text-xl md:leading-9">
+                “{experiencia.text}”
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 pb-28">
+      <div class="mx-auto rounded-[32px] bg-midnight px-8 py-20 text-center text-white md:max-w-7xl">
+        <h2 class="font-heading text-4xl font-extrabold md:text-6xl">
+          ¿Quieres formar parte de la OSC?
+        </h2>
+
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/75">
+          Si representas a un centro, asociación, institución o proyecto científico
+          y quieres participar en la feria, ponte en contacto con nosotros.
+        </p>
+
+        <a href="/contacto#participacion" class="mt-8 inline-flex rounded-button bg-discovery px-7 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal">
+          Participar en la OSC
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script>
+  const countdown = document.querySelector('#osc-countdown');
+
+  if (countdown) {
+    const target = new Date(countdown.dataset.countdownTarget).getTime();
+
+    const daysElement = countdown.querySelector('[data-days]');
+    const hoursElement = countdown.querySelector('[data-hours]');
+    const minutesElement = countdown.querySelector('[data-minutes]');
+    const secondsElement = countdown.querySelector('[data-seconds]');
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = target - now;
+
+      if (distance <= 0) {
+        daysElement.textContent = '00';
+        hoursElement.textContent = '00';
+        minutesElement.textContent = '00';
+        secondsElement.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysElement.textContent = String(days).padStart(2, '0');
+      hoursElement.textContent = String(hours).padStart(2, '0');
+      minutesElement.textContent = String(minutes).padStart(2, '0');
+      secondsElement.textContent = String(seconds).padStart(2, '0');
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  }
+</script>
+
+<script>
+  const participantsSection = document.querySelector('[data-participants-section]');
+
+  if (participantsSection) {
+    const cards = Array.from(
+      participantsSection.querySelectorAll('[data-participant-card]')
+    );
+
+    const prevButton = participantsSection.querySelector('[data-participant-prev]');
+    const nextButton = participantsSection.querySelector('[data-participant-next]');
+    const currentPageElement = participantsSection.querySelector('[data-participant-current]');
+    const totalPagesElement = participantsSection.querySelector('[data-participant-total]');
+    const rangeElement = participantsSection.querySelector('[data-participant-range]');
+
+    let currentPage = 0;
+
+    const getPageSize = () => {
+      if (window.innerWidth < 768) {
+        return Number(participantsSection.dataset.pageSizeMobile) || 4;
+      }
+
+      if (window.innerWidth < 1024) {
+        return Number(participantsSection.dataset.pageSizeTablet) || 6;
+      }
+
+      return Number(participantsSection.dataset.pageSizeDesktop) || 9;
+    };
+
+    const updateParticipants = () => {
+      const pageSize = getPageSize();
+      const totalPages = Math.max(1, Math.ceil(cards.length / pageSize));
+
+      currentPage = Math.min(currentPage, totalPages - 1);
+
+      const start = currentPage * pageSize;
+      const end = Math.min(start + pageSize, cards.length);
+
+      cards.forEach((card, index) => {
+        const shouldShow = index >= start && index < end;
+        card.classList.toggle('hidden', !shouldShow);
+      });
+
+      if (currentPageElement) {
+        currentPageElement.textContent = String(currentPage + 1);
+      }
+
+      if (totalPagesElement) {
+        totalPagesElement.textContent = String(totalPages);
+      }
+
+      if (rangeElement) {
+        rangeElement.textContent = cards.length > 0 ? `${start + 1}-${end}` : '0';
+      }
+
+      if (prevButton) {
+        prevButton.disabled = currentPage === 0;
+      }
+
+      if (nextButton) {
+        nextButton.disabled = currentPage >= totalPages - 1;
+      }
+    };
+
+    prevButton?.addEventListener('click', () => {
+      currentPage = Math.max(0, currentPage - 1);
+      updateParticipants();
+      const gridStart = participantsSection.querySelector('[data-participant-grid-start]');
+
+      gridStart?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+
+    nextButton?.addEventListener('click', () => {
+      const pageSize = getPageSize();
+      const totalPages = Math.max(1, Math.ceil(cards.length / pageSize));
+
+      currentPage = Math.min(totalPages - 1, currentPage + 1);
+      updateParticipants();
+      const gridStart = participantsSection.querySelector('[data-participant-grid-start]');
+
+      gridStart?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+
+    let resizeTimer;
+
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateParticipants, 150);
+    });
+
+    updateParticipants();
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const experiencesSection = document.querySelector('[data-experiences-section]');
+
+    if (!experiencesSection) return;
+
+    const cards = Array.from(
+      experiencesSection.querySelectorAll('[data-experience-card]')
+    );
+
+    if (cards.length === 0) return;
+
+    cards.forEach((card) => {
+      card.classList.add('hidden');
+    });
+
+    const shuffledCards = cards
+      .map((card) => ({ card, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ card }) => card);
+
+    shuffledCards.slice(0, 3).forEach((card) => {
+      card.classList.remove('hidden');
+    });
+  });
+</script>
+
+</BaseLayout>

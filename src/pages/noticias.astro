@@ -1,0 +1,281 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { noticias } from '../data/noticias.js';
+import { oscPosts } from '../data/oscPosts.js';
+import { talleresRealizados } from '../data/talleresRealizados.js';
+
+const getTime = (date) => {
+  const time = new Date(date).getTime();
+  return Number.isNaN(time) ? 0 : time;
+};
+
+const noticiasDelDiarioOSC = (oscPosts ?? []).map((post) => ({
+  title: post.title,
+  date: post.date,
+  sortDate: post.sortDate ?? post.date,
+  category: 'OSC',
+  excerpt: post.excerpt,
+  slug: post.href?.split('#')[1] ?? post.slug,
+  href: post.href,
+  image: post.image ?? null
+}));
+
+const noticiasDeTalleres = (talleresRealizados ?? []).map((taller) => ({
+  title: taller.title,
+  date: taller.date,
+  sortDate: taller.sortDate ?? taller.date,
+  category: 'Talleres',
+  excerpt: taller.excerpt,
+  slug: taller.slug,
+  href: taller.href ?? '/talleres/${taller.slug}',
+  image: taller.image ?? null
+}));
+
+
+const todasLasNoticias = [
+  ...(noticias ?? []),
+  ...noticiasDelDiarioOSC,
+  ...noticiasDeTalleres
+];
+
+const noticiasOrdenadas = [...todasLasNoticias].sort(
+  (a, b) => getTime(b.sortDate) - getTime(a.sortDate)
+);
+
+const noticiaDestacada = noticiasOrdenadas[0];
+const noticiasSecundarias = noticiasOrdenadas.slice(1);
+
+const categorias = [
+  'Todas',
+  'Talleres',
+  'OSC',
+  'Ferias y eventos',
+  'Asociación',
+  'Colaboraciones'
+];
+---
+
+<BaseLayout
+  title="Noticias | XentD100cia"
+  description="Actualidad de XentD100cia: talleres, ferias, Open Science Cambre, colaboraciones y novedades de la asociación."
+>
+  <Navbar />
+
+  <main>
+    <section class="bg-midnight px-5 pb-24 pt-40 text-white md:pb-32 md:pt-48">
+      <div class="mx-auto max-w-5xl text-center">
+        <p class="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-bioTeal">
+          Noticias
+        </p>
+
+        <h1 class="font-heading text-5xl font-extrabold tracking-tight md:text-7xl">
+          Actualidad de XentD100cia
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/75">
+          Talleres, ferias, avances de la Open Science Cambre y novedades de una asociación
+          que acerca la ciencia a la comunidad.
+        </p>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-12">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Destacada
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Última actividad
+          </h2>
+        </div>
+
+        <article
+          id={noticiaDestacada.slug}
+          class="overflow-hidden rounded-[32px] border border-line bg-white shadow-soft md:grid md:grid-cols-[1.1fr_0.9fr]"
+        >
+          {noticiaDestacada.image ? (
+            <img
+              src={noticiaDestacada.image}
+              alt={noticiaDestacada.title}
+              class="h-full w-full object-cover"
+            />
+          ) : (
+            <div class="h-full w-full bg-line"></div>
+          )}
+
+          <div class="p-8 md:p-12">
+            <div class="mb-5 flex flex-wrap items-center gap-4">
+              <p class="inline-flex rounded-full bg-bioTeal/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                {noticiaDestacada.category}
+              </p>
+
+              <p class="text-sm font-medium text-soft">
+                {noticiaDestacada.date}
+              </p>
+            </div>
+
+            <h3 class="font-heading text-3xl font-extrabold text-ink md:text-4xl">
+              {noticiaDestacada.title}
+            </h3>
+
+            <p class="mt-5 text-lg leading-8 text-soft">
+              {noticiaDestacada.excerpt}
+            </p>
+
+            <a
+              href={noticiaDestacada.href}
+              class="mt-8 inline-flex rounded-button bg-discovery px-6 py-3 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+            >
+              Leer más
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mx-auto mb-14 max-w-3xl text-center">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Categorías
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Qué está pasando
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Reunimos aquí la actualidad de la asociación: talleres, ferias,
+            avances de OSC, colaboraciones y novedades del proyecto.
+          </p>
+        </div>
+
+        <div class="mb-12 flex flex-wrap justify-center gap-3">
+          {categorias.map((categoria) => (
+            <button
+              type="button"
+              data-category-filter={categoria}
+              class={categoria === 'Todas'
+                ? 'rounded-full border border-midnight bg-midnight px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-1'
+                : 'rounded-full border border-line bg-scienceWhite px-5 py-3 text-sm font-bold text-soft transition hover:-translate-y-1 hover:border-discovery hover:text-discovery'
+              }
+            >
+              {categoria}
+            </button>
+          ))}
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {noticiasSecundarias.map((noticia) => (
+            <article
+              id={noticia.slug}
+              data-news-card
+              data-category={noticia.category}
+              class="rounded-card border border-line bg-scienceWhite p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-soft"
+            >
+              {noticia.image ? (
+                <img
+                  src={noticia.image}
+                  alt={noticia.title}
+                  class="mb-6 h-40 w-full rounded-2xl object-cover"
+                />
+              ) : (
+                <div class="mb-6 h-40 w-full rounded-2xl bg-line"></div>
+              )}
+
+              <div class="mb-5 flex flex-wrap items-center gap-4">
+                <p class="inline-flex rounded-full bg-bioTeal/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                  {noticia.category}
+                </p>
+
+                <p class="text-sm font-medium text-soft">
+                  {noticia.date}
+                </p>
+              </div>
+
+              <h3 class="font-heading text-2xl font-bold text-ink">
+                {noticia.title}
+              </h3>
+
+              <p class="mt-4 leading-7 text-soft">
+                {noticia.excerpt}
+              </p>
+
+              <a href={noticia.href} class="mt-6 inline-flex font-bold text-discovery">
+                Leer más →
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div
+          id="empty-news-message"
+          class="mt-12 hidden rounded-[28px] border border-line bg-scienceWhite p-8 text-center"
+        >
+          <p class="font-heading text-2xl font-bold text-ink">
+            Todavía no hay noticias en esta categoría
+          </p>
+
+          <p class="mx-auto mt-3 max-w-2xl leading-7 text-soft">
+            Cuando publiquemos nuevas actividades o novedades relacionadas, aparecerán aquí.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script is:inline>
+      const filterButtons = document.querySelectorAll('[data-category-filter]');
+      const newsCards = document.querySelectorAll('[data-news-card]');
+      const emptyMessage = document.getElementById('empty-news-message');
+
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const selectedCategory = button.dataset.categoryFilter;
+          let visibleCards = 0;
+
+          newsCards.forEach((card) => {
+            const cardCategory = card.dataset.category;
+            const shouldShow = selectedCategory === 'Todas' || cardCategory === selectedCategory;
+
+            card.classList.toggle('hidden', !shouldShow);
+
+            if (shouldShow) {
+              visibleCards++;
+            }
+          });
+
+          filterButtons.forEach((filterButton) => {
+            filterButton.classList.remove('border-midnight', 'bg-midnight', 'text-white');
+            filterButton.classList.add('border-line', 'bg-scienceWhite', 'text-soft');
+          });
+
+          button.classList.remove('border-line', 'bg-scienceWhite', 'text-soft');
+          button.classList.add('border-midnight', 'bg-midnight', 'text-white');
+
+          if (emptyMessage) {
+            emptyMessage.classList.toggle('hidden', visibleCards !== 0);
+          }
+        });
+      });
+    </script>
+
+    <section class="px-5 pb-28">
+      <div class="mx-auto rounded-[32px] bg-midnight px-8 py-20 text-center text-white md:max-w-7xl">
+        <h2 class="font-heading text-4xl font-extrabold md:text-5xl">
+          Ciencia que sigue pasando
+        </h2>
+
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/75">
+          Seguiremos compartiendo aquí las novedades de XentD100cia,
+          nuestras actividades y el avance de la Open Science Cambre.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

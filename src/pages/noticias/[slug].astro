@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { noticias } from '../../data/noticias.js';
+
+export function getStaticPaths() {
+  return noticias.map((noticia) => ({
+    params: { slug: noticia.slug },
+    props: { noticia }
+  }));
+}
+
+const { noticia } = Astro.props;
+
+const noticiasRelacionadas = noticias
+  .filter((item) => item.slug !== noticia.slug)
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={`${noticia.title} | XentD100cia`}
+  description={noticia.excerpt}
+>
+  <Navbar />
+
+  <main>
+    <section class="bg-midnight px-5 pb-24 pt-40 text-white md:pb-32 md:pt-48">
+      <div class="mx-auto max-w-5xl text-center">
+        <p class="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-bioTeal">
+          {noticia.category}
+        </p>
+
+        <h1 class="font-heading text-5xl font-extrabold tracking-tight md:text-7xl">
+          {noticia.title}
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/75">
+          {noticia.excerpt}
+        </p>
+
+        <p class="mt-6 text-sm font-bold uppercase tracking-[0.2em] text-white/50">
+          {noticia.date}
+        </p>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-4xl">
+        <div class="mx-auto mt-12  mb-10 max-w-5xl overflow-hidden rounded-[32px] shadow-soft">
+          {noticia.image ? (
+            <img
+              src={noticia.image}
+              alt={noticia.title}
+              class="h-[420px] w-full object-cover"
+            />
+          ) : (
+            <div class="h-[420px] w-full bg-line"></div>
+          )}
+        </div>
+
+        <article class="rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-12">
+          {noticia.content.map((paragraph) => (
+            <p class="mb-6 text-lg leading-9 text-soft last:mb-0">
+              {paragraph}
+            </p>
+          ))}
+        </article>
+
+        <div class="mt-10">
+          <a
+            href="/noticias"
+            class="inline-flex rounded-button border border-line bg-white px-6 py-3 font-bold text-ink shadow-sm transition hover:-translate-y-1 hover:shadow-soft"
+          >
+            ← Volver a noticias
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-12 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Más noticias
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            También puede interesarte
+          </h2>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          {noticiasRelacionadas.map((relacionada) => (
+            <article class="rounded-card border border-line bg-scienceWhite p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+              <p class="mb-4 inline-flex rounded-full bg-bioTeal/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                {relacionada.category}
+              </p>
+
+              <h3 class="font-heading text-2xl font-bold text-ink">
+                {relacionada.title}
+              </h3>
+
+              <p class="mt-4 leading-7 text-soft">
+                {relacionada.excerpt}
+              </p>
+
+              <a href={relacionada.href} class="mt-6 inline-flex font-bold text-discovery">
+                Leer más →
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,403 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { talleresRealizados } from '../data/talleresRealizados.js';
+import { proximosTalleres } from '../data/proximosTalleres.js';
+
+const getTime = (date) => {
+  const time = new Date(date).getTime();
+  return Number.isNaN(time) ? 0 : time;
+};
+
+const actividadesAnteriores = (talleresRealizados ?? [])
+  .sort((a, b) => getTime(b.sortDate) - getTime(a.sortDate));
+
+const talleresProgramados = (proximosTalleres ?? [])
+  .filter((taller) => taller.estado === 'programado')
+  .sort((a, b) => getTime(a.sortDate) - getTime(b.sortDate));
+
+const proximoTaller = talleresProgramados[0];
+
+const talleresProgramadosRestantes = talleresProgramados.slice(1);
+
+---
+
+<BaseLayout
+  title="Talleres | XentD100cia"
+  description="Talleres científicos de XentD100cia: actividades prácticas para aprender ciencia tocando, probando y descubriendo."
+>
+  <Navbar />
+
+  <main>
+    <section class="bg-midnight px-5 pb-24 pt-40 text-white md:pb-32 md:pt-48">
+      <div class="mx-auto max-w-5xl text-center">
+        <p class="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-bioTeal">
+          Talleres
+        </p>
+
+        <h1 class="font-heading text-5xl font-extrabold tracking-tight md:text-7xl">
+          Aprender ciencia haciéndola
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/75">
+          Diseñamos actividades prácticas para descubrir ciencia tocando, probando,
+          preguntando y compartiendo. Menos mirar desde lejos, más experimentar.
+        </p>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        {proximoTaller ? (
+          <>
+            <div class="mb-12 max-w-3xl">
+              <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+                Próxima actividad
+              </p>
+
+              <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+                Ya tenemos un nuevo taller en preparación
+              </h2>
+
+              <p class="mt-5 text-lg leading-8 text-soft">
+                Consulta aquí la información disponible sobre nuestra próxima actividad.
+              </p>
+            </div>
+
+            <article class="overflow-hidden rounded-[32px] bg-white shadow-soft lg:grid lg:grid-cols-[1.05fr_0.95fr]">
+              <div class="relative min-h-[320px] bg-midnight lg:min-h-[460px]">
+                {proximoTaller.image ? (
+                  <img
+                    src={proximoTaller.image}
+                    alt={proximoTaller.title}
+                    class="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <div class="absolute inset-0 bg-gradient-to-br from-discovery to-bioTeal"></div>
+                )}
+
+                <div class="absolute inset-0 bg-gradient-to-t from-midnight/75 via-midnight/15 to-transparent"></div>
+
+                <div class="absolute bottom-8 left-8 right-8">
+                  <p class="mb-4 inline-flex rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-white backdrop-blur">
+                    Próximamente
+                  </p>
+
+                  <h3 class="font-heading text-3xl font-extrabold text-white md:text-4xl">
+                    {proximoTaller.title}
+                  </h3>
+                </div>
+              </div>
+
+              <div class="flex flex-col justify-center p-8 md:p-12">
+                <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+                  Información
+                </p>
+
+                <h3 class="font-heading text-3xl font-extrabold text-ink md:text-4xl">
+                  Información disponible
+                </h3>
+
+                <p class="mt-5 leading-8 text-soft">
+                  {proximoTaller.excerpt}
+                </p>
+
+                <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                  <div class="rounded-2xl bg-scienceWhite p-5">
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                      Fecha
+                    </p>
+                    <p class="mt-2 font-heading text-lg font-bold text-ink">
+                      {proximoTaller.date ?? 'Por confirmar'}
+                    </p>
+                  </div>
+
+                  <div class="rounded-2xl bg-scienceWhite p-5">
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                      Edad
+                    </p>
+                    <p class="mt-2 font-heading text-lg font-bold text-ink">
+                      {proximoTaller.edad ?? 'Por confirmar'}
+                    </p>
+                  </div>
+
+                  <div class="rounded-2xl bg-scienceWhite p-5">
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                      Lugar
+                    </p>
+                    <p class="mt-2 font-heading text-lg font-bold text-ink">
+                      {proximoTaller.lugar ?? 'Cambre'}
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href={proximoTaller.href ?? '/contacto#participacion'}
+                  class="mt-8 inline-flex w-fit rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                >
+                  {proximoTaller.button ?? 'Me interesa'}
+                </a>
+              </div>
+            </article>
+          </>
+        ) : (
+          <article class="overflow-hidden rounded-[32px] bg-midnight p-8 text-white shadow-soft md:p-12">
+            <div class="mx-auto max-w-4xl text-center">
+              <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+                Próxima actividad
+              </p>
+
+              <h2 class="font-heading text-4xl font-extrabold md:text-5xl">
+                Estamos preparando el siguiente taller
+              </h2>
+
+              <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">
+                Muy pronto anunciaremos nuevas actividades. Mientras tanto, puedes
+                proponernos una idea, escribirnos o seguir nuestras redes para enterarte
+                de las próximas novedades.
+              </p>
+
+              <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <a
+                  href="https://forms.gle/ASZ5pPBz3gGR1Mej6"
+                  class="inline-flex rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                >
+                  Proponer una idea
+                </a>
+
+                <a
+                  href="https://www.instagram.com/xentd100cia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex rounded-button border border-white/20 px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-white/10"
+                >
+                  Seguir novedades
+                </a>
+              </div>
+            </div>
+          </article>
+        )}
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Próximamente
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Talleres programados
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Estas son actividades que ya tenemos previstas o en preparación, aunque algunos
+            detalles como la fecha exacta, el lugar o la inscripción puedan estar todavía por confirmar.
+          </p>
+        </div>
+
+        {talleresProgramadosRestantes.length > 0 ? (
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {talleresProgramadosRestantes.map((taller) => (
+              <article class="rounded-card border border-line bg-scienceWhite p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+                <p class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-bioTeal">
+                  {taller.date}
+                </p>
+
+                <h3 class="font-heading text-2xl font-bold text-ink">
+                  {taller.title}
+                </h3>
+
+                <p class="mt-4 leading-7 text-soft">
+                  {taller.excerpt}
+                </p>
+
+                <div class="mt-6 space-y-2 font-bold text-ink">
+                  <p>👥 {taller.edad}</p>
+                  <p>📍 {taller.lugar}</p>
+                </div>
+
+                <a
+                  href={taller.href ?? '/contacto#participacion'}
+                  class="mt-7 inline-flex rounded-button bg-discovery px-5 py-3 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                >
+                  {taller.button ?? 'Me interesa'}
+                </a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <article class="rounded-card border border-line bg-scienceWhite p-8 shadow-sm">
+            <h3 class="font-heading text-2xl font-bold text-ink">
+              Todavía no hay más talleres programados
+            </h3>
+
+            <p class="mt-4 leading-7 text-soft">
+              Iremos añadiendo aquí las próximas actividades de XentD100cia cuando estén en preparación.
+            </p>
+          </article>
+        )}
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl overflow-hidden rounded-[32px] border border-line bg-white shadow-soft md:grid md:grid-cols-[1fr_1.1fr]">
+        <div class="bg-midnight p-8 text-white md:p-12">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Participa
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold md:text-5xl">
+            Propón un taller
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-white/75">
+            La ciencia también empieza con una pregunta. Si hay un tema que te interesa,
+            una curiosidad que quieras explorar o una actividad que te gustaría vivir,
+            cuéntanos tu idea.
+          </p>
+
+          <a
+            href="https://forms.gle/ASZ5pPBz3gGR1Mej6"
+            class="mt-8 inline-flex rounded-button bg-discovery px-7 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+          >
+            Proponer una idea
+          </a>
+        </div>
+
+        <div class="grid gap-5 p-8 md:p-12">
+          <div class="rounded-card border border-line bg-scienceWhite p-6">
+            <h3 class="font-heading text-xl font-bold text-ink">
+              ¿Qué tema te gustaría explorar?
+            </h3>
+            <p class="mt-2 leading-7 text-soft">
+              Biología, química, medio ambiente, genética, salud, alimentación, tecnología o cualquier curiosidad científica.
+            </p>
+          </div>
+
+          <div class="rounded-card border border-line bg-scienceWhite p-6">
+            <h3 class="font-heading text-xl font-bold text-ink">
+              ¿Para qué edad lo imaginas?
+            </h3>
+            <p class="mt-2 leading-7 text-soft">
+              Puedes proponernos ideas para infancia, adolescentes, familias o público general.
+            </p>
+          </div>
+
+          <div class="rounded-card border border-line bg-scienceWhite p-6">
+            <h3 class="font-heading text-xl font-bold text-ink">
+              ¿Quieres ayudar a hacerlo posible?
+            </h3>
+            <p class="mt-2 leading-7 text-soft">
+              También puedes escribirnos si quieres ayudar a diseñar, preparar o dinamizar alguna actividad.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Actividades anteriores
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Talleres realizados
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Algunas de las actividades que hemos desarrollado para acercar la ciencia
+            de forma práctica, participativa y cercana.
+          </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {actividadesAnteriores.map((taller) => (
+            <article class="overflow-hidden rounded-card border border-line bg-scienceWhite shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+            {taller.image ? (
+                <img
+                  src={taller.image}
+                  alt={taller.title}
+                  class="h-40 w-full object-cover"
+                />
+              ) : (
+                <div class="h-40 bg-line"></div>
+              )}
+
+              <div class="p-7">
+                <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                  {taller.date}
+                </p>
+
+                <h3 class="font-heading text-2xl font-bold text-ink">
+                  {taller.title}
+                </h3>
+
+                <p class="mt-4 leading-7 text-soft">
+                  {taller.excerpt}
+                </p>
+
+                {taller.href && taller.href !== '/talleres' && (
+                  <a
+                   href={taller.href}
+                    class="mt-6 inline-flex font-bold text-discovery transition hover:text-bioTeal"
+                  >
+                    Leer más →
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+        <div>
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Cómo trabajamos
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Talleres pensados para tocar, probar y preguntar
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Diseñamos cada actividad para que sea cercana,particpativa y comprensible.
+            Queremos que la ciencia deje de parecer algo lejano y se convierta en una forma de mirar el mundo con curiosidad.
+          </p>
+        </div>
+
+        <div class="grid gap-5">
+          <div class="rounded-card border border-line bg-white p-6 shadow-sm">
+            <h3 class="font-heading text-xl font-bold text-ink">1. Experiencias prácticas</h3>
+            <p class="mt-2 leading-7 text-soft">
+              Priorizamos actividades manipulativas, visuales y fáciles de entender.
+            </p>
+          </div>
+
+          <div class="rounded-card border border-line bg-white p-6 shadow-sm">
+            <h3 class="font-heading text-xl font-bold text-ink">2. Lenguaje claro</h3>
+            <p class="mt-2 leading-7 text-soft">
+              Explicamos ciencia sin perder rigor, pero evitando tecnicismos innecesarios.
+            </p>
+          </div>
+
+          <div class="rounded-card border border-line bg-white p-6 shadow-sm">
+            <h3 class="font-heading text-xl font-bold text-ink">3. Participación</h3>
+            <p class="mt-2 leading-7 text-soft">
+              Cada taller está pensado para que las personas pregunten, prueben y descubran.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

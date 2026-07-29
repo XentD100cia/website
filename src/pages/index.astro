@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import Footer from '../components/Footer.astro';
+import { noticias } from '../data/noticias.js';
+import { talleresRealizados } from '../data/talleresRealizados.js';
+import { edicionesOSC } from '../data/edicionesOSC.js';
+import { proximosTalleres } from '../data/proximosTalleres.js';
+
+const getTime = (date) => {
+  const time = new Date(date).getTime();
+  return Number.isNaN(time) ? 0 : time;
+};
+
+const proximoTaller = (proximosTalleres ?? [])
+  .filter((taller) => taller.estado === 'programado')
+  .sort((a, b) => getTime(a.sortDate) - getTime(b.sortDate)) [0];
+
+
+const actividadesOSC = (edicionesOSC ?? [])
+  .filter((edicion) => edicion.estado === 'archivo')
+  .map((edicion) => ({
+    title: edicion.title,
+    date: edicion.date,
+    sortDate: edicion.sortDate ?? edicion.date,
+    category: 'OSC',
+    excerpt: edicion.excerpt,
+    href: edicion.href,
+    image: edicion.image ?? null
+  }));
+
+const actividadesTalleres = talleresRealizados.map((taller) => ({
+  title: taller.title,
+  date: taller.date,
+  sortDate: taller.sortDate ?? taller.date,
+  category: 'Talleres',
+  excerpt: taller.excerpt,
+  href: taller.href,
+  image: taller.image ?? null
+}));
+
+const actividadesFerias = noticias
+  .filter((noticia) => noticia.category === 'Ferias y eventos')
+  .map((noticia) => ({
+    title: noticia.title,
+    date: noticia.date,
+    sortDate: noticia.sortDate ?? noticia.date,
+    category: noticia.category,
+    excerpt: noticia.excerpt,
+    href: noticia.href ?? `/noticias/${noticia.slug}`,
+    image: noticia.image ?? null
+  }));
+
+const ultimasActividades = [
+  ...actividadesOSC,
+  ...actividadesTalleres,
+  ...actividadesFerias
+]
+  .sort((a, b) => getTime(b.sortDate) - getTime(a.sortDate))
+  .slice(0, 3);
+
+---
+
+<BaseLayout>
+  <Navbar />
+  <Hero />
+
+  <main>
+    <section id="que-hacemos" class="relative overflow-hidden bg-gradient-to-b from-scienceWhite to-white px-5 py-28 md:py-36">
+      <SectionTitle
+        eyebrow="Qué hacemos"
+        title="Ciencia que se vive"
+        text="Diseñamos experiencias prácticas para aprender ciencia de forma cercana, visual y participativa."
+      />
+
+      <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-4">
+        <FeatureCard icon="🧪" title="Talleres científicos" text="Aprender haciendo, con actividades prácticas y participativas." />
+        <FeatureCard icon="🔬" title="Ferias y eventos" text="Llevamos la ciencia a espacios abiertos, centros y encuentros." />
+        <FeatureCard icon="🧬" title="Divulgación accesible" text="Explicamos ciencia de forma cercana, clara y rigurosa." />
+        <FeatureCard icon="🌍" title="Comunidad joven" text="Creamos espacios para descubrir, preguntar y experimentar juntos." />
+      </div>
+    </section>
+
+    <section class="bg-midnight px-5 py-28 text-white md:py-36">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2">
+        <div class="relative overflow-hidden rounded-[32px] border border-white/10 shadow-soft">
+          {proximoTaller?.image ? (
+            <img
+              src={proximoTaller.image}
+              alt={proximoTaller.title}
+              class="h-[360px] w-full object-cover md:h-[480px]"
+            />
+          ) : (
+            <div class="h-[360px] w-full bg-white/10 md:h-[480px]"></div>
+          )}
+
+          <div class="absolute inset-0 bg-gradient-to-t from-midnight/70 via-midnight/20 to-transparent"></div>
+        </div>
+        <div>
+          <h2 class="font-heading text-4xl font-extrabold text-white md:text-5xl">
+            {proximoTaller?.title ?? 'Estamos preparando el siguiente taller'}
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-white/75">
+            {proximoTaller?.excerpt ??
+              'Muy pronto compartiremos la información del próximo taller de XentD100cia.'}
+          </p>
+
+          <ul class="mt-6 space-y-3 text-white/85">
+            <li>🗓️ {proximoTaller?.date ?? 'Fecha por confirmar'}</li>
+            <li>👥 {proximoTaller?.edad ?? 'Edad recomendada por confirmar'}</li>
+            <li>📍 {proximoTaller?.lugar ?? 'Cambre'}</li>
+          </ul>
+
+          <a
+            href={proximoTaller?.href ?? '/contacto'}
+            class="mt-8 inline-flex rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+          >
+            {proximoTaller?.button ?? 'Más información'}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-28 md:py-36">
+      <SectionTitle
+        eyebrow="En acción"
+        title="Así vivimos la ciencia"
+        text="Experimentos, preguntas, errores, descubrimientos y muchas manos en acción."
+      />
+
+      <div class="mx-auto grid max-w-7xl gap-5 md:grid-cols-4">
+        <div class="h-72 overflow-hidden rounded-card md:col-span-2">
+          <img
+            src="/images/images/home/anfiteatro.JPG"
+            alt="Actividad científica participativa"
+            class="h-full w-full object-cover transition duration-500 hover:scale-105"
+          />
+        </div>
+
+        <div class="h-72 overflow-hidden rounded-card">
+          <img
+            src="/images/images/home/familiar.JPG"
+            alt="Experimento científico en taller"
+            class="h-full w-full object-cover transition duration-500 hover:scale-105"
+          />
+        </div>
+
+        <div class="h-72 overflow-hidden rounded-card">
+          <img
+            src="/images/images/home/cromo.JPG"
+            alt="Participantes realizando una actividad científica"
+            class="h-full w-full object-cover transition duration-500 hover:scale-105"
+          />
+        </div>
+
+        <div class="h-72 overflow-hidden rounded-card">
+          <img
+            src="/images/images/home/claqueta.jpg"
+            alt="Materiales de divulgación científica"
+            class="h-full w-full object-cover transition duration-500 hover:scale-105"
+          />
+        </div>
+
+        <div class="h-72 overflow-hidden rounded-card md:col-span-2">
+          <img
+            src="/images/images/home/espectaculo_david.JPG"
+            alt="Feria o taller de ciencia con público"
+            class="h-full w-full object-cover transition duration-500 hover:scale-105"
+          />
+        </div>
+
+        <div class="h-72 overflow-hidden rounded-card">
+          <img
+            src="/images/images/home/espectaculo.JPG"
+            alt="Actividad de XentD100cia"
+            class="h-full w-full object-cover transition duration-500 hover:scale-105"
+          />
+        </div>
+
+        <div class="h-72 overflow-hidden rounded-card">
+          <img
+            src="/images/images/home/el_goat.JPG"
+            alt="Materiales de divulgación científica"
+            class="h-full w-full object-cover transition duration-500 hover:scale-105"
+          />
+        </div>
+
+        <div class="h-72 overflow-hidden rounded-card">
+          <img
+            src="/images/images/home/baile.JPG"
+            alt="Actividad de XentD100cia"
+            class="h-full w-full object-cover transition duration-500 hover:scale-105"
+          />
+        </div>
+        
+        <div class="h-72 overflow-hidden rounded-card md:col-span-2">
+          <img
+            src="/images/images/home/neon.JPG"
+            alt="Feria o taller de ciencia con público"
+            class="h-full w-full object-cover transition duration-500 hover:scale-105"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-28 md:py-36">
+      <div class="mx-auto overflow-hidden rounded-[32px] bg-white shadow-soft md:grid md:max-w-7xl md:grid-cols-2">
+        <div class="bg-gradient-to-br from-midnight to-discovery p-10 text-white md:p-16">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">OSC</p>
+          <h2 class="font-heading text-4xl font-extrabold md:text-5xl">Open Science Cambre</h2>
+          <p class="mt-5 text-lg leading-8 text-white/80">
+            Estamos preparando la feria científica de este año. Sigue el proceso, descubre las actividades y participa en una feria hecha desde la comunidad.
+          </p>
+          <a href="/osc" class="mt-8 inline-flex rounded-button bg-white px-7 py-4 font-bold text-midnight transition hover:-translate-y-1">
+            Seguir OSC
+          </a>
+        </div>
+        <div class="grid gap-4 p-8 md:p-12">
+          <div class="rounded-card border border-line p-6">
+            <h3 class="font-heading text-xl font-bold text-ink">Diario de preparación</h3>
+            <p class="mt-2 text-soft">Avances, decisiones y novedades del proyecto.</p>
+          </div>
+          <div class="rounded-card border border-line p-6">
+            <h3 class="font-heading text-xl font-bold text-ink">Formularios</h3>
+            <p class="mt-2 text-soft">Participantes, voluntariado, propuestas y colaboraciones.</p>
+          </div>
+          <div class="rounded-card border border-line p-6">
+            <h3 class="font-heading text-xl font-bold text-ink">Cómo participar</h3>
+            <p class="mt-2 text-soft">Todas las formas de sumarse a la feria.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 md:py-32">
+  <div class="mx-auto max-w-7xl">
+    <div class="mx-auto mb-14 max-w-3xl text-center">
+      <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+        Actividad reciente
+      </p>
+
+      <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+        Últimas actividades
+      </h2>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-3">
+      {ultimasActividades.map((actividad) => (
+        <article class="overflow-hidden rounded-card border border-line bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+          {actividad.image ? (
+            <img
+              src={actividad.image}
+              alt={actividad.title}
+              class="h-40 w-full object-cover"
+            />
+          ) : (
+            <div class="h-40 bg-line"></div>
+          )}
+
+          <div class="p-7">
+            <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+              {actividad.category}
+            </p>
+
+            <h3 class="font-heading text-2xl font-bold text-ink">
+              {actividad.title}
+            </h3>
+
+            <p class="mt-4 leading-7 text-soft">
+              {actividad.excerpt}
+            </p>
+
+            <a
+              href={actividad.href}
+              class="mt-6 inline-flex font-bold text-discovery transition hover:text-bioTeal"
+            >
+              Leer más →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+    <section class="px-5 pb-28">
+      <div class="mx-auto rounded-[32px] bg-midnight px-8 py-20 text-center text-white md:max-w-7xl">
+        <h2 class="font-heading text-4xl font-extrabold md:text-6xl">¿Te animas a experimentar?</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/75">
+          Únete a nuestras actividades y descubre la ciencia desde dentro: tocando, probando, preguntando y compartiendo.
+        </p>
+        <a href="/contacto#participacion" class="mt-8 inline-flex rounded-button bg-discovery px-7 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal">
+         Quiero participar
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
