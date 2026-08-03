@@ -172,7 +172,7 @@ const redesSociales = [
       </div>
     </section>
 
-    <section id="canales" class="bg-white px-5 py-24 md:py-32">
+    <section id="canales" class="overflow-hiden bg-white px-5 py-24 md:py-32">
       <div class="mx-auto max-w-7xl">
         <div class="mb-14 max-w-3xl">
           <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
@@ -190,8 +190,8 @@ const redesSociales = [
           </p>
         </div>
 
-        <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <article class="rounded-[32px] bg-midnight p-8 text-white shadow-soft md:p-10">
+        <div class="grid min-w-0 gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <article class="min-w-0 rounded-[28px] bg-midnight p-6 text-white shadow-soft md:rounded-[32px] md:p-10">
             <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
               Correos principales
             </p>
@@ -216,7 +216,7 @@ const redesSociales = [
                     {correo.text}
                   </p>
 
-                  <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+                  <div class="mt-5 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
                     <a
                       href={`https://mail.google.com/mail/?view=cm&fs=1&to=${correo.email}&su=${encodeURIComponent(correo.subject)}`}
                       target="_blank"

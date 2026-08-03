@@ -55,6 +55,7 @@ export const noticias = [
       'La asociación continúa creciendo con nuevas actividades, colaboraciones y proyectos de divulgación científica.',
     slug: 'seguimos-construyendo-xentd100cia',
     href: '/noticias/seguimos-construyendo-xentd100cia',
+    image: '/images/images/logosR/logo-xentd100cia.png',
     content: [
       'XentD100cia sigue creciendo como asociación juvenil de divulgación científica.',
       'Seguimos preparando talleres, participando en actividades, construyendo Open Science Cambre y desarrollando nuevas formas de acercar la ciencia a la comunidad.',
