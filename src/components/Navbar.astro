@@ -9,14 +9,14 @@ const links = [
 ];
 ---
 
-<header class="fixed left-0 top-0 z-50 w-full px-5 py-4">
-  <nav class="mx-auto max-w-7xl rounded-full border border-white/10 bg-midnight/85 px-5 py-3 text-white shadow-soft backdrop-blur">
+<header class="fixed left-0 top-0 z-50 w-full px-4 py-4">
+  <nav class="mx-auto max-w-7xl rounded-[28px] border border-white/10 bg-midnight/90 px-5 py-3 text-white shadow-soft backdrop-blur">
     <div class="flex items-center justify-between gap-6">
       <a href="/" class="flex items-center gap-3">
         <img
           src="/images/logo-xentd100cia.png"
           alt="Logo de XentD100cia"
-          class="h-10 w-10 rounded-full object-contain"
+          class="h-10 w-10 object-contain"
         />
 
         <span class="font-heading text-xl font-extrabold">
@@ -24,6 +24,7 @@ const links = [
         </span>
       </a>
 
+      <!-- Menú escritorio -->
       <div class="hidden items-center gap-7 lg:flex">
         {links.map((link) => (
           <a
@@ -35,6 +36,7 @@ const links = [
         ))}
       </div>
 
+      <!-- Botón móvil -->
       <button
         type="button"
         data-menu-button
@@ -75,15 +77,16 @@ const links = [
       </button>
     </div>
 
+    <!-- Menú móvil desplegable -->
     <div
       data-mobile-menu
       class="hidden border-t border-white/10 pt-4 lg:hidden"
     >
-      <div class="flex flex-col gap-2">
+      <div class="grid gap-2">
         {links.map((link) => (
           <a
             href={link.href}
-            class="rounded-2xl px-4 py-3 text-sm font-bold text-white/80 transition hover:bg-white/10 hover:text-bioTeal"
+            class="rounded-2xl px-4 py-3 text-base font-bold text-white/80 transition hover:bg-white/10 hover:text-bioTeal"
           >
             {link.label}
           </a>
