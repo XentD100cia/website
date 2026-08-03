@@ -7,50 +7,94 @@ const motivosContacto = [
   {
     title: 'Participar en la OSC',
     text: 'Para centros, asociaciones, instituciones o proyectos que quieran formar parte de la Open Science Cambre con una actividad divulgativa.',
-    button: 'Participar en la OSC',
-    href: 'mailto:contacto@xentd100cia.org?subject=Participar%20en%20OSC'
+    buttonActivo: 'Participar en la OSC',
+    buttonInactivo: 'Ya tenemos a todos los participantes',
+    hrefActivo: 'https://forms.gle/TU_FORMULARIO_ENTIDADES',
+    hrefInactivo: '/osc#canales',
+    formularioActivo: false
   },
   {
     title: 'Programa de acogidas',
     text: 'Para familias de Cambre interesadas en ayudar con el programa de acogida durante la Open Science Cambre.',
-    button: 'Formulario acogidas',
-    href: 'mailto:contacto@xentd100cia.org?subject=Programa%20de%20acogidas'
+    buttonActivo: 'Formulario acogidas',
+    buttonInactivo: 'Acogidas por confirmar',
+    hrefActivo: 'https://forms.gle/TU_FORMULARIO_ACOGIDAS',
+    hrefInactivo: '/contacto#canales',
+    formularioActivo: false
   },
   {
     title: 'Voluntariado',
-    text: 'Para personas que quieran ayudar en organización, montaje, acompañamiento de entidades, atención al público o apoyo logístico.',
-    button: 'Quiero ser voluntario/a',
-    href: 'mailto:contacto@xentd100cia.org?subject=Voluntariado'
+    text: 'Para personas que quieran ayudar en la organización, montaje, atención al público, acompañamiento de entidades o apoyo logístico.',
+    buttonActivo: 'Quiero ser voluntario/a',
+    buttonInactivo: 'Quiero ser voluntario/a',
+    hrefActivo: 'mailto:opensciencecambre@gmail.com?subject=Voluntariado',
+    hrefInactivo: 'mailto:opensciencecambre@gmail.com?subject=Voluntariado',
+    formularioActivo: true
   },
   {
     title: 'Proponer un taller',
     text: 'Para sugerir temas, ideas o actividades que podrían convertirse en futuros talleres de XentD100cia.',
-    button: 'Proponer taller',
-    href: 'https://forms.gle/ASZ5pPBz3gGR1Mej6'
+    buttonActivo: 'Proponer taller',
+    buttonInactivo: 'Proponer taller',
+    hrefActivo: 'https://forms.gle/ASZ5pPBz3gGR1Mej',
+    hrefInactivo: 'https://forms.gle/ASZ5pPBz3gGR1Mej6',
+    formularioActivo: true
   },
   {
     title: 'Contacto general',
     text: 'Para cualquier otra consulta relacionada con la asociación, actividades, colaboraciones, comunicación o participación.',
-    button: 'Escribirnos',
-    href: '#canales'
+    buttonActivo: 'Escríbenos',
+    buttonInactivo: 'Escríbenos',
+    hrefActivo: '#canales',
+    hrefInactivo: '#canales',
+    formularioActivo: true
+  }
+];
+const correosContacto = [
+  {
+    title: 'Asociación XentD100cia',
+    email: 'asociacionxentd100cia@gmail.com',
+    text: 'Para consultas generales sobre la asociación, talleres, colaboraciones y actividades de XentD100cia.',
+    subject: 'Contacto con XentD100cia'
+  },
+  {
+    title: 'Open Science Cambre',
+    email: 'opensciencecambre@gmail.com',
+    text: 'Para consultas relacionadas con Open Science Cambre, participación, acogidas, voluntariado o entidades colaboradoras.',
+    subject: 'Contacto sobre Open Science Cambre'
   }
 ];
 
-const canales = [
+const redesSociales = [
   {
-    title: 'Correo electrónico',
-    text: 'opensciencecambre@gmail.com',
-    note: 'Si te surge alguna duda o quieres proponer algo no dudes en escribirnos.'
+    name: 'XentD100cia',
+    handle: '@xentd100cia',
+    platform: 'Instagram',
+    href: 'https://www.instagram.com/xentd100cia'
   },
   {
-    title: 'Redes sociales',
-    text: '@xentd100cia',
-    note: 'Síguenos para estar al tanto de talleres, actividades y novedades de la asociación y/o de la Open Science Cambre.'
+    name: 'Open Science Cambre',
+    handle: '@opensciencecambre',
+    platform: 'Instagram',
+    href: 'https://www.instagram.com/opensciencecambre'
   },
   {
-    title: 'Dónde estamos',
-    text: 'Cambre',
-    note: 'Desarrollamos activdades de divulgación científica desde Cambre y para la comunidad.'
+    name: 'Lab Bio',
+    handle: 'Lab Bio',
+    platform: 'Facebook',
+    href: 'https://www.facebook.com/lab.bio.946#'
+  },
+  {
+    name: 'Open Science Cambre',
+    handle: '@openscience_',
+    platform: 'X',
+    href: 'https://x.com/openscience_'
+  },
+  {
+    name: 'Open Science Cambre',
+    handle: '@opensciencecambre',
+    platform: 'TikTok',
+    href: 'https://www.tiktok.com/@opensciencecambre'
   }
 ];
 ---
@@ -111,10 +155,15 @@ const canales = [
                 </div>
 
                 <a
-                  href={motivo.href}
-                  class="inline-flex shrink-0 rounded-button bg-discovery px-6 py-3 text-center font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                  href={motivo.formularioActivo ? motivo.hrefActivo : motivo.hrefInactivo}
+                  class:list={[
+                    'inline-flex rounded-button px-6 py-4 font-bold transition',
+                    motivo.formularioActivo
+                      ? 'bg-discovery text-white hover:-translate-y-1 hover:bg-bioTeal'
+                      : 'border border-line bg-white text-soft hover:-translate-y-1 hover:shadow-soft'
+                  ]}
                 >
-                  {motivo.button}
+                  {motivo.formularioActivo ? motivo.buttonActivo : motivo.buttonInactivo}
                 </a>
               </div>
             </article>
@@ -123,9 +172,9 @@ const canales = [
       </div>
     </section>
 
-        <section id="canales" class="bg-white px-5 py-24 md:py-32">
+    <section id="canales" class="bg-white px-5 py-24 md:py-32">
       <div class="mx-auto max-w-7xl">
-        <div class="mb-12 max-w-3xl">
+        <div class="mb-14 max-w-3xl">
           <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
             Canales
           </p>
@@ -135,97 +184,140 @@ const canales = [
           </h2>
 
           <p class="mt-5 text-lg leading-8 text-soft">
-            Puedes contactar con XentD100cia por correo electrónico o seguir nuestras redes
-            para estar al tanto de talleres, actividades y novedades de Open Science Cambre.
+            Puedes contactar con XentD100cia por correo electrónico o seguir nuestras
+            redes para estar al tanto de talleres, actividades y novedades de Open
+            Science Cambre.
           </p>
         </div>
 
-        <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <article class="rounded-[32px] bg-midnight p-8 text-white shadow-soft md:p-10">
             <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
-              Correo principal
+              Correos principales
             </p>
 
             <h3 class="font-heading text-3xl font-extrabold md:text-4xl">
               Escríbenos por email
             </h3>
 
-            <p class="mt-4 leading-8 text-white/70">
-              Para consultas sobre talleres, Open Science Cambre, colaboraciones,
-              acogidas, voluntariado o contacto general.
+            <p class="mt-5 leading-8 text-white/65">
+              Usa el correo que mejor encaje con tu consulta. Así podremos responderte
+              de forma más ordenada.
             </p>
 
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=opensciencecambre@gmail.com&su=Contacto%20con%20XentD100cia"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-8 inline-flex max-w-full rounded-button bg-discovery px-6 py-4 text-center font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
-            >
-              Escribir a opensciencecambre@gmail.com
-            </a>
+            <div class="mt-8 grid gap-4">
+              {correosContacto.map((correo) => (
+                <div class="rounded-3xl border border-white/10 bg-white/5 p-5">
+                  <p class="text-sm font-bold uppercase tracking-[0.18em] text-bioTeal">
+                    {correo.title}
+                  </p>
+
+                  <p class="mt-3 leading-7 text-white/70">
+                    {correo.text}
+                  </p>
+
+                  <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+                    <a
+                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=${correo.email}&su=${encodeURIComponent(correo.subject)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex rounded-button bg-discovery px-5 py-3 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                    >
+                      {correo.email}
+                    </a>
+
+                    <button
+                      type="button"
+                      data-copy-email={correo.email}
+                      class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/65 transition hover:-translate-y-0.5 hover:bg-white/10 hover:text-white"
+                      aria-label={`Copiar ${correo.email}`}
+                      title="Copiar correo"
+                    >
+                      <svg
+                        data-copy-icon
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-4 w-4"
+                        aria-hidden="true"
+                      >
+                        <rect x="9" y="9" width="10" height="10" rx="2" />
+                        <path d="M5 15V7a2 2 0 0 1 2-2h8" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           </article>
 
           <div class="grid gap-6">
-            <article class="rounded-card border border-line bg-scienceWhite p-7 shadow-sm">
+            <article class="rounded-card border border-line bg-scienceWhite p-8 shadow-sm">
               <h3 class="font-heading text-2xl font-bold text-ink">
                 Redes sociales
               </h3>
 
-              <a
-                href="https://www.instagram.com/xentd100cia"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-3 inline-flex font-heading text-2xl font-extrabold text-discovery"
-              >
-                @xentd100cia
-              </a>
-
-              <a
-                href="https://www.instagram.com/opensciencecambre"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-3 inline-flex font-heading text-2xl font-extrabold text-discovery"
-              >
-                @opensciencecambre
-              </a>
-
-              <a
-                href= "/contacto"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-3 inline-flex font-heading text-2xl font-extrabold text-discovery"
-              >
-                @Lab Bio
-              </a>
-
-              <a
-                href= "https://x.com/openscience_"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-3 inline-flex font-heading text-2xl font-extrabold text-discovery"
-              >
-                @openscience_
-              </a>
-
               <p class="mt-3 leading-7 text-soft">
-                Síguenos para estar al tanto de talleres, actividades, novedades de la asociación
-                y Open Science Cambre.
-              </p>
-            </article>
-
-            <article class="rounded-card border border-line bg-scienceWhite p-7 shadow-sm">
-              <h3 class="font-heading text-2xl font-bold text-ink">
-                Dónde estamos
-              </h3>
-
-              <p class="mt-3 font-heading text-2xl font-extrabold text-discovery">
-                Cambre
+                Cada cuenta tiene su propio espacio. Puedes seguirnos según la red
+                que utilices o el proyecto que quieras consultar.
               </p>
 
-              <p class="mt-3 leading-7 text-soft">
-                Desarrollamos actividades de divulgación científica desde Cambre
-                y para la comunidad.
-              </p>
+              <div class="mt-6 grid gap-3">
+                {redesSociales.map((red) => (
+                  <a
+                    href={red.href}
+                    target={red.href === '#' ? undefined : '_blank'}
+                    rel={red.href === '#' ? undefined : 'noopener noreferrer'}
+                    class="group flex items-center gap-4 rounded-2xl border border-line bg-white p-4 transition hover:-translate-y-1 hover:shadow-soft"
+                  >
+                    <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-midnight text-white transition group-hover:bg-discovery">
+                      {red.platform === 'Instagram' && (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+                          <rect x="3" y="3" width="18" height="18" rx="5" />
+                          <circle cx="12" cy="12" r="4" />
+                          <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+                        </svg>
+                      )}
+
+                      {red.platform === 'Facebook' && (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+                          <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.4v3h2.7v8h3.4z" />
+                        </svg>
+                      )}
+
+                      {red.platform === 'X' && (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+                          <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-5-7.5L5.2 22H2l7.3-8.4L1.7 2h6.5l4.5 6.7L18.9 2Zm-1.1 17.8h1.7L7.3 4.1H5.5l12.3 15.7Z" />
+                        </svg>
+                      )}
+
+                      {red.platform === 'TikTok' && (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+                          <path d="M16.6 3c.4 2.3 1.7 3.7 4 3.9v3.1c-1.3.1-2.7-.3-4-1.1v5.9c0 3.8-2.1 6.2-5.5 6.2-3.1 0-5.5-2.2-5.5-5.2 0-3.4 2.8-5.8 6.4-5.1v3.3c-1.6-.5-3.1.4-3.1 1.8 0 1.1.9 1.9 2.1 1.9 1.4 0 2.2-.8 2.2-2.6V3h3.4Z" />
+                        </svg>
+                      )}
+                    </span>
+
+                    <span>
+                      <span class="block text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                        {red.platform}
+                      </span>
+
+                      <span class="mt-1 block font-heading text-xl font-bold text-ink">
+                        {red.handle}
+                      </span>
+
+                      <span class="mt-1 block text-sm text-soft">
+                        {red.name}
+                      </span>
+                    </span>
+                  </a>
+                ))}
+              </div>
             </article>
           </div>
         </div>
@@ -247,4 +339,64 @@ const canales = [
   </main>
 
   <Footer />
+
+<script>
+  const copyEmailButtons = document.querySelectorAll('[data-copy-email]');
+
+  copyEmailButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const email = button.getAttribute('data-copy-email');
+
+      if (!email) return;
+
+      const originalContent = button.innerHTML;
+
+      try {
+        await navigator.clipboard.writeText(email);
+
+        button.innerHTML = `
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-4 w-4"
+            aria-hidden="true"
+          >
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        `;
+
+        setTimeout(() => {
+          button.innerHTML = originalContent;
+        }, 1800);
+      } catch (error) {
+        button.innerHTML = `
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-4 w-4"
+            aria-hidden="true"
+          >
+            <path d="M18 6L6 18" />
+            <path d="M6 6l12 12" />
+          </svg>
+        `;
+
+        setTimeout(() => {
+          button.innerHTML = originalContent;
+        }, 1800);
+      }
+    });
+  });
+</script>
+
 </BaseLayout>
