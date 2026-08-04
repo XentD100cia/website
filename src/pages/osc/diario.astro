@@ -3,85 +3,153 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { oscPosts } from '../../data/oscPosts.js';
+
+const getTime = (date) => {
+  const time = new Date(date).getTime();
+  return Number.isNaN(time) ? 0 : time;
+};
+
+const postsOrdenados = [...(oscPosts ?? [])].sort(
+  (a, b) => getTime(b.sortDate) - getTime(a.sortDate)
+);
 ---
 
 <BaseLayout
   title="Diario OSC | XentD100cia"
-  description="Diario de preparación de Open Science Cambre: avances, organización, participación de entidades y novedades de la feria."
+  description="Seguimiento del proceso de preparación de Open Science Cambre: avances, noticias, documentos y novedades de la feria."
 >
   <Navbar />
 
   <main>
-    <section class="bg-midnight px-5 pb-24 pt-40 text-white md:pb-32 md:pt-48">
-      <div class="mx-auto max-w-5xl text-center">
-        <p class="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-bioTeal">
-          Diario de preparación
-        </p>
+    <section class="bg-midnight px-5 pt-40 pb-24 text-white md:pt-48 md:pb-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-4xl">
+          <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Diario OSC
+          </p>
 
-        <h1 class="font-heading text-5xl font-extrabold tracking-tight md:text-7xl">
-          Así se construye OSC
-        </h1>
+          <h1 class="font-heading text-5xl font-extrabold leading-tight md:text-7xl">
+            Diario de preparación de Open Science Cambre
+          </h1>
 
-        <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/75">
-          Avances, decisiones y novedades sobre la organización de Open Science Cambre.
-        </p>
-      </div>
-    </section>
-
-    <section class="px-5 py-24 md:py-32">
-      <div class="mx-auto max-w-5xl">
-        <div class="grid gap-8">
-          {oscPosts.map((post, index) => (
-            <article
-              id={post.href.split('#')[1]}
-              class="rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10"
-            >
-              <div class="mb-5 flex flex-wrap items-center gap-4">
-                <p class="inline-flex rounded-full bg-bioTeal/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
-                  {post.category}
-                </p>
-
-                <p class="text-sm font-medium text-soft">
-                  {post.date}
-                </p>
-              </div>
-
-              <h2 class="font-heading text-3xl font-extrabold text-ink md:text-4xl">
-                {post.title}
-              </h2>
-
-              <p class="mt-5 text-lg leading-8 text-soft">
-                {post.excerpt}
-              </p>
-
-              <p class="mt-5 leading-8 text-soft">
-                Esta publicación forma parte del seguimiento del proceso de preparación
-                de Open Science Cambre. Más adelante podremos ampliar este espacio con
-                textos completos, fotografías, formularios y novedades específicas de cada fase.
-              </p>
-            </article>
-          ))}
+          <p class="mt-6 max-w-3xl text-xl leading-9 text-white/70">
+            Un espacio para recoger avances, documentos, noticias y pequeñas
+            actualizaciones del proceso de organización de Open Science Cambre.
+          </p>
         </div>
       </div>
     </section>
 
-    <section class="px-5 pb-28">
-      <div class="mx-auto rounded-[32px] bg-midnight px-8 py-20 text-center text-white md:max-w-7xl">
-        <h2 class="font-heading text-4xl font-extrabold md:text-5xl">
-          ¿Quieres participar en OSC?
-        </h2>
+    <section class="bg-scienceWhite px-5 py-20 md:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Últimas publicaciones
+          </p>
 
-        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/75">
-          Si formas parte de un centro, asociación, institución o proyecto científico,
-          puedes ponerte en contacto con nosotros para participar en la feria.
-        </p>
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Avances de la OSC
+          </h2>
 
-        <a
-          href="/contacto#participacion"
-          class="mt-8 inline-flex rounded-button bg-discovery px-7 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
-        >
-          Participar en OSC
-        </a>
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Aquí iremos publicando las novedades de la feria: documentos,
+            formularios, organización, participantes, actividades y noticias
+            relacionadas con la próxima edición.
+          </p>
+        </div>
+
+        {postsOrdenados.length > 0 ? (
+          <div class="grid gap-8">
+            {postsOrdenados.map((post) => (
+              <article
+                id={post.slug}
+                class="overflow-hidden rounded-[32px] border border-line bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-soft lg:grid lg:grid-cols-[0.85fr_1.15fr]"
+              >
+                <div class="relative min-h-[260px] bg-midnight lg:min-h-full">
+                  {post.image ? (
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      class="absolute inset-0 h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div class="absolute inset-0 bg-gradient-to-br from-discovery to-bioTeal"></div>
+                  )}
+
+                  <div class="absolute inset-0 bg-gradient-to-t from-midnight/70 via-midnight/20 to-transparent"></div>
+
+                  <div class="absolute bottom-6 left-6 right-6">
+                    <span class="inline-flex rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-white backdrop-blur">
+                      {post.category ?? 'OSC'}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex flex-col justify-center p-8 md:p-10 lg:p-12">
+                  <div class="mb-5 flex flex-wrap items-center gap-3">
+                    <span class="rounded-full bg-bioTeal/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                      {post.category ?? 'OSC'}
+                    </span>
+
+                    <span class="text-sm font-bold uppercase tracking-[0.18em] text-soft">
+                      {post.date}
+                    </span>
+                  </div>
+
+                  <h2 class="font-heading text-3xl font-extrabold text-ink md:text-4xl">
+                    {post.title}
+                  </h2>
+
+                  <p class="mt-5 text-lg leading-8 text-soft">
+                    {post.excerpt}
+                  </p>
+
+                  <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                    <a
+                      href={post.detailHref ?? `/osc/diario/${post.slug}`}
+                      class="inline-flex w-fit rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                    >
+                      Leer más
+                    </a>
+
+                    {post.document && (
+                      <a
+                        href={post.document}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex w-fit rounded-button border border-line bg-white px-6 py-4 font-bold text-ink transition hover:-translate-y-1 hover:shadow-soft"
+                      >
+                        {post.documentLabel ?? 'Ver documento'}
+                      </a>
+                    )}
+
+                    {post.asset && (
+                      <a
+                        href={post.asset}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex w-fit rounded-button border border-line bg-white px-6 py-4 font-bold text-ink transition hover:-translate-y-1 hover:shadow-soft"
+                      >
+                        {post.assetLabel ?? 'Ver archivo'}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <article class="rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10">
+            <h2 class="font-heading text-3xl font-extrabold text-ink">
+              Todavía no hay publicaciones en el diario
+            </h2>
+
+            <p class="mt-4 text-lg leading-8 text-soft">
+              Iremos añadiendo aquí las novedades relacionadas con la preparación
+              de Open Science Cambre.
+            </p>
+          </article>
+        )}
       </div>
     </section>
   </main>

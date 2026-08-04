@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import { oscPosts } from '../../../data/oscPosts.js';
+
+export function getStaticPaths() {
+  return (oscPosts ?? [])
+    .filter((post) => post.slug)
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post }
+    }));
+}
+
+const { post } = Astro.props;
+---
+
+<BaseLayout
+  title={`${post.title} | Diario OSC | XentD100cia`}
+  description={post.excerpt}
+>
+  <Navbar />
+
+  <main>
+    <section class="relative overflow-hidden bg-midnight px-5 pt-40 pb-24 text-white md:pt-48 md:pb-32">
+      <div class="absolute inset-0 -z-10">
+        {post.image ? (
+          <img
+            src={post.image}
+            alt={post.title}
+            class="h-full w-full object-cover opacity-45"
+          />
+        ) : (
+          <div class="h-full w-full bg-gradient-to-br from-discovery to-bioTeal"></div>
+        )}
+
+        <div class="absolute inset-0 bg-gradient-to-b from-midnight/80 via-midnight/75 to-midnight"></div>
+      </div>
+
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-4xl">
+          <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Diario OSC
+          </p>
+
+          <h1 class="font-heading text-5xl font-extrabold leading-tight md:text-7xl">
+            {post.title}
+          </h1>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur">
+              {post.category ?? 'OSC'}
+            </span>
+
+            <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur">
+              {post.date}
+            </span>
+          </div>
+
+          <p class="mt-8 max-w-3xl text-xl leading-9 text-white/75">
+            {post.excerpt}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-20 md:py-28">
+      <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+        <aside class="rounded-[32px] bg-scienceWhite p-8 shadow-sm md:p-10">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Publicación
+          </p>
+
+          <h2 class="font-heading text-3xl font-extrabold text-ink">
+            Información de la entrada
+          </h2>
+
+          <div class="mt-8 space-y-5">
+            <div class="rounded-2xl bg-white p-5">
+              <p class="text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                Fecha
+              </p>
+              <p class="mt-2 font-heading text-xl font-bold text-ink">
+                {post.date}
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white p-5">
+              <p class="text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                Categoría
+              </p>
+              <p class="mt-2 font-heading text-xl font-bold text-ink">
+                {post.category ?? 'OSC'}
+              </p>
+            </div>
+
+            {post.document && (
+              <a
+                href={post.document}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex w-full justify-center rounded-button bg-discovery px-6 py-4 text-center font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+              >
+                {post.documentLabel ?? 'Ver documento'}
+              </a>
+            )}
+
+            {post.asset && (
+              <a
+                href={post.asset}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex w-full justify-center rounded-button bg-discovery px-6 py-4 text-center font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+              >
+                {post.assetLabel ?? 'Ver archivo'}
+              </a>
+            )}
+          </div>
+        </aside>
+
+        <article class="rounded-[32px] bg-white p-0">
+          {post.image && (
+            <div class="mb-10 overflow-hidden rounded-[32px] shadow-soft">
+              <img
+                src={post.image}
+                alt={post.title}
+                class="h-[420px] w-full object-cover"
+              />
+            </div>
+          )}
+
+          <div class="space-y-6 text-lg leading-8 text-soft">
+            {post.content ? (
+              post.content.map((paragraph) => (
+                <p>
+                  {paragraph}
+                </p>
+              ))
+            ) : (
+              <>
+                <p>
+                  {post.excerpt}
+                </p>
+
+                <p>
+                  Esta publicación forma parte del seguimiento del proceso de
+                  preparación de Open Science Cambre. Más adelante podremos ampliar
+                  este espacio con textos completos, fotografías, formularios y
+                  novedades específicas de cada fase.
+                </p>
+              </>
+            )}
+          </div>
+
+          <div class="mt-12 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="/osc/diario"
+              class="inline-flex rounded-button border border-line bg-white px-6 py-4 font-bold text-ink transition hover:-translate-y-1 hover:shadow-soft"
+            >
+              ← Volver al diario
+            </a>
+
+            <a
+              href="/osc"
+              class="inline-flex rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+            >
+              Volver a OSC
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
