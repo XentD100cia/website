@@ -1,0 +1,422 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const actividadesPreparadas = [
+  {
+    eyebrow: 'Observación segura',
+    title: 'Seguiremos el eclipse desde el Paseo del Temple',
+    date: '12 de agosto de 2026',
+    place: 'Paseo del Temple',
+    text:
+      'Durante el eclipse estaremos en nuestro punto estrella, el Paseo del Temple, siguiendo el fenómeno de forma segura y acompañando la observación con explicaciones para las personas de la comunidad que se acerquen.',
+    extra:
+      'Tendremos montados equipos preparados para la observación segura del Sol, de manera que el público pueda disfrutar del eclipse sin asumir riesgos innecesarios y comprendiendo qué está ocurriendo en cada fase.',
+    image: '/images/images/noticias/salida_26_08_02.jpeg',
+    button: null,
+    href: null
+  },
+  {
+    eyebrow: 'Ciencia ciudadana',
+    title: 'Recogida ciudadana de datos durante el eclipse',
+    date: 'Durante el eclipse',
+    place: 'Franja de observación',
+    text:
+      'Además de observar el eclipse, queremos recoger datos y vivencias de lo que ocurra durante el fenómeno: condiciones atmosféricas, comportamiento de la fauna, cambios en el ambiente y experiencias personales.',
+    extra:
+      'Invitamos a la ciudadanía a participar compartiendo sus observaciones. Con todas esas aportaciones podremos construir una mirada colectiva sobre cómo se vivió el eclipse desde Cambre y su entorno.',
+    image: '/images/images/noticias/salida_26_08_02.jpeg',
+    button: 'Participar en la recogida de datos',
+    href: 'https://peneira.cesga.es/community/project/1782737744479'
+  }
+];
+
+const claves = [
+  'El eclipse solar total de 2026 será una oportunidad única para acercar la astronomía a la comunidad.',
+  'La observación del Sol requiere protección adecuada: no sirve cualquier cristal, gafas oscuras o filtro casero.',
+  'Cambre Observa nace como una iniciativa para preparar, informar y acompañar a la ciudadanía antes del evento.'
+];
+
+const accionesRealizadas = [
+  {
+    eyebrow: 'Mapa colaborativo',
+    title: 'Buscando los mejores puntos para observar el eclipse',
+    text:
+      'Una de las primeras acciones de Cambre Observa fue la creación de un mapa colaborativo con posibles puntos de observación del eclipse en el entorno de Cambre. La idea es reunir lugares con buena visibilidad, accesibles y útiles para que la ciudadanía pueda preparar la observación con antelación.',
+    extra:
+      'Este mapa se irá completando y revisando a medida que avance el proyecto, incorporando nuevos puntos, observaciones y recomendaciones prácticas.',
+    image: '/images/noticias/cambre-observa-mapa.jpg',
+    button: 'Abrir mapa en Google Maps',
+    href: 'https://www.google.com/maps/d/viewer?mid=1q2gyPdkwGiZFADrtlIOHdRkeATv0oGM&ll=43.28272086245266%2C-8.329551350000004&z=13',
+    embedUrl: 'https://www.google.com/maps/d/embed?mid=1q2gyPdkwGiZFADrtlIOHdRkeATv0oGM&ehbc=2E312F'
+  },
+  {
+    eyebrow: 'Formación',
+    title: 'Formación de Embajadores del Eclipse',
+    text:
+      'También pusimos en marcha una formación dirigida a jóvenes de entre 12 y 18 años con un objetivo claro: aprender cómo observar el eclipse de forma segura y cómo explicar este fenómeno a otras personas.',
+    extra:
+      'Durante la actividad trabajamos conceptos básicos sobre eclipses, métodos de observación directa e indirecta, prevención de riesgos y estrategias para comunicar ciencia de forma clara, cercana y rigurosa.',
+    image: '/images/images/noticias/salida_26_08_02.jpeg',
+    button: 'Leer noticia relacionada',
+    href: '/noticias/embajadores-eclipse'
+  },
+  {
+    eyebrow: 'Taller previo',
+    title: 'Preparamos la difusión en un taller divulgativo',
+    text:
+      'Antes de salir a la feria local, el día 30 realizamos un taller divulgativo en el que colaboraron Embajadores del Eclipse y voluntariado de la asociación. La actividad sirvió para reforzar conocimientos, practicar explicaciones y preparar la transmisión de información a nuevos niños y niñas asistentes.',
+    extra:
+      'Este taller fue un paso importante para transformar la formación previa en una experiencia divulgativa más práctica, participativa y adaptada a distintos públicos.',
+    image: '/images/images/noticias/salida_26_08_02.jpeg',
+    button: null,
+    href: null
+  },
+  {
+    eyebrow: 'Divulgación en la calle',
+    title: 'Salimos a una feria local de Cambre para difundir el eclipse',
+    text:
+      'Con los Embajadores del Eclipse salimos a una feria local de Cambre para compartir información sobre el eclipse, explicar métodos de observación seguros y resolver dudas de la ciudadanía.',
+    extra:
+      'La actividad permitió llevar la divulgación fuera del aula y acercar la astronomía a un público diverso, reforzando la idea de que observar el eclipse también implica prepararse, informarse y hacerlo con seguridad.',
+    image: '/images/images/noticias/salida_26_08_02.jpeg',
+    button: 'Ver cartel informativo',
+    href: '/docs/cartel-eclipse-cambre-observa.pdf'
+  }
+];
+---
+
+<BaseLayout
+  title="Cambre Observa 2026 | XentD100cia"
+  description="Cambre Observa 2026 es una iniciativa de XentD100cia para preparar a la comunidad de Cambre ante el eclipse solar total de 2026 mediante divulgación, talleres y observación segura."
+>
+  <Navbar />
+
+  <main>
+    <section class="relative overflow-hidden bg-midnight px-5 pt-40 pb-24 text-white md:pt-48 md:pb-32">
+      <div class="absolute inset-0 -z-10">
+        <img
+          src="/images/images/noticias/salida_26_08_02.jpeg"
+          alt="Actividad de divulgación sobre observación astronómica en Cambre"
+          class="h-full w-full object-cover opacity-35"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-midnight/80 via-midnight/70 to-midnight"></div>
+      </div>
+
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-4xl">
+          <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Noticia destacada
+          </p>
+
+          <h1 class="font-heading text-5xl font-extrabold leading-tight md:text-7xl">
+            Cambre Observa 2026
+          </h1>
+
+          <p class="mt-6 max-w-3xl text-xl leading-9 text-white/75">
+            Durante este verano nos estamos preparando para la observación segura
+            del eclipse solar total que tendrá lugar en España en 2026.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur">
+              Verano de 2026
+            </span>
+
+            <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur">
+              Astronomía
+            </span>
+
+            <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur">
+              Observación segura
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-20 md:py-28">
+      <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <aside class="rounded-[32px] bg-scienceWhite p-8 shadow-sm md:p-10">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            En resumen
+          </p>
+
+          <h2 class="font-heading text-3xl font-extrabold text-ink">
+            Una preparación para mirar al Sol con seguridad
+          </h2>
+
+          <div class="mt-8 space-y-5">
+            {claves.map((clave) => (
+              <div class="flex gap-4">
+                <span class="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-discovery text-sm font-bold text-white">
+                  ✓
+                </span>
+
+                <p class="leading-7 text-soft">
+                  {clave}
+                </p>
+              </div>
+            ))}
+          </div>
+        </aside>
+
+        <article class="max-w-none space-y-6 text-lg leading-8 text-soft">
+          <p>
+            <strong class="font-bold text-ink">Cambre Observa 2026</strong> es una
+            propuesta de divulgación impulsada por XentD100cia para preparar a la
+            comunidad ante uno de los fenómenos astronómicos más esperados de los
+            próximos años: el eclipse solar total del 2026.
+          </p>
+
+          <p>
+            La idea nace de una necesidad muy clara: aprovechar el interés que genera el
+            eclipse para hablar de ciencia, pero hacerlo de forma responsable. Observar
+            el Sol nunca debe hacerse de cualquier manera, y por eso queremos dedicar
+            tiempo a explicar qué métodos son seguros, cuáles no lo son y cómo se puede
+            disfrutar del fenómeno sin asumir riesgos innecesarios.
+          </p>
+
+          <p>
+            A lo largo de esta preparación estamos trabajando en actividades, materiales
+            y dinámicas pensadas para distintos públicos. Queremos que niñas, niños,
+            jóvenes, familias y cualquier persona interesada puedan entender qué es un
+            eclipse, por qué ocurre y cómo se puede observar correctamente.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-20 md:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Lo que ya hicimos
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Estos meses ya empezamos a preparar Cambre Observa
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Cambre Observa no empieza el día del eclipse. Durante estos meses hemos
+            trabajado en mapas, formación, materiales y actividades para que la
+            observación sea segura, participativa y accesible para la comunidad.
+          </p>
+        </div>
+
+        <div class="space-y-10">
+          {accionesRealizadas.map((accion, index) => (
+            <article class="overflow-hidden rounded-[32px] border border-line bg-scienceWhite shadow-sm lg:grid lg:grid-cols-[0.95fr_1.05fr]">
+              <div class:list={[
+                'relative min-h-[300px] bg-midnight',
+                index % 2 === 1 && 'lg:order-2'
+              ]}>
+                {accion.embedUrl ? (
+                  <iframe
+                    src={accion.embedUrl}
+                    class="absolute inset-0 h-full w-full border-0"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title={accion.title}
+                  ></iframe>
+                ) : accion.image ? (
+                  <img
+                    src={accion.image}
+                    alt={accion.title}
+                    class="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <div class="absolute inset-0 bg-gradient-to-br from-discovery to-bioTeal"></div>
+                )}
+
+                {!accion.embedUrl && (
+                  <div class="absolute inset-0 bg-gradient-to-t from-midnight/55 via-transparent to-transparent"></div>
+                )}
+              </div>
+
+              <div class="flex flex-col justify-center p-8 md:p-10 lg:p-12">
+                <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+                  {String(index + 1).padStart(2, '0')} · {accion.eyebrow}
+                </p>
+
+                <h3 class="font-heading text-3xl font-extrabold text-ink md:text-4xl">
+                  {accion.title}
+                </h3>
+
+                <div class="mt-5 space-y-5 text-lg leading-8 text-soft">
+                  <p>
+                    {accion.text}
+                  </p>
+
+                  <p>
+                    {accion.extra}
+                  </p>
+                </div>
+
+                {accion.button && accion.href && (
+                  <a
+                    href={accion.href}
+                    target={accion.href.startsWith('http') ? '_blank' : undefined}
+                    rel={accion.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    class="mt-8 inline-flex w-fit rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                  >
+                    {accion.button}
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-scienceWhite px-5 py-20 md:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Próximos pasos
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Ciencia para observar, registrar y compartir
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Cambre Observa continúa con dos acciones principales: una observación
+            segura del eclipse abierta a la comunidad y una recogida ciudadana de
+            datos para documentar cómo se vive este fenómeno desde nuestro entorno.
+          </p>
+        </div>
+
+        <div class="space-y-10">
+          {actividadesPreparadas.map((actividad, index) => (
+            <article class="overflow-hidden rounded-[32px] border border-line bg-white shadow-sm lg:grid lg:grid-cols-[0.95fr_1.05fr]">
+              <div class:list={[
+                'relative min-h-[300px] bg-midnight',
+                index % 2 === 1 && 'lg:order-2'
+              ]}>
+                {actividad.image ? (
+                  <img
+                    src={actividad.image}
+                    alt={actividad.title}
+                    class="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <div class="absolute inset-0 bg-gradient-to-br from-discovery to-bioTeal"></div>
+                )}
+
+                <div class="absolute inset-0 bg-gradient-to-t from-midnight/65 via-midnight/20 to-transparent"></div>
+
+                <div class="absolute bottom-7 left-7 right-7">
+                  <p class="inline-flex rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-white backdrop-blur">
+                    {actividad.eyebrow}
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex flex-col justify-center p-8 md:p-10 lg:p-12">
+                <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+                  {String(index + 1).padStart(2, '0')} · {actividad.eyebrow}
+                </p>
+
+                <h3 class="font-heading text-3xl font-extrabold text-ink md:text-4xl">
+                  {actividad.title}
+                </h3>
+
+                <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-2xl bg-scienceWhite p-5">
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                      Fecha
+                    </p>
+                    <p class="mt-2 font-heading text-lg font-bold text-ink">
+                      {actividad.date}
+                    </p>
+                  </div>
+
+                  <div class="rounded-2xl bg-scienceWhite p-5">
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                      Lugar
+                    </p>
+                    <p class="mt-2 font-heading text-lg font-bold text-ink">
+                      {actividad.place}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mt-6 space-y-5 text-lg leading-8 text-soft">
+                  <p>
+                    {actividad.text}
+                  </p>
+
+                  <p>
+                    {actividad.extra}
+                  </p>
+                </div>
+
+                {actividad.button && actividad.href && (
+                  <a
+                    href={actividad.href}
+                    target={actividad.href.startsWith('http') ? '_blank' : undefined}
+                    rel={actividad.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    class="mt-8 inline-flex w-fit rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                  >
+                    {actividad.button}
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-20 md:py-28">
+      <div class="mx-auto max-w-6xl overflow-hidden rounded-[32px] bg-midnight shadow-soft lg:grid lg:grid-cols-[1fr_1fr]">
+        <div class="relative min-h-[320px]">
+          <img
+            src="/images/images/noticias/salida_26_08_02.jpeg"
+            alt="Grupo participando en una actividad de Cambre Observa"
+            class="absolute inset-0 h-full w-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-midnight/60 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="flex flex-col justify-center p-8 text-white md:p-12">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Próximamente
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold md:text-5xl">
+            Seguiremos compartiendo novedades
+          </h2>
+
+          <p class="mt-5 leading-8 text-white/70">
+            Iremos actualizando la información sobre actividades, materiales y
+            propuestas relacionadas con Cambre Observa 2026 a medida que avance
+            la preparación del eclipse.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="/noticias"
+              class="inline-flex rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+            >
+              Ver más noticias
+            </a>
+
+            <a
+              href="/contacto#canales"
+              class="inline-flex rounded-button border border-white/20 px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-white/10"
+            >
+              Contactar
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

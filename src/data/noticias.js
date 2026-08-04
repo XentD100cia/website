@@ -56,6 +56,25 @@ export const noticias = [
     slug: 'seguimos-construyendo-xentd100cia',
     href: '/noticias/seguimos-construyendo-xentd100cia',
     image: '/images/images/logosR/logo-xentd100cia.png',
+    destacada: false,
+    content: [
+      'XentD100cia sigue creciendo como asociación juvenil de divulgación científica.',
+      'Seguimos preparando talleres, participando en actividades, construyendo Open Science Cambre y desarrollando nuevas formas de acercar la ciencia a la comunidad.',
+      'Este proyecto avanza gracias a las personas, entidades y espacios que creen en una ciencia cercana, participativa y compartida.'
+    ]
+  },
+  {
+    title: 'Cambre Observa 2026',
+    date: 'Verano del 2026',
+    sortDate: '2026-06-01',
+    category: 'Asociación',
+    excerpt:[
+      'Durante este verano nos estuvimos preparando para la observación segura del eclipse solar total que tendrá lugar en España este 2026. '
+    ],
+    slug:'cmbre-observa',
+    href: '/noticias/cambre-observa',
+    image: '/images/images/noticias/salida_26_08_02.jpeg',
+    destacada: true,
     content: [
       'XentD100cia sigue creciendo como asociación juvenil de divulgación científica.',
       'Seguimos preparando talleres, participando en actividades, construyendo Open Science Cambre y desarrollando nuevas formas de acercar la ciencia a la comunidad.',
