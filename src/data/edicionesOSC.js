@@ -12,15 +12,15 @@ export const edicionesOSC = [
     horario: [
       {
         dia: 'Viernes 18',
-        hora: 'Horario por confirmar'
+        hora: '21:00-22:30 horas Espectáculo nocturno'
       },
       {
         dia: 'Sábado 19',
-        hora: 'Horario por confirmar'
+        hora: '12:00-19:00 horas Feria abierta'
       },
       {
         dia: 'Domingo 20',
-        hora: 'Horario por confirmar'
+        hora: '10:00-15:00 horas Feria abierta'
       }
     ],
     excerpt: 'Estamos preparando una nueva edición de Open Science Cambre.',
