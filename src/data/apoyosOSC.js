@@ -14,7 +14,7 @@ export const apoyosOSC = [
     logo: '/images/logos/apoyos/logo.Deputacion.png'
   },
   {
-    name: 'Concello de cambre',
+    name: 'Concello de Cambre',
     type: 'Apoyo institucional',
     edition: 2026,
     website: 'http://cambre.es/?lang=es',
