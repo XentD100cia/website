@@ -71,5 +71,26 @@ export const talleresRealizados = [
       'Con la llegada del verano, las playas se convierten en protagonistas, por ello traemos la playa al laboratorio, para aprender qué nos podemos encontrar en una playa y cómo disfrutarla lo mejor posible.',
     ],
     image: '/images/images/talleres/nuestras.playas.jpeg'
+  },
+  {
+    title: 'Embajadores del eclipse',
+    date: 'Julio 2026',
+    sortDate: '2026-07-21',
+    edad: '12-18 años',
+    lugar: 'Cambre, Casa Arrigada y Casa Palmeras',
+    excerpt:
+      'En este taller estuvimos aprendiendo sobre eclipses, cómo verlos, cómo divulgar sobre ellos y su relevancia en nuestra sociedad, para poner en práctica estos coocimientos trabajamos con algunos experimentos.',
+    slug: 'embajadores-del-eclipse',
+    href: '/talleres/embajadores-del-eclipse',
+    content: [
+      'Con motivo del eclipse solar total del 12 de agosto del 2026 realizamos un taller para formar a jóvenes de Cambre, fomentando la observación segura y la ciencia ciudadana, en el marco del proyecto Cambre Observa 2026.',
+      'Este taller fue realizado en dos ediciones: 20 de julio en Casa Arrigada y 21 de julio Casa Palmeras.',
+      'Comenzamos la jornada introduciendo qué son  los eclipses, los tipos que existen y la relevancia de que Cambre sea uno de los lugares privilegiados desde donde poder observar la totalidad.',
+      'Continuamos metiéndonos un poco en historia, centarnos en las leyendas nos pareció clave a la hora de comprender cómo hemos llegado a día de hoy con gran fascinación con estos fenómenos astronómicos.',
+      'Repasamos cuales son los únicos métodos de observación segura: gafas homologadas bajo la norma ISO 12312-2, cristales de solador únicamente de grado 14, telescopios y cámaras adaptadas con un filtro y métodos de observación indirecta, como cajas estenopeicas, las cuales hicimos al final de la sesión.',
+      'Comprobamos la seguridad de estos métodos con algunos experimentos, además del daño que podría causarnos el Sol si lo miramos directamente.',
+      'De esta forma conseguimos nuestro objetivo de formar a jóvenes como Embajadores/as del eclipse, los cuales nos ayudaron en las siguientes actividades.'
+    ],
+    image: '/images/images/talleres/Collage_Embajadores2.png'
   }
 ];
