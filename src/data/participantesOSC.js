@@ -4,7 +4,7 @@ export const participantesOSC = [
     type: 'Centro educativo',
     location: 'Ourense, Ourense',
     edition: 2026,
-    description: 'Nos acompañaran con 7 increibles proyectos.',
+    description: 'Nos acompañaran con 8 increibles proyectos.',
     website: 'https://www.josefinasourense.com/',
     logo: '/images/logos/participantes/logotipo.san_jose-josefinas.png'
   },
@@ -85,7 +85,7 @@ export const participantesOSC = [
     type: 'Centro educativo',
     location: 'Soutomaior, Pontevedra',
     edition: 2026,
-    description: 'Participaran con once proyectos.',
+    description: 'Participaran con siete proyectos.',
     website: 'https://colegiosantiagoapostolsoutomaior.es/',
     logo: '/images/logos/participantes/logotipo.soutomaior.webp'
   },
@@ -157,7 +157,7 @@ export const participantesOSC = [
     type: 'Centro educativo',
     location: 'Los Barrios, Cádiz',
     edition: 2026,
-    description: 'Participaran con un proyecto.',
+    description: 'Participaran con tres proyectos.',
     website: null,
     logo: null
   },
@@ -184,7 +184,7 @@ export const participantesOSC = [
     type: 'Asociación',
     location: 'A Coruña',
     edition: 2026,
-    description: 'Participaran con tres proyectos.',
+    description: 'Participaran con cuatro proyectos.',
     website: 'https://enxenolabs.gal/',
     logo: '/images/logos/participantes/logotipo.enxeñolabs.png'
   },
@@ -193,7 +193,7 @@ export const participantesOSC = [
     type: 'Centro educativo',
     location: 'Granollers, Barcelona',
     edition: 2026,
-    description: 'Participaran con un proyecto.',
+    description: 'Participaran con cuatro proyecto.',
     website: 'https://agora.xtec.cat/ies-carles-vallbona/',
     logo: '/images/logos/participantes/logotipo.carles_villbona.png'
   },
@@ -202,7 +202,7 @@ export const participantesOSC = [
     type: 'Centro educativo',
     location: 'Ourense',
     edition: 2026,
-    description: 'Participaran con un proyecto.',
+    description: 'Participaran con dous proyectos.',
     website: 'https://www.pablovi.es/',
     logo: '/images/logos/participantes/logotipo.pablo_vi.webp'
   },
@@ -250,5 +250,50 @@ export const participantesOSC = [
     description: 'Participa con una propuesta divulgativa abierta al público.',
     website: 'https://portal.edu.gva.es/iesjuandegaray/',
     logo: '/images/logos/participantes/logotipo.juan_garay.png'
-  }
+  },
+  {
+    name: 'IES Illa de San Simón',
+    type: 'Centro educativo',
+    location: 'Redondela, Pontevedra',
+    edition: 2026,
+    description: 'Participa con dos proyectos.',
+    website: 'https://www.edu.xunta.gal/centros/iessansimon/',
+    logo: null
+  },
+  {
+    name: 'IES Carral',
+    type: 'Centro educativo',
+    location: 'Carral, A Coruña',
+    edition: 2026,
+    description: 'Participa con un proyecto.',
+    website: 'https://www.edu.xunta.gal/centros/iescarral/',
+    logo: '/images/logos/participantes/logotipo.carral.png'
+  },
+  {
+    name: 'IES Soutomaior',
+    type: 'Centro educativo',
+    location: 'Soutomaior, Pontevedra',
+    edition: 2026,
+    description: 'Participa con un proyecto.',
+    website: 'https://www.edu.xunta.gal/centros/iessoutomaior/',
+    logo: null
+  },
+  {
+    name: 'IES Saladillo',
+    type: 'Centro educativo',
+    location: 'Algeciras,Cádiz',
+    edition: 2026,
+    description: 'Participa con un proyecto.',
+    website: 'https://blogsaverroes.juntadeandalucia.es/iessaladillo/',
+    logo: null
+  },
+  {
+    name: 'IES Bahia de Algeciras',
+    type: 'Centro educativo',
+    location: 'Algeciras,Cádiz',
+    edition: 2026,
+    description: 'Participa con dous proyectos.',
+    website: 'https://iesbahia.es/',
+    logo: '/images/logos/participantes/logotipo.bahia_algeciras.png'
+  },
 ];
