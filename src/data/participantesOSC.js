@@ -207,7 +207,7 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.pablo_vi.webp'
   },
   {
-    name: 'CEIP Plurilingüe INfante Felipe Borbón',
+    name: 'CEIP Plurilingüe Infante Felipe Borbón',
     type: 'Centro educativo',
     location: 'Pontevedra',
     edition: 2026,
