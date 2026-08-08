@@ -189,7 +189,7 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.enxeñolabs.png'
   },
   {
-    name: 'Institut Carles Villbona',
+    name: 'Institut Carles Vallbona',
     type: 'Centro educativo',
     location: 'Granollers, Barcelona',
     edition: 2026,
