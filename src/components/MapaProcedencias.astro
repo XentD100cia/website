@@ -1,0 +1,441 @@
+---
+import "leaflet/dist/leaflet.css";
+---
+
+<section class="mapa-procedencias">
+  <div class="mapa-cabecera">
+    <span class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+      OSC 2026
+    </span>
+
+    <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+      ¿De dónde vienen nuestros participantes?
+    </h2>
+
+    <p class="mt-5 text-lg leading-8 text-soft">
+      Centros, asociaciones y proyectos de distintos puntos de España
+      y del mundo se encontrarán en Cambre.
+    </p>
+  </div>
+
+  <div class="mapa-wrapper">
+    <div
+      id="mapa-osc"
+      class="mapa"
+      aria-label="Mapa de procedencia de los participantes de Open Science Cambre 2026"
+    ></div>
+
+    <div class="mapa-leyenda">
+      <div class="leyenda-item">
+        <span class="leyenda-marcador">8</span>
+
+        <div>
+          <strong>Número de proyectos</strong>
+          <span>Pulsa cada punto para descubrir quién viene.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import L from "leaflet";
+  import { procedenciasOSC2026 } from "../data/procedenciasOSC.js";
+
+  const contenedor = document.getElementById("mapa-osc");
+
+  if (contenedor) {
+    const mapa = L.map(contenedor, {
+      scrollWheelZoom: false,
+      zoomControl: true,
+      minZoom: 2
+    });
+
+    L.tileLayer(
+      "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }
+    ).addTo(mapa);
+
+    const limites = [];
+
+    procedenciasOSC2026.forEach((procedencia) => {
+      const totalProyectos = procedencia.participantes.reduce(
+        (total, participante) => total + participante.proyectos,
+        0
+      );
+
+      const totalCentros = procedencia.participantes.length;
+
+      const marcadorIcono = L.divIcon({
+        className: "marcador-osc-contenedor",
+
+        html: `
+          <div
+            class="marcador-osc"
+            aria-label="${procedencia.localidad}: ${totalProyectos} proyectos"
+          >
+            <span>${totalProyectos}</span>
+          </div>
+        `,
+
+        iconSize: [44, 44],
+        iconAnchor: [22, 22],
+        popupAnchor: [0, -24]
+      });
+
+      const marcador = L.marker(
+        [procedencia.lat, procedencia.lng],
+        {
+          icon: marcadorIcono,
+          title: procedencia.localidad
+        }
+      );
+
+      const listaParticipantes = procedencia.participantes
+        .map(
+          (participante) => `
+            <li>
+              <span>${participante.nombre}</span>
+
+              <strong>
+                ${participante.proyectos}
+                ${participante.proyectos === 1 ? "proyecto" : "proyectos"}
+              </strong>
+            </li>
+          `
+        )
+        .join("");
+
+      marcador.bindPopup(`
+        <article class="popup-osc">
+
+          <header>
+            <span class="popup-ubicacion">
+              ${procedencia.provincia} · ${procedencia.pais}
+            </span>
+
+            <h3>${procedencia.localidad}</h3>
+          </header>
+
+          <ul>
+            ${listaParticipantes}
+          </ul>
+
+          <footer>
+            <span>
+              ${totalCentros}
+              ${totalCentros === 1 ? "participante" : "participantes"}
+            </span>
+
+            <strong>
+              ${totalProyectos}
+              ${totalProyectos === 1 ? "proyecto" : "proyectos"}
+            </strong>
+          </footer>
+
+        </article>
+      `);
+
+      marcador.addTo(mapa);
+
+      limites.push([procedencia.lat, procedencia.lng]);
+    });
+
+    if (limites.length > 0) {
+      mapa.fitBounds(limites, {
+        padding: [35, 35],
+        maxZoom: 5
+      });
+    }
+  }
+</script>
+
+<style is:global>
+  .mapa-procedencias {
+    width: 100%;
+    padding: 5rem 1.25rem;
+    font-family: inherit;
+  }
+
+  .mapa-cabecera {
+    width: min(760px, 100%);
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .mapa-eyebrow {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #176b55;
+  }
+
+  .mapa-cabecera h2 {
+    margin: 0;
+    font-family: inherit;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+  }
+
+  .mapa-cabecera p {
+    max-width: 620px;
+    margin: 1rem auto 0;
+    line-height: 1.7;
+    color: #5f6764;
+  }
+
+  .mapa-wrapper {
+    position: relative;
+    width: min(1200px, 100%);
+    margin: 0 auto;
+  }
+
+  .mapa {
+    width: 100%;
+    height: min(72vh, 680px);
+    min-height: 500px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: #edf2ef;
+    box-shadow:
+      0 24px 70px rgba(30, 50, 42, 0.12),
+      0 2px 8px rgba(30, 50, 42, 0.06);
+  }
+
+  /* -----------------------
+     Marcadores
+  ----------------------- */
+
+  .marcador-osc-contenedor {
+    background: none !important;
+    border: none !important;
+  }
+
+  .marcador-osc {
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    border: 3px solid white;
+
+    background: #176b55;
+    color: white;
+
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    box-shadow:
+      0 5px 16px rgba(0, 0, 0, 0.25),
+      0 0 0 4px rgba(23, 107, 85, 0.18);
+
+    cursor: pointer;
+
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .marcador-osc:hover {
+    transform: scale(1.15);
+
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.25),
+      0 0 0 7px rgba(23, 107, 85, 0.15);
+  }
+
+  /* -----------------------
+     Popup
+  ----------------------- */
+
+  .leaflet-popup-content-wrapper {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
+  .leaflet-popup-content {
+    width: 300px !important;
+    margin: 0 !important;
+  }
+
+  .popup-osc {
+    padding: 1.25rem;
+  }
+
+  .popup-osc header {
+    margin-bottom: 1rem;
+  }
+
+  .popup-ubicacion {
+    display: block;
+    margin-bottom: 0.2rem;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: #176b55;
+  }
+
+  .popup-osc h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+
+  .popup-osc ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .popup-osc li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid #e7e9e8;
+  }
+
+  .popup-osc li span {
+    line-height: 1.3;
+  }
+
+  .popup-osc li strong {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    color: #176b55;
+  }
+
+  .popup-osc footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+
+    font-size: 0.78rem;
+    border-top: 2px solid #176b55;
+  }
+
+  /* -----------------------
+     Leyenda
+  ----------------------- */
+
+  .mapa-leyenda {
+    position: absolute;
+    z-index: 500;
+
+    left: 1.25rem;
+    bottom: 1.25rem;
+
+    max-width: 285px;
+    padding: 0.85rem 1rem;
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+  }
+
+  .leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .leyenda-marcador {
+    width: 35px;
+    height: 35px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: #176b55;
+    color: white;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .leyenda-item div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .leyenda-item strong {
+    font-size: 0.82rem;
+  }
+
+  .leyenda-item div span {
+    margin-top: 0.1rem;
+    font-size: 0.7rem;
+    line-height: 1.35;
+    color: #68706d;
+  }
+
+  /* -----------------------
+     Leaflet
+  ----------------------- */
+
+  .leaflet-control-attribution {
+    font-size: 0.6rem !important;
+  }
+
+  .leaflet-control-zoom {
+    overflow: hidden;
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* -----------------------
+     Móvil
+  ----------------------- */
+
+  @media (max-width: 700px) {
+    .mapa-procedencias {
+      padding: 3.5rem 1rem;
+    }
+
+    .mapa {
+      height: 580px;
+      min-height: 0;
+      border-radius: 20px;
+    }
+
+    .mapa-leyenda {
+      left: 0.8rem;
+      right: 0.8rem;
+      bottom: 0.8rem;
+
+      max-width: none;
+    }
+
+    .leaflet-popup-content {
+      width: 250px !important;
+    }
+  }
+</style>

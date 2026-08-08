@@ -24,7 +24,7 @@ export const edicionesOSC = [
       }
     ],
     excerpt: 'Estamos preparando una nueva edición de Open Science Cambre.',
-    mapaParticipantes: null,
+    mapaParticipantes: true,
     href: '/osc/informacion',
     image: null
   },

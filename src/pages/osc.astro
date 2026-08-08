@@ -2,11 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import MapaProcedencias from "../components/MapaProcedencias.astro";
 import { oscPosts } from '../data/oscPosts.js';
 import { edicionesOSC } from '../data/edicionesOSC';
 import { participantesOSC } from '../data/participantesOSC.js';
 import { apoyosOSC } from '../data/apoyosOSC.js';
 import { experienciasOSC } from '../data/experienciasOSC.js';
+
 
 const experienciasDisponibles = experienciasOSC ?? [];
 
@@ -643,44 +645,17 @@ const apoyosActuales = (apoyosOSC ?? [])
         )}
 
         <div class="mx-auto mt-16 max-w-5xl">
-          <div class="mb-8 text-center">
-            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
-              Procedencias
-            </p>
-
-            <h3 class="font-heading text-3xl font-extrabold text-ink md:text-4xl">
-              Mapa de participantes
-            </h3>
-
-            <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-soft">
-              Queremos mostrar de dónde vienen los centros, entidades y proyectos que forman
-              parte de la Open Science Cambre.
-            </p>
-          </div>
 
           {edicionActual.mapaParticipantes ? (
-            <div class="overflow-hidden rounded-[32px] border border-line bg-white shadow-soft">
-              <iframe
-                src={edicionActual.mapaParticipantes}
-                class="h-[420px] w-full"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Mapa de procedencia de participantes de la Open Science Cambre"
-              ></iframe>
-            </div>
+            <MapaProcedencias />
           ) : (
-            <div class="rounded-[32px] border border-dashed border-line bg-scienceWhite p-10 text-center shadow-sm">
+            <div class="rounded-[32px] border border-dashed border-line bg-scientwhite p-10 text-center shadow-soft">
               <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
                 Mapa en preparación
               </p>
 
-              <h4 class="font-heading text-2xl font-bold text-ink">
-                Aquí mostraremos la procedencia de las entidades participantes
-              </h4>
-
-              <p class="mx-auto mt-4 max-w-2xl leading-7 text-soft">
-                Cuando confirmemos los centros, asociaciones, instituciones y proyectos participantes,
-                incorporaremos un mapa con sus lugares de procedencia.
+              <p>
+                Estamos preparando el mapa de procedencia de los participantes.
               </p>
             </div>
           )}
