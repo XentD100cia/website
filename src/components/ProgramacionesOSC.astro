@@ -1,0 +1,1304 @@
+---
+import { programacionOSC } from "../data/programacionOSC.js";
+
+const diasSemana = [
+  "domingo",
+  "lunes",
+  "martes",
+  "miércoles",
+  "jueves",
+  "viernes",
+  "sábado"
+];
+
+const meses = [
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre"
+];
+
+const nombresTipo = {
+  charla: "Charla",
+  taller: "Taller",
+  espectaculo: "Espectáculo"
+};
+
+const iconos = {
+  charla: `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M8 10h8M8 14h5M6 19l-2 2v-4a8 8 0 1 1 4 2H6Z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  `,
+
+  taller: `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M9 3v5l-5 9a2 2 0 0 0 1.8 3h12.4a2 2 0 0 0 1.8-3l-5-9V3"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M8 14h8"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+      />
+    </svg>
+  `,
+
+  espectaculo: `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="m12 3 1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6L12 3Z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linejoin="round"
+      />
+      <path
+        d="m18.5 15 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+    </svg>
+  `
+};
+
+// ─────────────────────────────────
+// FECHAS DISPONIBLES
+// ─────────────────────────────────
+
+const fechas = [
+  ...new Set(
+    programacionOSC.map((actividad) => actividad.fecha)
+  )
+].sort();
+
+// ─────────────────────────────────
+// INFORMACIÓN DE CADA DÍA
+// ─────────────────────────────────
+
+const dias = fechas.map((fecha) => {
+  const fechaObjeto = new Date(`${fecha}T12:00:00`);
+
+  return {
+    fecha,
+    nombre: diasSemana[fechaObjeto.getDay()],
+    numero: fechaObjeto.getDate(),
+    mes: meses[fechaObjeto.getMonth()]
+  };
+});
+
+// ─────────────────────────────────
+// AGRUPAR POR DÍA Y HORA
+// ─────────────────────────────────
+
+const programacionPorDia = fechas.map((fecha) => {
+  const actividadesDelDia = programacionOSC
+    .filter((actividad) => actividad.fecha === fecha)
+    .sort((a, b) => a.inicio.localeCompare(b.inicio));
+
+  const horas = [
+    ...new Set(
+      actividadesDelDia.map(
+        (actividad) => actividad.inicio
+      )
+    )
+  ];
+
+  const franjas = horas.map((hora) => ({
+    hora,
+
+    actividades: actividadesDelDia.filter(
+      (actividad) => actividad.inicio === hora
+    )
+  }));
+
+  return {
+    fecha,
+    franjas
+  };
+});
+---
+
+<section
+  id="programacion"
+  class="bg-white px-5 py-24 md:py-32"
+>
+  <div class="mx-auto max-w-7xl">
+
+    <header class="mb-12 max-w-3xl">
+      <p
+        class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal"
+      >
+        Open Science Cambre
+      </p>
+
+      <h2
+        class="font-heading text-4xl font-extrabold text-ink md:text-5xl"
+      >
+        Programación
+      </h2>
+
+      <p class="mt-5 text-lg leading-8 text-soft">
+        Descubre las charlas, talleres y espectáculos
+        programados durante la Open Science Cambre.
+      </p>
+    </header>
+
+  <!-- SELECTOR DE DÍAS -->
+
+  <nav
+    class="selector-dias"
+    aria-label="Seleccionar día de la programación"
+  >
+    {
+      dias.map((dia, index) => (
+        <button
+          class:list={[
+            "dia-tab",
+            { activo: index === 0 }
+          ]}
+          type="button"
+          data-dia={dia.fecha}
+          aria-selected={
+            index === 0 ? "true" : "false"
+          }
+        >
+          <span
+            class="dia-nombre font-heading font-extrabold text-ink"
+        >
+            {dia.nombre}
+            </span>
+
+            <span class="dia-fecha text-soft">
+            {dia.numero} de {dia.mes}
+            </span>
+        </button>
+      ))
+    }
+  </nav>
+
+  <!-- PROGRAMACIÓN -->
+
+  <div class="programacion-dias">
+    {
+      programacionPorDia.map((dia, index) => (
+        <div
+          class:list={[
+            "programacion-dia",
+            { activo: index === 0 }
+          ]}
+          data-programacion-dia={dia.fecha}
+        >
+          <div class="timeline">
+
+            <!-- LÍNEA PRINCIPAL -->
+
+            <div
+              class="timeline-linea"
+              aria-hidden="true"
+            ></div>
+
+            <!-- INDICADOR AHORA -->
+
+            <div
+              class="indicador-ahora"
+              data-indicador-ahora
+              hidden
+            >
+              <span class="ahora-punto"></span>
+
+              <span class="ahora-texto">
+                Ahora
+              </span>
+            </div>
+
+            <!-- FRANJAS HORARIAS -->
+
+            {
+              dia.franjas.map((franja) => (
+                <div
+                  class="timeline-franja"
+                  data-hora={franja.hora}
+                >
+                  <!-- HORA -->
+
+                  <div class="timeline-momento">
+                    <time>
+                      {franja.hora}
+                    </time>
+
+                    <span
+                      class="timeline-punto"
+                      aria-hidden="true"
+                    ></span>
+                  </div>
+
+                  <!-- ACTIVIDADES -->
+
+                  <div
+                    class:list={[
+                      "actividades-grid",
+
+                      {
+                        "actividades-grid--multiple":
+                          franja.actividades.length > 1
+                      }
+                    ]}
+                  >
+                    {
+                      franja.actividades.map(
+                        (actividad) => (
+                          <article
+                            class={`actividad-card actividad-card--${actividad.tipo}`}
+                            data-actividad
+                            data-inicio={actividad.inicio}
+                            data-fin={actividad.fin}
+                            data-fecha={actividad.fecha}
+                          >
+                            <!-- CABECERA TARJETA -->
+
+                            <div class="actividad-top">
+                              <span class="actividad-tipo">
+
+                                <span
+                                  class="actividad-icono"
+                                  set:html={
+                                    iconos[
+                                      actividad.tipo
+                                    ]
+                                  }
+                                />
+
+                                {
+                                  nombresTipo[
+                                    actividad.tipo
+                                  ]
+                                }
+                              </span>
+
+                              <span
+                                class="actividad-en-curso"
+                                data-en-curso
+                                hidden
+                              >
+                                En curso
+                              </span>
+                            </div>
+
+                            <!-- TÍTULO -->
+
+                            <h3 class="font-heading font-extrabold text-ink">
+                              {actividad.titulo}
+                            </h3>
+
+                            <!-- ENTIDAD -->
+
+                            {
+                              actividad.entidad && (
+                                <p class="actividad-entidad text-soft">
+                                  {actividad.entidad}
+                                </p>
+                              )
+                            }
+
+                            <!-- INFORMACIÓN -->
+
+                            <div class="actividad-meta text-soft">
+
+                              <span class="actividad-horario">
+                                {actividad.inicio}
+                                {" – "}
+                                {actividad.fin}
+                              </span>
+
+                              {
+                                actividad.lugar && (
+                                  <>
+                                    <span
+                                      class="meta-separador"
+                                      aria-hidden="true"
+                                    >
+                                      ·
+                                    </span>
+
+                                    <span>
+                                      {actividad.lugar}
+                                    </span>
+                                  </>
+                                )
+                              }
+                            </div>
+
+                            <!-- DESCRIPCIÓN -->
+
+                            {
+                              actividad.descripcion && (
+                                <p class="actividad-descripcion text-soft">
+                                  {actividad.descripcion}
+                                </p>
+                              )
+                            }
+                          </article>
+                        )
+                      )
+                    }
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const tabs =
+    document.querySelectorAll(".dia-tab");
+
+  const diasProgramacion =
+    document.querySelectorAll(
+      ".programacion-dia"
+    );
+
+  // ───────────────────────────────
+  // CAMBIAR DE DÍA
+  // ───────────────────────────────
+
+  function mostrarDia(fecha) {
+    tabs.forEach((tab) => {
+      const activo =
+        tab.dataset.dia === fecha;
+
+      tab.classList.toggle(
+        "activo",
+        activo
+      );
+
+      tab.setAttribute(
+        "aria-selected",
+        activo ? "true" : "false"
+      );
+    });
+
+    diasProgramacion.forEach((dia) => {
+      dia.classList.toggle(
+        "activo",
+        dia.dataset.programacionDia === fecha
+      );
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener(
+      "click",
+      () => {
+        mostrarDia(tab.dataset.dia);
+      }
+    );
+  });
+
+  // ───────────────────────────────
+  // CONVERTIR HORA A MINUTOS
+  // ───────────────────────────────
+
+  function convertirAMinutos(hora) {
+    const [horas, minutos] =
+      hora.split(":").map(Number);
+
+    return horas * 60 + minutos;
+  }
+
+  // ───────────────────────────────
+  // INDICADOR "AHORA"
+  // ───────────────────────────────
+
+  function actualizarAhora() {
+    const ahora = new Date();
+
+    const ano = ahora.getFullYear();
+
+    const mes = String(
+      ahora.getMonth() + 1
+    ).padStart(2, "0");
+
+    const dia = String(
+      ahora.getDate()
+    ).padStart(2, "0");
+
+    const fechaActual =
+      `${ano}-${mes}-${dia}`;
+
+    const minutosAhora =
+      ahora.getHours() * 60 +
+      ahora.getMinutes();
+
+    const diaActual =
+      document.querySelector(
+        `[data-programacion-dia="${fechaActual}"]`
+      );
+
+    // Ocultar indicadores anteriores
+
+    document
+      .querySelectorAll(
+        "[data-indicador-ahora]"
+      )
+      .forEach((indicador) => {
+        indicador.hidden = true;
+      });
+
+    // Quitar estados "En curso"
+
+    document
+      .querySelectorAll(
+        "[data-en-curso]"
+      )
+      .forEach((estado) => {
+        estado.hidden = true;
+      });
+
+    document
+      .querySelectorAll(
+        "[data-actividad]"
+      )
+      .forEach((tarjeta) => {
+        tarjeta.classList.remove(
+          "esta-en-curso"
+        );
+      });
+
+    // Si hoy no es un día de la OSC,
+    // no hacemos nada
+
+    if (!diaActual) return;
+
+    // Seleccionar automáticamente
+    // el día actual
+
+    mostrarDia(fechaActual);
+
+    const franjas = [
+      ...diaActual.querySelectorAll(
+        ".timeline-franja"
+      )
+    ];
+
+    if (!franjas.length) return;
+
+    // Primera actividad del día
+
+    const primeraHora =
+      convertirAMinutos(
+        franjas[0].dataset.hora
+      );
+
+    // Hora final de la última actividad
+
+    const ultimaHora = Math.max(
+      ...[
+        ...diaActual.querySelectorAll(
+          "[data-actividad]"
+        )
+      ].map((tarjeta) =>
+        convertirAMinutos(
+          tarjeta.dataset.fin
+        )
+      )
+    );
+
+    // Fuera del horario no mostramos Ahora
+
+    if (
+      minutosAhora < primeraHora ||
+      minutosAhora > ultimaHora
+    ) {
+      return;
+    }
+
+    const indicador =
+      diaActual.querySelector(
+        "[data-indicador-ahora]"
+      );
+
+    if (!indicador) return;
+
+    let posicion;
+
+    // Buscar entre qué dos horas estamos
+
+    for (
+      let i = 0;
+      i < franjas.length - 1;
+      i++
+    ) {
+      const actual = franjas[i];
+
+      const siguiente =
+        franjas[i + 1];
+
+      const minutosActual =
+        convertirAMinutos(
+          actual.dataset.hora
+        );
+
+      const minutosSiguiente =
+        convertirAMinutos(
+          siguiente.dataset.hora
+        );
+
+      if (
+        minutosAhora >= minutosActual &&
+        minutosAhora <= minutosSiguiente
+      ) {
+        const progreso =
+          (
+            minutosAhora -
+            minutosActual
+          ) /
+          (
+            minutosSiguiente -
+            minutosActual
+          );
+
+        posicion =
+          actual.offsetTop +
+          (
+            siguiente.offsetTop -
+            actual.offsetTop
+          ) *
+            progreso;
+
+        break;
+      }
+    }
+
+    // Si estamos después del último
+    // inicio de actividad
+
+    const ultimaFranja =
+      franjas[
+        franjas.length - 1
+      ];
+
+    const ultimoInicio =
+      convertirAMinutos(
+        ultimaFranja.dataset.hora
+      );
+
+    if (
+      posicion === undefined &&
+      minutosAhora >= ultimoInicio
+    ) {
+      const progreso =
+        (
+          minutosAhora -
+          ultimoInicio
+        ) /
+        Math.max(
+          ultimaHora - ultimoInicio,
+          1
+        );
+
+      posicion =
+        ultimaFranja.offsetTop +
+        Math.min(progreso, 1) * 120;
+    }
+
+    if (posicion !== undefined) {
+      indicador.style.top =
+        `${posicion}px`;
+
+      indicador.hidden = false;
+    }
+
+    // ─────────────────────────────
+    // ACTIVIDADES EN CURSO
+    // ─────────────────────────────
+
+    diaActual
+      .querySelectorAll(
+        "[data-actividad]"
+      )
+      .forEach((tarjeta) => {
+        const inicio =
+          convertirAMinutos(
+            tarjeta.dataset.inicio
+          );
+
+        const fin =
+          convertirAMinutos(
+            tarjeta.dataset.fin
+          );
+
+        const enCurso =
+          minutosAhora >= inicio &&
+          minutosAhora < fin;
+
+        if (enCurso) {
+          tarjeta.classList.add(
+            "esta-en-curso"
+          );
+
+          const estado =
+            tarjeta.querySelector(
+              "[data-en-curso]"
+            );
+
+          if (estado) {
+            estado.hidden = false;
+          }
+        }
+      });
+  }
+
+  actualizarAhora();
+
+  // Comprobar cada minuto
+
+  setInterval(
+    actualizarAhora,
+    60_000
+  );
+</script>
+
+<style>
+
+  /* ───────────────────────────────
+     SELECTOR DE DÍAS
+  ─────────────────────────────── */
+
+  .selector-dias {
+    display: flex;
+
+    gap: 2.5rem;
+
+    margin-bottom: 4rem;
+
+    border-bottom:
+      1px solid
+      rgba(0, 0, 0, 0.1);
+  }
+
+  .dia-tab {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 0.25rem;
+
+    padding: 0 0 1rem;
+
+    border: 0;
+
+    background: none;
+
+    color: inherit;
+
+    cursor: pointer;
+
+    opacity: 0.45;
+
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .dia-tab:hover {
+    opacity: 0.8;
+  }
+
+  .dia-tab.activo {
+    opacity: 1;
+  }
+
+  .dia-tab.activo::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -1px;
+
+    height: 3px;
+
+    border-radius:
+      10px 10px 0 0;
+
+    background: currentColor;
+  }
+
+  .dia-nombre {
+    font-size: 1rem;
+
+    font-weight: 800;
+
+    text-transform: capitalize;
+
+    color: var(--color-ink, #1f2937);
+  }
+
+  .dia-fecha {
+    font-size: 0.82rem;
+
+    color: var(--color-soft, #64748b);
+  }
+
+  /* ───────────────────────────────
+     CAMBIO ENTRE DÍAS
+  ─────────────────────────────── */
+
+  .programacion-dia {
+    display: none;
+  }
+
+  .programacion-dia.activo {
+    display: block;
+
+    animation:
+      aparecer-programacion
+      260ms ease both;
+  }
+
+  @keyframes aparecer-programacion {
+    from {
+      opacity: 0;
+
+      transform:
+        translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+
+      transform:
+        translateY(0);
+    }
+  }
+
+  /* ───────────────────────────────
+     TIMELINE
+  ─────────────────────────────── */
+
+  .timeline {
+    position: relative;
+  }
+
+  .timeline-linea {
+    position: absolute;
+
+    top: 0.5rem;
+    bottom: 1rem;
+
+    left: 108px;
+
+    width: 2px;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.18),
+        rgba(0, 0, 0, 0.05)
+      );
+  }
+
+  .timeline-franja {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+      110px 1fr;
+
+    gap: 2.4rem;
+
+    min-height: 150px;
+
+    padding-bottom: 3.5rem;
+  }
+
+  /* ───────────────────────────────
+     HORA
+  ─────────────────────────────── */
+
+  .timeline-momento {
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: flex-end;
+
+    padding-top: 0.15rem;
+  }
+
+  .timeline-momento time {
+    margin-right: 27px;
+
+    font-size: 0.92rem;
+
+    font-weight: 750;
+
+    font-variant-numeric:
+      tabular-nums;
+  }
+
+  .timeline-punto {
+    position: absolute;
+
+    right: -7px;
+    top: 0.3rem;
+
+    width: 15px;
+    height: 15px;
+
+    border:
+      4px solid
+      var(--color-fondo, #fff);
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+    box-shadow:
+      0 0 0 2px
+      currentColor;
+
+    z-index: 2;
+  }
+
+  /* ───────────────────────────────
+     GRID DE ACTIVIDADES
+  ─────────────────────────────── */
+
+  .actividades-grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    gap: 1.2rem;
+
+    max-width: 900px;
+  }
+
+  .actividades-grid--multiple {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  /* ───────────────────────────────
+     TARJETA
+  ─────────────────────────────── */
+
+  .actividad-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 1.5rem;
+
+  border: 1px solid
+    rgba(15, 23, 42, 0.08);
+
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 10px 30px
+    rgba(15, 23, 42, 0.06);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+  .actividad-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset:
+      0 auto 0 0;
+
+    width: 4px;
+
+    background:
+      var(--categoria);
+  }
+
+  .actividad-card:hover {
+    transform:
+      translateY(-3px);
+
+    box-shadow:
+      0 18px 45px
+      rgba(0, 0, 0, 0.09);
+  }
+
+  /* ───────────────────────────────
+     COLORES POR TIPO
+  ─────────────────────────────── */
+
+  .actividad-card--charla {
+    --categoria: #3677c8;
+  }
+
+  .actividad-card--taller {
+    --categoria: #27956e;
+  }
+
+  .actividad-card--espectaculo {
+    --categoria: #b963c5;
+  }
+
+  /* ───────────────────────────────
+     ACTIVIDAD EN CURSO
+  ─────────────────────────────── */
+
+  .actividad-card.esta-en-curso {
+    border-color:
+      var(--categoria);
+
+    box-shadow:
+      0 16px 45px
+      color-mix(
+        in srgb,
+        var(--categoria) 14%,
+        transparent
+      );
+  }
+
+  /* ───────────────────────────────
+     CABECERA TARJETA
+  ─────────────────────────────── */
+
+  .actividad-top {
+    display: flex;
+
+    justify-content:
+      space-between;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    margin-bottom: 0.7rem;
+  }
+
+  .actividad-tipo {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.45rem;
+
+    color: var(--categoria);
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.1em;
+  }
+
+  .actividad-icono {
+    display: inline-flex;
+
+    width: 17px;
+    height: 17px;
+  }
+
+  .actividad-icono :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .actividad-en-curso {
+    padding:
+      0.34rem 0.62rem;
+
+    border-radius: 999px;
+
+    background:
+      var(--categoria);
+
+    color: white;
+
+    font-size: 0.67rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06em;
+  }
+
+  /* ───────────────────────────────
+     CONTENIDO TARJETA
+  ─────────────────────────────── */
+
+  .actividad-card h3 {
+    margin: 0;
+
+    font-size: clamp(
+      1.25rem,
+      2vw,
+      1.55rem
+    );
+
+    line-height: 1.15;
+
+    letter-spacing: -0.025em;
+  }
+
+  .actividad-entidad {
+    margin:
+      0.45rem 0 0;
+
+    font-size: 0.86rem;
+
+    font-weight: 600;
+
+    opacity: 0.55;
+  }
+
+  .actividad-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 0.4rem;
+
+    margin-top: 1rem;
+
+    font-size: 0.83rem;
+
+    font-weight: 650;
+
+    opacity: 0.75;
+  }
+
+  .actividad-horario {
+    font-variant-numeric:
+      tabular-nums;
+  }
+
+  .meta-separador {
+    opacity: 0.45;
+  }
+
+  .actividad-descripcion {
+    margin: 0.75rem 0 0;
+
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+  /* ───────────────────────────────
+   ELEMENTOS DINÁMICOS OCULTOS
+─────────────────────────────── */
+
+.indicador-ahora[hidden],
+.actividad-en-curso[hidden] {
+  display: none !important;
+}
+
+/* ───────────────────────────────
+   INDICADOR AHORA
+─────────────────────────────── */
+
+.indicador-ahora {
+  --color-ahora: #f97316;
+
+  position: absolute;
+  left: 108px;
+  transform: translateY(-50%);
+
+  width: 0;
+  height: 0;
+
+  z-index: 12;
+  pointer-events: none;
+}
+
+.ahora-punto {
+  position: absolute;
+  left: -8px;
+  top: -8px;
+
+  width: 16px;
+  height: 16px;
+
+  border: 3px solid #ffffff;
+  border-radius: 999px;
+
+  background: var(--color-ahora);
+
+  box-shadow:
+    0 0 0 3px var(--color-ahora),
+    0 0 0 8px rgba(249, 115, 22, 0.14);
+}
+
+.ahora-texto {
+  position: absolute;
+  left: 24px;
+  top: -14px;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.38rem 0.72rem;
+
+  border-radius: 999px;
+  background: var(--color-ahora);
+  color: #ffffff;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  box-shadow:
+    0 10px 24px rgba(249, 115, 22, 0.22);
+}
+
+  /* ───────────────────────────────
+     MÓVIL
+  ─────────────────────────────── */
+
+  @media (
+    max-width: 760px
+  ) {
+
+    /* DÍAS */
+
+    .selector-dias {
+      gap: 1.7rem;
+
+      overflow-x: auto;
+
+      margin-bottom: 3rem;
+
+      scrollbar-width: none;
+    }
+
+    .selector-dias::-webkit-scrollbar {
+      display: none;
+    }
+
+    .dia-tab {
+      flex: 0 0 auto;
+    }
+
+    /* TIMELINE */
+
+    .timeline-linea {
+      left: 19px;
+    }
+
+    .timeline-franja {
+      grid-template-columns: 1fr;
+
+      gap: 1rem;
+
+      padding-left: 45px;
+
+      padding-bottom: 3rem;
+    }
+
+    .timeline-momento {
+      justify-content:
+        flex-start;
+
+      min-height: 1.5rem;
+    }
+
+    .timeline-momento time {
+      margin: 0;
+
+      font-size: 0.88rem;
+    }
+
+    .timeline-punto {
+      left: -33px;
+      right: auto;
+      top: 0.25rem;
+    }
+
+    /* ACTIVIDADES */
+
+    .actividades-grid,
+    .actividades-grid--multiple {
+      grid-template-columns: 1fr;
+    }
+
+    .actividad-card {
+      padding: 1.25rem;
+
+      border-radius: 16px;
+    }
+
+    /* AHORA */
+
+    .indicador-ahora {
+      left: 19px;
+    }
+
+    .ahora-punto {
+      left: -7px;
+      top: -7px;
+
+      width: 14px;
+      height: 14px;
+    }
+
+    .ahora-texto {
+      left: 20px;
+      top: -13px;
+
+      font-size: 0.6rem;
+      padding: 0.32rem 0.6rem;
+    }
+  }
+</style>
