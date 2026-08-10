@@ -9,6 +9,38 @@ import { participantesOSC } from '../data/participantesOSC.js';
 import { apoyosOSC } from '../data/apoyosOSC.js';
 import { experienciasOSC } from '../data/experienciasOSC.js';
 
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "@id": "https://xentd100cia.org/osc/#event",
+  "name": "Open Science Cambre 2026",
+  "description": "Open Science Cambre 2026 es un encuentro de divulgación científica celebrado en Cambre con actividades, talleres, charlas y espectáculos.",
+  "url": "https://xentd100cia.org/osc/",
+
+  "startDate": "2026-09-18T21:00:00+02:00",
+  "endDate": "2026-09-20T14:00:00+02:00",
+
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+
+  "location": {
+    "@type": "Place",
+    "name": "Parque de la Iglesia de Cambre",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cambre",
+      "addressRegion": "A Coruña",
+      "addressCountry": "ES"
+    }
+  },
+
+  "organizer": {
+    "@type": "Organization",
+    "@id": "https://xentd100cia.org/#organization",
+    "name": "XentD100cia",
+    "url": "https://xentd100cia.org/"
+  }
+};
 
 const experienciasDisponibles = experienciasOSC ?? [];
 
@@ -106,9 +138,14 @@ const apoyosActuales = (apoyosOSC ?? [])
 ---
 
 <BaseLayout
-  title="Open Science Cambre | XentD100cia"
-  description="Open Science Cambre es una feria científica participativa coordinada por XentD100cia, con centros, asociaciones, instituciones y entidades que acercan la ciencia al público."
+  title="Open Science Cambre 2026 | XentD100cia"
+  description="Open Science Cambre 2026 es un encuentro de divulgación científica organizado en Cambre. Consulta el programa, participantes, actividades, horarios y toda la información del evento."
 >
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(eventSchema)}
+  ></script>
+
   <Navbar />
 
   <main>

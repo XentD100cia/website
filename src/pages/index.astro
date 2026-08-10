@@ -10,6 +10,22 @@ import { talleresRealizados } from '../data/talleresRealizados.js';
 import { edicionesOSC } from '../data/edicionesOSC.js';
 import { proximosTalleres } from '../data/proximosTalleres.js';
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://xentd100cia.org/#organization",
+  "name": "XentD100cia",
+  "url": "https://xentd100cia.org/",
+  "logo": "https://xentd100cia.org/images/logo-xentd100cia.png",
+  "description": "Asociación juvenil de divulgación científica en Cambre dedicada a acercar la ciencia a todo el mundo mediante talleres, actividades y proyectos.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cambre",
+    "addressRegion": "A Coruña",
+    "addressCountry": "ES"
+  }
+};
+
 const getTime = (date) => {
   const time = new Date(date).getTime();
   return Number.isNaN(time) ? 0 : time;
@@ -67,7 +83,15 @@ const noticiaDestacadaHome = (noticias ?? [])
   .sort((a, b) => getTime(b.sortDate) - getTime(a.sortDate))[0];
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="XentD100cia | Divulgación científica en Cambre"
+  description="XentD100cia es una asociación juvenil de divulgación científica en Cambre. Organizamos talleres, actividades y proyectos como Open Science Cambre para acercar la ciencia a todo el mundo."
+>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(organizationSchema)}
+  ></script>
+
   <Navbar />
   <Hero />
 

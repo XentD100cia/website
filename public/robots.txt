@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://xentd100cia.org/sitemap-index.xml
