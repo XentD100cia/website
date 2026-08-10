@@ -4,11 +4,12 @@ import '../styles/global.css';
 const {
   title = 'XentD100cia | Divulgación científica en Cambre',
   description = 'Asociación juvenil de divulgación científica en Cambre. Talleres, actividades y proyectos para acercar la ciencia a todo el mundo.',
-  image = '/images/og-xentd100cia.jpg'
+  image = '/images/logo-xentd100cia.png',
+  type = 'website',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const imageURL = new URL(image, Astro.site);
+const socialImage = new URL(image, Astro.site);
 ---
 
 <!doctype html>
@@ -20,18 +21,23 @@ const imageURL = new URL(image, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
 
+    <!-- URL canónica -->
     <link rel="canonical" href={canonicalURL} />
 
-    <meta property="og:type" content="website" />
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={imageURL} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:site_name" content="XentD100cia" />
+    <meta property="og:locale" content="es_ES" />
 
+    <!-- X / Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={imageURL} />
+    <meta name="twitter:image" content={socialImage} />
   </head>
   <body>
     <slot />

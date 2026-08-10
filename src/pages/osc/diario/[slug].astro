@@ -19,6 +19,8 @@ const { post } = Astro.props;
 <BaseLayout
   title={`${post.title} | Diario OSC | XentD100cia`}
   description={post.excerpt}
+  image={post.image}
+  type="article"
 >
   <Navbar />
 
