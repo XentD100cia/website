@@ -22,7 +22,7 @@ export const participantesOSC = [
     type: 'Centro educativo',
     location: 'Cerceda, A Coruña',
     edition: 2026,
-    description: 'Participaran con un proyecto.',
+    description: 'Participaran con dous proyectos.',
     website: 'https://www.edu.xunta.gal/centros/cpicruce/',
     logo: null
   },
@@ -139,7 +139,7 @@ export const participantesOSC = [
     type: 'Centro educativo',
     location: 'Vigo, Pontevedra',
     edition: 2026,
-    description: 'Participaran con siete proyectos.',
+    description: 'Participaran con trece proyectos.',
     website: 'https://www.colexioalborada.es/',
     logo: '/images/logos/participantes/logotipo.alborada.png'
   },
@@ -295,5 +295,14 @@ export const participantesOSC = [
     description: 'Participa con dous proyectos.',
     website: 'https://iesbahia.es/',
     logo: '/images/logos/participantes/logotipo.bahia_algeciras.png'
+  },
+  {
+    name: 'Premià de Mar',
+    type: 'Institut',
+    location: 'Premià de Mar, Barcelona',
+    edition: 2026,
+    description: 'Participa con un proyecto.',
+    website: 'https://agora.xtec.cat/inspm/',
+    logo: '/images/logos/participantes/logotipo.premia_de_mar.png'
   },
 ];

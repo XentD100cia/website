@@ -161,7 +161,7 @@ export const procedenciasOSC2026 = [
     participantes: [
       {
         nombre: "CPI Plurilingüe O Cruce",
-        proyectos: 1
+        proyectos: 2
       }
     ]
   },
@@ -295,6 +295,34 @@ export const procedenciasOSC2026 = [
     participantes: [
       {
         nombre: "CPI Ponte Carreira",
+        proyectos: 1
+      }
+    ]
+  },
+
+  {
+    localidad: "Vigo",
+    provincia: "Pontevedra",
+    pais: "España",
+    lat: 42.2328,
+    lng: -8.7226,
+    participantes: [
+      {
+        nombre: "CPR Alborada",
+        proyectos: 13
+      }
+    ]
+  },
+
+  {
+    localidad: "Premià de Mar",
+    provincia: "Barcelona",
+    pais: "España",
+    lat: 41.4921,
+    lng: 2.3652,
+    participantes: [
+      {
+        nombre: "Institut Premià de Mar",
         proyectos: 1
       }
     ]
