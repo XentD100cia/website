@@ -1,12 +1,5 @@
 export const apoyosOSC = [
   {
-    name: 'Mundo R',
-    type: 'Patrocinador',
-    edition: 2026,
-    website: 'https://mundo-r.com/es',
-    logo: '/images/logos/apoyos/logo.R.png'
-  },
-  {
     name: 'Deputación da Coruña',
     type: 'Apoyo Institucional',
     edition: 2026,
