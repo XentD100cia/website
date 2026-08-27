@@ -1,0 +1,393 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { oscPosts } from '../../data/oscPosts.js';
+
+const formulariosParticipantes = [
+  {
+    title: 'Proyectos OSC Xove',
+    label: 'Centros educativos',
+    text:
+      'Formulario para colegios, institutos, centros formativos y otros espacios educativos que quieran participar en Open Science Cambre con proyectos desarrollados por alumnado.',
+    activo: false,
+    buttonActivo: 'Inscribir proyecto OSC Xove',
+    buttonInactivo: 'Formulario próximamente',
+    hrefActivo: 'URL_FORMULARIO_OSC_XOVE'
+  },
+  {
+    title: 'OSC Divulga',
+    label: 'Entidades divulgadoras',
+    text:
+      'Formulario para universidades, centros de investigación, museos, FabLabs, asociaciones científicas, entidades divulgadoras y proyectos similares que quieran participar en la feria.',
+    activo: false,
+    buttonActivo: 'Inscribir entidad OSC Divulga',
+    buttonInactivo: 'Formulario próximamente',
+    hrefActivo: 'URL_FORMULARIO_OSC_DIVULGA'
+  },
+  {
+    title: 'Solicitud de acogida',
+    label: 'Alumnado participante',
+    text:
+      'Formulario para participantes que necesitan solicitar acogida durante Open Science Cambre. La acogida forma parte de la experiencia comunitaria de la feria.',
+    activo: false,
+    buttonActivo: 'Solicitar acogida',
+    buttonInactivo: 'Acogidas próximamente',
+    hrefActivo: 'URL_FORMULARIO_ACOGIDA_ALUMNADO'
+  },
+  {
+    title: 'Alojamiento del profesorado',
+    label: 'Profesorado acompañante',
+    text:
+      'Formulario para que el profesorado acompañante pueda comunicar sus necesidades de alojamiento durante la feria.',
+    activo: false,
+    buttonActivo: 'Solicitar alojamiento',
+    buttonInactivo: 'Alojamiento próximamente',
+    hrefActivo: 'URL_FORMULARIO_ALOJAMIENTO_PROFESORADO'
+  }
+];
+
+const horariosPublicados = false;
+
+const horariosEspeciales = [
+  {
+    title: 'Recepción de participantes',
+    day: 'Viernes',
+    time: 'Horario por confirmar',
+    place: 'Lugar por confirmar',
+    text:
+      'Recepción inicial de participantes, bienvenida y primeras indicaciones de la organización.'
+  },
+  {
+    title: 'Recepción de participantes',
+    day: 'Sábado',
+    time: 'Horario por confirmar',
+    place: 'Lugar por confirmar',
+    text:
+      'Punto de llegada para participantes que se incorporen el sábado a Open Science Cambre.'
+  },
+  {
+    title: 'Montaje de stands',
+    day: 'Sábado',
+    time: 'Horario por confirmar',
+    place: 'Zona de stands',
+    text:
+      'Franja destinada al montaje de materiales, revisión de necesidades técnicas y preparación de los espacios.'
+  },
+  {
+    title: 'Punto de encuentro',
+    day: 'Sábado',
+    time: 'Horario por confirmar',
+    place: 'Lugar por confirmar',
+    text:
+      'Punto de encuentro para profesorado y alumnado antes del inicio de la actividad principal.'
+  },
+  {
+    title: 'Punto de encuentro',
+    day: 'Domingo',
+    time: 'Horario por confirmar',
+    place: 'Lugar por confirmar',
+    text:
+      'Punto de encuentro para organizar la jornada final, resolver dudas y coordinar la despedida.'
+  }
+];
+
+const turnosComida = [
+  {
+    color: 'Fucsia',
+    className: 'bg-pink-500',
+    time: 'Turno por confirmar'
+  },
+  {
+    color: 'Verde',
+    className: 'bg-green-500',
+    time: 'Turno por confirmar'
+  },
+  {
+    color: 'Amarillo',
+    className: 'bg-yellow-400',
+    time: 'Turno por confirmar'
+  }
+];
+
+const noticiaCamisetas = (oscPosts ?? []).find((post) => {
+  const title = post.title?.toLowerCase() ?? '';
+  const slug = post.slug?.toLowerCase() ?? '';
+
+  return (
+    slug === 'ya-tenemos-camisetas-osc-2026' ||
+    slug.includes('camisetas') ||
+    title.includes('camisetas')
+  );
+});
+
+const formularioCamisetas = {
+  activo: false,
+  hrefActivo: 'URL_FORMULARIO_CAMISETAS_EXTRA',
+  buttonActivo: 'Pedir camiseta extra',
+  buttonInactivo: 'Pedido todavía no disponible'
+};
+---
+
+<BaseLayout
+  title="Información para centros | Open Science Cambre"
+  description="Información específica para centros, entidades participantes, profesorado y alumnado de Open Science Cambre."
+>
+  <Navbar />
+
+  <main>
+    <section class="bg-midnight px-5 pt-40 pb-24 text-white md:pt-48 md:pb-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-4xl">
+          <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            OSC 2026
+          </p>
+
+          <h1 class="font-heading text-5xl font-extrabold leading-tight md:text-7xl">
+            Información para centros y participantes
+          </h1>
+
+          <p class="mt-6 max-w-3xl text-xl leading-9 text-white/70">
+            Aquí iremos centralizando formularios, horarios, indicaciones
+            especiales y materiales útiles para los centros, entidades,
+            profesorado y alumnado participante en Open Science Cambre.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white px-5 py-20 md:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Formularios
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Formularios para participar en OSC
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Utiliza el formulario correspondiente según el tipo de participación.
+            Algunos formularios pueden abrirse o cerrarse según la fase de
+            organización de la feria.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          {formulariosParticipantes.map((formulario) => (
+            <article class="flex h-full flex-col rounded-[32px] border border-line bg-scienceWhite p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-soft md:p-10">
+              <div class="mb-6 flex flex-wrap items-center gap-3">
+                <span class="rounded-full bg-bioTeal/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-bioTeal">
+                  {formulario.label}
+                </span>
+
+                <span
+                  class:list={[
+                    'rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.18em]',
+                    formulario.activo
+                      ? 'bg-green-100 text-green-700'
+                      : 'bg-white text-soft'
+                  ]}
+                >
+                  {formulario.activo ? 'Abierto' : 'No disponible'}
+                </span>
+              </div>
+
+              <h3 class="font-heading text-3xl font-extrabold text-ink">
+                {formulario.title}
+              </h3>
+
+              <p class="mt-5 flex-1 leading-8 text-soft">
+                {formulario.text}
+              </p>
+
+              {formulario.activo ? (
+                <a
+                  href={formulario.hrefActivo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-8 inline-flex w-fit rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                >
+                  {formulario.buttonActivo}
+                </a>
+              ) : (
+                <span class="mt-8 inline-flex w-fit cursor-not-allowed rounded-button border border-line bg-white px-6 py-4 font-bold text-soft">
+                  {formulario.buttonInactivo}
+                </span>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-scienceWhite px-5 py-20 md:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Horarios especiales
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Indicaciones para participantes
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            En esta sección publicaremos la información específica para centros y
+            participantes: recepción, montaje, puntos de encuentro y turnos de
+            comida.
+          </p>
+        </div>
+
+        {!horariosPublicados && (
+          <article class="mb-10 rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10">
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+              Aviso
+            </p>
+
+            <h3 class="font-heading text-3xl font-extrabold text-ink">
+              Horarios pendientes de publicación
+            </h3>
+
+            <p class="mt-4 text-lg leading-8 text-soft">
+              Los horarios definitivos se publicarán cuando la organización cierre
+              la logística de recepción, montaje, puntos de encuentro y comidas.
+            </p>
+          </article>
+        )}
+
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {horariosEspeciales.map((item) => (
+            <article class="rounded-card border border-line bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+              <p class="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-bioTeal">
+                {item.day}
+              </p>
+
+              <h3 class="font-heading text-2xl font-bold text-ink">
+                {item.title}
+              </h3>
+
+              <div class="mt-5 space-y-3 text-soft">
+                <p>
+                  <strong class="text-ink">Hora:</strong> {item.time}
+                </p>
+
+                <p>
+                  <strong class="text-ink">Lugar:</strong> {item.place}
+                </p>
+              </div>
+
+              <p class="mt-5 leading-7 text-soft">
+                {item.text}
+              </p>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-12 rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10">
+          <div class="mb-8 max-w-3xl">
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+              Comidas
+            </p>
+
+            <h3 class="font-heading text-3xl font-extrabold text-ink">
+              Turnos de comida por color de pulsera
+            </h3>
+
+            <p class="mt-4 leading-8 text-soft">
+              Este año los turnos de comida estarán organizados según el color de
+              la pulsera entregada a cada participante.
+            </p>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-3">
+            {turnosComida.map((turno) => (
+              <article class="rounded-3xl bg-scienceWhite p-6">
+                <div class="mb-5 flex items-center gap-4">
+                  <span class:list={[
+                    'h-6 w-6 rounded-full shadow-sm',
+                    turno.className
+                  ]}></span>
+
+                  <h4 class="font-heading text-2xl font-bold text-ink">
+                    Pulsera {turno.color}
+                  </h4>
+                </div>
+
+                <p class="leading-7 text-soft">
+                  {turno.time}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {noticiaCamisetas && (
+      <section class="bg-white px-5 py-20 md:py-28">
+        <div class="mx-auto max-w-7xl">
+          <article class="overflow-hidden rounded-[36px] bg-midnight text-white shadow-soft lg:grid lg:grid-cols-[0.95fr_1.05fr]">
+            <div class="relative min-h-[320px]">
+              {noticiaCamisetas.image ? (
+                <img
+                  src={noticiaCamisetas.image}
+                  alt={noticiaCamisetas.title}
+                  class="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <div class="absolute inset-0 bg-gradient-to-br from-discovery to-bioTeal"></div>
+              )}
+
+              <div class="absolute inset-0 bg-gradient-to-t from-midnight/70 via-midnight/20 to-transparent"></div>
+            </div>
+
+            <div class="flex flex-col justify-center p-8 md:p-12">
+              <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+                Camisetas OSC
+              </p>
+
+              <h2 class="font-heading text-4xl font-extrabold md:text-5xl">
+                Ya tenemos camisetas para la feria
+              </h2>
+
+              <p class="mt-5 text-lg leading-8 text-white/70">
+                En esta sección aparecerá la información sobre las camisetas de
+                Open Science Cambre. Además de las camisetas incluidas por
+                participación, se podrá solicitar alguna unidad extra mediante un
+                formulario específico cuando esté disponible.
+              </p>
+
+              <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                <a
+                  href={`/osc/diario/${noticiaCamisetas.slug}`}
+                  class="inline-flex rounded-button border border-white/20 px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-white/10"
+                >
+                  Leer noticia
+                </a>
+
+                {formularioCamisetas.activo ? (
+                  <a
+                    href={formularioCamisetas.hrefActivo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex rounded-button bg-discovery px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-bioTeal"
+                  >
+                    {formularioCamisetas.buttonActivo}
+                  </a>
+                ) : (
+                  <span class="inline-flex cursor-not-allowed rounded-button bg-white/10 px-6 py-4 font-bold text-white/60">
+                    {formularioCamisetas.buttonInactivo}
+                  </span>
+                )}
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>
