@@ -1,7 +1,7 @@
 export const participantesOSC = [
   {
-    name: 'Colexio San José-Josefinas',
-    type: 'Centro educativo',
+    name: 'San José-Josefinas',
+    type: 'Colegio',
     location: 'Ourense, Ourense',
     edition: 2026,
     description: 'Nos acompañaran con 8 increibles proyectos.',
@@ -18,8 +18,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.aulas_tecnopole.svg'
   },
   {
-    name: 'CPI Plurilingüe O Cruce',
-    type: 'Centro educativo',
+    name: 'Plurilingüe O Cruce',
+    type: 'Colegio',
     location: 'Cerceda, A Coruña',
     edition: 2026,
     description: 'Participaran con dous proyectos.',
@@ -27,8 +27,8 @@ export const participantesOSC = [
     logo: null
   },
   {
-    name: 'Colegio Montessori en Sotogrande',
-    type: 'Centro educativo',
+    name: 'Montessori en Sotogrande',
+    type: 'Colegio',
     location: 'San Roque, Cádiz',
     edition: 2026,
     description: 'Participaran con un proyecto.',
@@ -37,7 +37,7 @@ export const participantesOSC = [
   },
   {
     name: 'La Inmaculada',
-    type: 'Centro educativo',
+    type: 'Colegio',
     location: 'Algeciras, Cádiz',
     edition: 2026,
     description: 'Participaran con siete proyectos.',
@@ -45,8 +45,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.la_inmaculada.png'
   },
   {
-    name: 'IES A Basella',
-    type: 'Centro educativo',
+    name: 'A Basella',
+    type: 'Instituto',
     location: 'Vilanova, Pontevedra',
     edition: 2026,
     description: 'Participaran con un proyecto.',
@@ -54,8 +54,8 @@ export const participantesOSC = [
     logo: null
   },
   {
-    name: 'CPR Santiago Apostol',
-    type: 'Centro educativo',
+    name: 'Santiago Apostol',
+    type: 'Colegio',
     location: 'Soutomaior, Pontevedra',
     edition: 2026,
     description: 'Participaran con doce proyectos.',
@@ -63,8 +63,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.soutomaior.webp'
   },
   {
-    name: 'CPI Ponte Carreira',
-    type: 'Centro educativo',
+    name: 'Ponte Carreira',
+    type: 'Colegio',
     location: 'Frades, A Coruña',
     edition: 2026,
     description: 'Participaran con un proyecto.',
@@ -72,8 +72,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.ponte_carreira.jpg'
   },
   {
-    name: 'IES Afonso X O Sabio',
-    type: 'Centro educativo',
+    name: 'Afonso X O Sabio',
+    type: 'Instituto',
     location: 'Cambre, A Coruña',
     edition: 2026,
     description: 'Participaran con un proyecto.',
@@ -99,8 +99,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.espiciencia.avif'
   },
   {
-    name: 'IES Candás',
-    type: 'Centro educativo',
+    name: 'Candás',
+    type: 'Instituto',
     location: 'Candás, Asturias',
     edition: 2026,
     description: 'Participaran con un proyecto.',
@@ -108,8 +108,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.candas.png'
   },
   {
-    name: 'CPR Plurilingüe Alborada',
-    type: 'Centro educativo',
+    name: 'Alborada',
+    type: 'Colegio',
     location: 'Vigo, Pontevedra',
     edition: 2026,
     description: 'Participaran con trece proyectos.',
@@ -117,8 +117,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.alborada.png'
   },
   {
-    name: 'IES Sierra Luna',
-    type: 'Centro educativo',
+    name: 'Sierra Luna',
+    type: 'Instituto',
     location: 'Los Barrios, Cádiz',
     edition: 2026,
     description: 'Participaran con tres proyectos.',
@@ -135,8 +135,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.enxeñolabs.png'
   },
   {
-    name: 'Institut Carles Vallbona',
-    type: 'Centro educativo',
+    name: 'Carles Vallbona',
+    type: 'Institut',
     location: 'Granollers, Barcelona',
     edition: 2026,
     description: 'Participaran con cuatro proyecto.',
@@ -144,8 +144,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.carles_villbona.png'
   },
   {
-    name: 'Colegio Pablo VI',
-    type: 'Centro educativo',
+    name: 'Pablo VI',
+    type: 'Colegio',
     location: 'Ourense',
     edition: 2026,
     description: 'Participaran con un proyecto.',
@@ -153,8 +153,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.pablo_vi.webp'
   },
   {
-    name: 'CEIP Plurilingüe Infante Felipe Borbón',
-    type: 'Centro educativo',
+    name: 'Plurilingüe Infante Felipe Borbón',
+    type: 'Colegio',
     location: 'Pontevedra',
     edition: 2026,
     description: 'Participaran con un proyecto.',
@@ -163,7 +163,7 @@ export const participantesOSC = [
   },
   {
     name: 'SIAD de Sabaneta',
-    type: 'Prorama formativo',
+    type: 'Programa formativo',
     location: 'Sabaneta,Colombia',
     edition: 2026,
     description: 'Participaran con dos proyectos.',
@@ -189,8 +189,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.cetys_universidad.png'
   },
   {
-    name: 'IES Juan de Garay',
-    type: 'Centro educativo',
+    name: 'Juan de Garay',
+    type: 'Instituto',
     location: 'Valencia',
     edition: 2026,
     description: 'Participa con una propuesta divulgativa abierta al público.',
@@ -198,8 +198,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.juan_garay.png'
   },
   {
-    name: 'IES Illa de San Simón',
-    type: 'Centro educativo',
+    name: 'Illa de San Simón',
+    type: 'Instituto',
     location: 'Redondela, Pontevedra',
     edition: 2026,
     description: 'Participa con dos proyectos.',
@@ -207,8 +207,8 @@ export const participantesOSC = [
     logo: null
   },
   {
-    name: 'IES Carral',
-    type: 'Centro educativo',
+    name: 'Carral',
+    type: 'Instituto',
     location: 'Carral, A Coruña',
     edition: 2026,
     description: 'Participa con un proyecto.',
@@ -216,8 +216,8 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.carral.png'
   },
   {
-    name: 'IES Soutomaior',
-    type: 'Centro educativo',
+    name: 'Soutomaior',
+    type: 'Instituto',
     location: 'Soutomaior, Pontevedra',
     edition: 2026,
     description: 'Participa con un proyecto.',
@@ -225,8 +225,8 @@ export const participantesOSC = [
     logo: null
   },
   {
-    name: 'IES Saladillo',
-    type: 'Centro educativo',
+    name: 'Saladillo',
+    type: 'Instituto',
     location: 'Algeciras,Cádiz',
     edition: 2026,
     description: 'Participa con un proyecto.',
@@ -234,8 +234,8 @@ export const participantesOSC = [
     logo: null
   },
   {
-    name: 'IES Bahia de Algeciras',
-    type: 'Centro educativo',
+    name: 'Bahia de Algeciras',
+    type: 'Instituto',
     location: 'Algeciras,Cádiz',
     edition: 2026,
     description: 'Participa con dous proyectos.',
