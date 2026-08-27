@@ -27,15 +27,6 @@ export const participantesOSC = [
     logo: null
   },
   {
-    name: 'CEIP Xesús Golmar',
-    type: 'Centro educativo',
-    location: 'Lalin, Pontevedra',
-    edition: 2026,
-    description: 'Participaran con un proyecto.',
-    website: 'https://www.edu.xunta.gal/centros/ceipxesusgolmar/',
-    logo: null
-  },
-  {
     name: 'Colegio Montessori en Sotogrande',
     type: 'Centro educativo',
     location: 'San Roque, Cádiz',
@@ -45,15 +36,6 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.sotogrande.avif'
   },
   {
-    name: 'IES Pazo da Mercé',
-    type: 'Centro educativo',
-    location: 'As neves, Pontevedra',
-    edition: 2026,
-    description: 'Participaran con un proyecto.',
-    website: 'https://www.edu.xunta.gal/centros/iespazomerce/',
-    logo: '/images/logos/participantes/logotipo.pazo_da_merce.png'
-  },
-  {
     name: 'La Inmaculada',
     type: 'Centro educativo',
     location: 'Algeciras, Cádiz',
@@ -61,15 +43,6 @@ export const participantesOSC = [
     description: 'Participaran con siete proyectos.',
     website: 'https://lainmaculadaalgeciras.com/',
     logo: '/images/logos/participantes/logotipo.la_inmaculada.png'
-  },
-  {
-    name: 'CPR Compañia de Maria',
-    type: 'Centro educativo',
-    location: 'Santiago, A Coruña',
-    edition: 2026,
-    description: 'Participaran con dos proyectos.',
-    website: 'https://ciamariasantiago.org/gl/',
-    logo: null
   },
   {
     name: 'IES A Basella',
@@ -85,7 +58,7 @@ export const participantesOSC = [
     type: 'Centro educativo',
     location: 'Soutomaior, Pontevedra',
     edition: 2026,
-    description: 'Participaran con siete proyectos.',
+    description: 'Participaran con doce proyectos.',
     website: 'https://colegiosantiagoapostolsoutomaior.es/',
     logo: '/images/logos/participantes/logotipo.soutomaior.webp'
   },
@@ -144,39 +117,12 @@ export const participantesOSC = [
     logo: '/images/logos/participantes/logotipo.alborada.png'
   },
   {
-    name: 'IES El Getares',
-    type: 'Centro educativo',
-    location: 'Algeciras, Cádiz',
-    edition: 2026,
-    description: 'Participaran con un proyecto.',
-    website: 'https://ieselgetares.org/',
-    logo: '/images/logos/participantes/logotipo.el_getares.png'
-  },
-  {
     name: 'IES Sierra Luna',
     type: 'Centro educativo',
     location: 'Los Barrios, Cádiz',
     edition: 2026,
     description: 'Participaran con tres proyectos.',
     website: null,
-    logo: null
-  },
-  {
-    name: 'IES Kursaal',
-    type: 'Centro educativo',
-    location: 'Algeciras, Cádiz',
-    edition: 2026,
-    description: 'Participaran con cinco proyectos.',
-    website: 'https://ieskursaal.es/',
-    logo: '/images/logos/participantes/logotipo.kursaal.webp'
-  },
-  {
-    name: 'Universidad mayor de San Andres',
-    type: 'Centro educativo',
-    location: 'La Paz, Murillo',
-    edition: 2026,
-    description: 'Participaran con dos proyectos.',
-    website: 'https://www.umsa.bo/',
     logo: null
   },
   {
@@ -202,7 +148,7 @@ export const participantesOSC = [
     type: 'Centro educativo',
     location: 'Ourense',
     edition: 2026,
-    description: 'Participaran con dous proyectos.',
+    description: 'Participaran con un proyecto.',
     website: 'https://www.pablovi.es/',
     logo: '/images/logos/participantes/logotipo.pablo_vi.webp'
   },
@@ -229,7 +175,7 @@ export const participantesOSC = [
     type: 'Universidad',
     location: 'Baja California, México',
     edition: 2026,
-    description: 'Junto a la CETYS Universidad nos acercaran dos proyectos de lo más interesantes.',
+    description: 'Junto a la CETYS Universidad nos acercaran un proyecto de lo más interesante.',
     website: 'https://citecuvp.tij.uabc.mx/',
     logo: '/images/logos/participantes/logotipo.uabc_fcitec.svg'
   },
@@ -238,7 +184,7 @@ export const participantesOSC = [
     type: 'Universidad',
     location: 'Baja California, México',
     edition: 2026,
-    description: 'Junto a la UABC FCITEC nos acercaran dos proyectos de lo más interesantes.',
+    description: 'Junto a la UABC FCITEC nos acercaran un proyecto de lo más interesante.',
     website: 'https://www.cetys.mx/',
     logo: '/images/logos/participantes/logotipo.cetys_universidad.png'
   },

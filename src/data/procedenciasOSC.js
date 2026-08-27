@@ -9,7 +9,7 @@ export const procedenciasOSC2026 = [
     participantes: [
       {
         nombre: "UABC FCITEC / CETYS Universidad",
-        proyectos: 2
+        proyectos: 1
       }
     ]
   },
@@ -69,7 +69,7 @@ export const procedenciasOSC2026 = [
       },
       {
         nombre: "Colegio Pablo VI-Fàtima",
-        proyectos: 2
+        proyectos: 1
       }
     ]
   },
@@ -189,7 +189,7 @@ export const procedenciasOSC2026 = [
     participantes: [
       {
         nombre: "IES Juan de Garay",
-        proyectos: 2
+        proyectos: 1
       }
     ]
   },
@@ -239,7 +239,7 @@ export const procedenciasOSC2026 = [
       },
       {
         nombre: "CPR Santiago Apóstol",
-        proyectos: 7
+        proyectos: 12
       }
     ]
   },
