@@ -4,12 +4,35 @@ export const programacionOSC = [
   // ─────────────────────────────────
   // VIERNES
   // ─────────────────────────────────
-
   {
     id: "espectaculo-01",
     fecha: "2026-09-18",
+    inicio: "19:00",
+    fin: "20:00",
+    tipo: "espectaculo",
+    titulo: "Concierto de música",
+    entidad: "Sementeira",
+    lugar: "Anfiteatro",
+    descripcion:
+      ""
+  },
+  {
+    id: "espectaculo-02",
+    fecha: "2026-09-18",
+    inicio: "20:00",
+    fin: "21:00",
+    tipo: "espectaculo",
+    titulo: "Espectaculo de danza",
+    entidad: "Academia de baile Cambre",
+    lugar: "Anfiteatro",
+    descripcion:
+      ""
+  },
+  {
+    id: "espectaculo-03",
+    fecha: "2026-09-18",
     inicio: "21:00",
-    fin: "22:45",
+    fin: "23:00",
     tipo: "espectaculo",
     titulo: "Ciencia en escena",
     entidad: "Comisión Espectaculos",
@@ -23,20 +46,20 @@ export const programacionOSC = [
   // ─────────────────────────────────
 
   {
-    id: "charla-01",
+    id: "espectaculo-04",
     fecha: "2026-09-19",
     inicio: "12:00",
     fin: "12:15",
-    tipo: "charla",
+    tipo: "espectaculo",
     titulo: "Acto de apertura",
     entidad: "OSC",
     lugar: "Anfiteatro",
     descripcion:
-      "Los codirectores de está edición Juan y Jairo darán por inaugurada la OSC2026"
+      "Los codirectores de está edición Juan y Jairo darán por inaugurada la OSC26"
   },
 
   {
-    id: "espectaculo-02",
+    id: "espectaculo-05",
     fecha: "2026-09-19",
     inicio: "12:15",
     fin: "12:30",
@@ -49,14 +72,14 @@ export const programacionOSC = [
   },
 
   {
-    id: "charla-02",
+    id: "charla-01",
     fecha: "2026-09-19",
     inicio: "12:30",
-    fin: "13:00",
+    fin: "13:30",
     tipo: "charla",
-    titulo: "Alzheimer en ratones",
-    entidad: "Mariña Rodriguez",
-    lugar: "Colegio",
+    titulo: "CIENCIA ON STAGE",
+    entidad: "Luis Carlos Pardo",
+    lugar: "Anfiteatro",
     descripcion:
       ""
   },
@@ -64,76 +87,50 @@ export const programacionOSC = [
   {
     id: "taller-01",
     fecha: "2026-09-19",
-    inicio: "12:45",
+    inicio: "12:30",
     fin: "13:15",
     tipo: "taller",
-    titulo: "Quiero ser paleontólog@",
+    titulo: "ARTE ÓPTICO",
     entidad: "Espiciencia",
     lugar: "Anfiteatro",
     descripcion:
-      ""
-  },
-
-  {
-    id: "charla-03",
-    fecha: "2026-09-19",
-    inicio: "13:00",
-    fin: "13:30",
-    tipo: "charla",
-    titulo: "",
-    entidad: "Mónica Castro",
-    lugar: "Colegio",
-    descripcion:
-      ""
-  },
-
-  {
-    id: "charla-04",
-    fecha: "2026-09-19",
-    inicio: "13:30",
-    fin: "14:00",
-    tipo: "charla",
-    titulo: "",
-    entidad: "Manuel Debasa",
-    lugar: "Colegio",
-    descripcion:
-      ""
+      "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida."
   },
 
   {
     id: "taller-02",
     fecha: "2026-09-19",
-    inicio: "16:00",
-    fin: "17:00",
+    inicio: "14:30",
+    fin: "15:30",
     tipo: "taller",
-    titulo: "El teléfono móvil: un laboratorio de bolsillo",
-    entidad: "Luis Carlos",
+    titulo: "Elaboración de chapas OSC",
+    entidad: "XentD100cia",
     lugar: "Colegio",
     descripcion:
-      ""
+      "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!"
   },
 
   {
     id: "taller-03",
     fecha: "2026-09-19",
     inicio: "16:00",
-    fin: "16:30",
+    fin: "17:00",
     tipo: "taller",
-    titulo: "Cianotipiaa y pigmentos naturales",
-    entidad: "Espiciencia",
-    lugar: "Anfiteatro",
+    titulo: "¿Qué pasa en nuestro universo cuando no miramos?",
+    entidad: "XentD100cia",
+    lugar: "Colegio",
     descripcion:
-      ""
+      "En este taller, descubriremos por medio de increibles experiencias, de la mano de la ciencia, las maravillas que esconde nuestro universo. Descubramos el universo juntos."
   },
 
   {
-    id: "charla-05",
+    id: "charla-02",
     fecha: "2026-09-19",
     inicio: "16:30",
-    fin: "17:00",
+    fin: "17:30",
     tipo: "charla",
-    titulo: "Seguridad en el hogar",
-    entidad: "Protección Civil",
+    titulo: "NEUROCIENCIA",
+    entidad: "Mariña",
     lugar: "Anfiteatro",
     descripcion:
       ""
@@ -142,23 +139,23 @@ export const programacionOSC = [
   {
     id: "taller-04",
     fecha: "2026-09-19",
-    inicio: "17:00",
-    fin: "17:45",
+    inicio: "17:30",
+    fin: "18:30",
     tipo: "taller",
-    titulo: "Curiosidades Matemáticas",
-    entidad: "CP San José-Josefinas",
+    titulo: "Imos ao espazo?",
+    entidad: "XentD100cia",
     lugar: "Colegio",
     descripcion:
-      ""
+      "¿Querrias crear tu propio cohete de agua? Apuntate y disfruta la Open Science Cambre con ciencia y diversión."
   },
 
   {
-    id: "espectaculo-03",
+    id: "espectaculo-06",
     fecha: "2026-09-19",
     inicio: "17:30",
     fin: "18:30",
     tipo: "espectaculo",
-    titulo: "Cienceneta",
+    titulo: "Ciencieneta",
     entidad: "David Ballesteros",
     lugar: "Anfiteatro",
     descripcion:
@@ -166,7 +163,7 @@ export const programacionOSC = [
   },
 
   {
-    id: "espectaculo-04",
+    id: "espectaculo-07",
     fecha: "2026-09-19",
     inicio: "18:30",
     fin: "18:45",
@@ -179,7 +176,7 @@ export const programacionOSC = [
   },
 
   {
-    id: "charla-06",
+    id: "charla-03",
     fecha: "2026-09-19",
     inicio: "18:45",
     fin: "19:00",
@@ -196,46 +193,85 @@ export const programacionOSC = [
   // ─────────────────────────────────
 
   {
-    id: "charla-07",
-    fecha: "2026-09-20",
-    inicio: "11:30",
-    fin: "12:00",
-    tipo: "charla",
-    titulo: "La Revolución Creativa",
-    entidad: "Alba Meijide",
-    lugar: "Colegio",
-    descripcion:
-      ""
-  },
-
-  {
     id: "taller-05",
     fecha: "2026-09-20",
-    inicio: "10:30",
-    fin: "11:30",
+    inicio: "10:15",
+    fin: "10:45",
     tipo: "taller",
-    titulo: "El teléfono móvil: un laboratorio de bolsillo",
-    entidad: "Luis Carlos",
+    titulo: "Elaboracion de chapas OSC",
+    entidad: "XentD100cia",
     lugar: "Colegio",
     descripcion:
-      ""
+      "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!"
   },
 
   {
     id: "taller-06",
     fecha: "2026-09-20",
     inicio: "11:00",
-    fin: "11:30",
+    fin: "11:45",
     tipo: "taller",
-    titulo: "Quiero ser paleontólog@",
-    entidad: "Espiciencia",
+    titulo: "¿Imos ao espazo?",
+    entidad: "XentD100cia",
+    lugar: "Colegio",
+    descripcion:
+      "Se realizará un concurso de los cohetes de agua hechos en los anteriores talleres. Se premiarán los mejores en dos categorías de premio: maxima altura y originalidad."
+  },
+
+  {
+    id: "charla-04",
+    fecha: "2026-09-20",
+    inicio: "11:00",
+    fin: "12:00",
+    tipo: "charla",
+    titulo: "",
+    entidad: "CICA",
     lugar: "Anfiteatro",
     descripcion:
       ""
   },
 
   {
-    id: "espectaculo-05",
+    id: "charla-05",
+    fecha: "2026-09-20",
+    inicio: "12:00",
+    fin: "12:45",
+    tipo: "charla",
+    titulo: "Sorteo de premios de las rifas",
+    entidad: "XentD100cia",
+    lugar: "Anfiteatro",
+    descripcion:
+      ""
+  },
+
+  {
+    id: "taller-07",
+    fecha: "2026-09-20",
+    inicio: "12:00",
+    fin: "12:45",
+    tipo: "taller",
+    titulo: "ARTE ÓPTICO",
+    entidad: "Espiciencia",
+    lugar: "Colegio",
+    descripcion:
+      "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida."
+  },
+
+  {
+    id: "taller-08",
+    fecha: "2026-09-20",
+    inicio: "12:30",
+    fin: "12:45",
+    tipo: "taller",
+    titulo: "Entrega de premios cohetes de agua",
+    entidad: "XentD100cia",
+    lugar: "Anfiteatro",
+    descripcion:
+      ""
+  },
+
+  {
+    id: "espectaculo-08",
     fecha: "2026-09-20",
     inicio: "12:45",
     fin: "13:00",
@@ -247,7 +283,7 @@ export const programacionOSC = [
       ""
   },
   {
-    id: "charla-08",
+    id: "charla-06",
     fecha: "2026-09-20",
     inicio: "13:00",
     fin: "14:00",
