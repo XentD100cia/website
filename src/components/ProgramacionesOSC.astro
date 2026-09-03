@@ -159,12 +159,11 @@ const programacionPorDia = fechas.map((fecha) => {
       <h2
         class="font-heading text-4xl font-extrabold text-ink md:text-5xl"
       >
-        Programación
+        Programa de actividades
       </h2>
 
       <p class="mt-5 text-lg leading-8 text-soft">
-        Descubre las charlas, talleres y espectáculos
-        programados durante la Open Science Cambre.
+        Descubre las charlas, talleres y espectáculos programados durante la Open Science Cambre. Algunas de nuestras actividades requieren de inscripción previa, así que no lo dudes y apuntate a pasarlo bien con nosotros.
       </p>
     </header>
 
@@ -283,30 +282,36 @@ const programacionPorDia = fechas.map((fecha) => {
 
                             <div class="actividad-top">
                               <span class="actividad-tipo">
-
                                 <span
                                   class="actividad-icono"
-                                  set:html={
-                                    iconos[
-                                      actividad.tipo
-                                    ]
-                                  }
+                                  set:html={iconos[actividad.tipo]}
                                 />
 
-                                {
-                                  nombresTipo[
-                                    actividad.tipo
-                                  ]
-                                }
+                                {nombresTipo[actividad.tipo]}
                               </span>
 
-                              <span
-                                class="actividad-en-curso"
-                                data-en-curso
-                                hidden
-                              >
-                                En curso
-                              </span>
+                              <div class="actividad-acciones">
+                                <span
+                                  class="actividad-en-curso"
+                                  data-en-curso
+                                  hidden
+                                >
+                                  En curso
+                                </span>
+
+                                {
+                                  actividad.inscripcion && actividad.formulario && (
+                                    <a
+                                      href={actividad.formulario}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      class="boton-inscripcion"
+                                    >
+                                      Reservar plaza
+                                    </a>
+                                  )
+                                }
+                              </div>
                             </div>
 
                             <!-- TÍTULO -->
@@ -1132,6 +1137,70 @@ const programacionPorDia = fechas.map((fecha) => {
 
     font-size: 0.9rem;
     line-height: 1.55;
+}
+  .actividad-acciones {
+    display: flex;
+    align-items: center;
+  gap: 0.65rem;
+}
+
+.boton-inscripcion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem 0.9rem;
+
+  border-radius: 999px;
+
+  background: var(--categoria);
+  color: #ffffff;
+
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+
+  box-shadow:
+    0 6px 16px
+    color-mix(
+      in srgb,
+      var(--categoria) 25%,
+      transparent
+    );
+}
+
+.boton-inscripcion:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.92);
+
+  box-shadow:
+    0 8px 20px
+    color-mix(
+      in srgb,
+      var(--categoria) 32%,
+      transparent
+    );
+}
+
+.boton-inscripcion:focus-visible {
+  outline:
+    3px solid
+    color-mix(
+      in srgb,
+      var(--categoria) 30%,
+      transparent
+    );
+
+  outline-offset: 3px;
 }
 
   /* ───────────────────────────────

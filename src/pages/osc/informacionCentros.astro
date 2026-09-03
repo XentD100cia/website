@@ -12,7 +12,7 @@ const formulariosParticipantes = [
       'Formulario para colegios, institutos, centros formativos y otros espacios educativos que quieran participar en Open Science Cambre con proyectos desarrollados por alumnado.',
     activo: false,
     buttonActivo: 'Inscribir proyecto OSC Xove',
-    buttonInactivo: 'Formulario próximamente',
+    buttonInactivo: 'Formulario cerrado',
     hrefActivo: 'URL_FORMULARIO_OSC_XOVE'
   },
   {
@@ -22,7 +22,7 @@ const formulariosParticipantes = [
       'Formulario para universidades, centros de investigación, museos, FabLabs, asociaciones científicas, entidades divulgadoras y proyectos similares que quieran participar en la feria.',
     activo: false,
     buttonActivo: 'Inscribir entidad OSC Divulga',
-    buttonInactivo: 'Formulario próximamente',
+    buttonInactivo: 'Formulario cerrado',
     hrefActivo: 'URL_FORMULARIO_OSC_DIVULGA'
   },
   {
@@ -32,7 +32,7 @@ const formulariosParticipantes = [
       'Formulario para participantes que necesitan solicitar acogida durante Open Science Cambre. La acogida forma parte de la experiencia comunitaria de la feria.',
     activo: false,
     buttonActivo: 'Solicitar acogida',
-    buttonInactivo: 'Acogidas próximamente',
+    buttonInactivo: 'Acogidas cerradas',
     hrefActivo: 'URL_FORMULARIO_ACOGIDA_ALUMNADO'
   },
   {
@@ -42,7 +42,7 @@ const formulariosParticipantes = [
       'Formulario para que el profesorado acompañante pueda comunicar sus necesidades de alojamiento durante la feria.',
     activo: false,
     buttonActivo: 'Solicitar alojamiento',
-    buttonInactivo: 'Alojamiento próximamente',
+    buttonInactivo: 'Alojamiento cerrado',
     hrefActivo: 'URL_FORMULARIO_ALOJAMIENTO_PROFESORADO'
   }
 ];
@@ -53,60 +53,76 @@ const horariosEspeciales = [
   {
     title: 'Recepción de participantes',
     day: 'Viernes',
-    time: 'Horario por confirmar',
-    place: 'Lugar por confirmar',
+    time: 'De 16:00 a 19:00 horas',
+    place: 'Entrada del colegio CEIP Wenceslao Fernández Flórez',
     text:
-      'Recepción inicial de participantes, bienvenida y primeras indicaciones de la organización.'
+      'Recepción inicial de participantes, se les proporcionará las camisestas, acreditaciones, pulseras indicadoras del turno de comida y toda la información necesaria.'
   },
   {
     title: 'Recepción de participantes',
-    day: 'Sábado',
-    time: 'Horario por confirmar',
-    place: 'Lugar por confirmar',
+    day: 'Sábado y Domingo',
+    time: 'Hora de llegada de los participante',
+    place: 'Caseta de  información en la feria',
     text:
-      'Punto de llegada para participantes que se incorporen el sábado a Open Science Cambre.'
+      'Punto de llegada para participantes que se incorporen el sábado o domingo a la Open Science Cambre.'
   },
   {
     title: 'Montaje de stands',
     day: 'Sábado',
-    time: 'Horario por confirmar',
-    place: 'Zona de stands',
+    time: 'De 10:00 a 12:00 horas',
+    place: 'Feria',
     text:
-      'Franja destinada al montaje de materiales, revisión de necesidades técnicas y preparación de los espacios.'
+      'Franja destinada al montaje de materiales, revisión de necesidades técnicas y preparación de los espacios designados a cada proyecto.'
   },
   {
     title: 'Punto de encuentro',
+    day: 'Sábado y Domingo',
+    time: 'Horario por confirmar',
+    place: 'Lugar por confirmar',
+    text:
+      'Punto designado para que antes de empezar se encuentren los profesores y sus alumnos. Las familias acogedoras llevaran a los niños hasta este lugar y aqui se encontraran con los profesores encargados.'
+  },
+  {
+    title: 'Encuentro de los niños con las familias acogedoras',
+    day: 'Viernes',
+    time: 'A las 23:00 horas',
+    place: 'En la feria',
+    text:
+      'Los niños se podrán ir con sus familias acogedoras.'
+  },
+  {
+    title: 'Encuentro de los niños con las familias acogedoras',
     day: 'Sábado',
-    time: 'Horario por confirmar',
-    place: 'Lugar por confirmar',
+    time: 'A las 19:00 horas',
+    place: 'En la feria',
     text:
-      'Punto de encuentro para profesorado y alumnado antes del inicio de la actividad principal.'
+      'Los niños se podrán ir con sus familias acogedoras.'
   },
   {
-    title: 'Punto de encuentro',
-    day: 'Domingo',
-    time: 'Horario por confirmar',
+    title: 'Salida del bus que lleva a los profesores al pazo',
+    day: 'Viernes',
+    time: 'A las 23:30 horas',
     place: 'Lugar por confirmar',
     text:
-      'Punto de encuentro para organizar la jornada final, resolver dudas y coordinar la despedida.'
-  }
+      'Está programado que los profesores coján el bus que los llevará al pazo donde se ospedaran los dás de la feria.'
+  },
 ];
 
 const turnosComida = [
   {
     color: 'Fucsia',
     className: 'bg-pink-500',
-    time: 'Turno por confirmar'
+    time: 'Inicio a las 13:30'
   },
   {
     color: 'Verde',
     className: 'bg-green-500',
-    time: 'Turno por confirmar'
+    time: 'Inicio a las 14:15'
   },
   {
     color: 'Amarillo',
     className: 'bg-yellow-400',
-    time: 'Turno por confirmar'
+    time: 'Inicio a las 15:00'
   }
 ];
 
@@ -150,7 +166,7 @@ const formularioCamisetas = {
           <p class="mt-6 max-w-3xl text-xl leading-9 text-white/70">
             Aquí iremos centralizando formularios, horarios, indicaciones
             especiales y materiales útiles para los centros, entidades,
-            profesorado y alumnado participante en Open Science Cambre.
+            profesorado y alumnado participante en la Open Science Cambre.
           </p>
         </div>
       </div>
@@ -164,7 +180,7 @@ const formularioCamisetas = {
           </p>
 
           <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
-            Formularios para participar en OSC
+            Formularios para participar en la OSC
           </h2>
 
           <p class="mt-5 text-lg leading-8 text-soft">
@@ -288,15 +304,15 @@ const formularioCamisetas = {
         <div class="mt-12 rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10">
           <div class="mb-8 max-w-3xl">
             <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
-              Comidas
+              Comidas Sábado
             </p>
 
             <h3 class="font-heading text-3xl font-extrabold text-ink">
-              Turnos de comida por color de pulsera
+              Turnos de comida
             </h3>
 
             <p class="mt-4 leading-8 text-soft">
-              Este año los turnos de comida estarán organizados según el color de
+              Este año los turnos de comida del sábado estarán organizados según el color de
               la pulsera entregada a cada participante.
             </p>
           </div>
@@ -320,6 +336,21 @@ const formularioCamisetas = {
                 </p>
               </article>
             ))}
+          </div>
+        </div>
+        <div class="mt-12 rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10">
+          <div class="mb-8 max-w-3xl">
+            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+              Comidas Domingo
+            </p>
+
+            <h3 class="font-heading text-3xl font-extrabold text-ink">
+              El domingo a la hora de comer repartiremos picnics
+            </h3>
+
+            <p class="mt-4 leading-8 text-soft">
+              Como acostumbramos hacer este año tambien repartiremos picnics el domingo a los participantes, el profesor responsable puede acercarse al colegio y recoger los picnics designados para su colegio.
+            </p>
           </div>
         </div>
       </div>

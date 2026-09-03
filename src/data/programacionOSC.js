@@ -14,7 +14,9 @@ export const programacionOSC = [
     entidad: "Sementeira",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
   {
     id: "espectaculo-02",
@@ -26,7 +28,9 @@ export const programacionOSC = [
     entidad: "Academia de baile Cambre",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
   {
     id: "espectaculo-03",
@@ -38,7 +42,9 @@ export const programacionOSC = [
     entidad: "Comisión Espectaculos",
     lugar: "Anfiteatro",
     descripcion:
-      "Un espectáculo donde los experimentos y la divulgación científica se encuentran sobre el escenario."
+      "Un espectáculo donde los experimentos y la divulgación científica se encuentran sobre el escenario.",
+    inscripcion: false,
+    formulario:""
   },
 
   // ─────────────────────────────────
@@ -55,7 +61,9 @@ export const programacionOSC = [
     entidad: "OSC",
     lugar: "Anfiteatro",
     descripcion:
-      "Los codirectores de está edición Juan y Jairo darán por inaugurada la OSC26"
+      "Los codirectores de está edición Juan y Jairo darán por inaugurada la OSC26",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -68,7 +76,9 @@ export const programacionOSC = [
     entidad: "Comisión Espectaculos",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -81,7 +91,9 @@ export const programacionOSC = [
     entidad: "Luis Carlos Pardo",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -92,9 +104,11 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "ARTE ÓPTICO",
     entidad: "Espiciencia",
-    lugar: "Anfiteatro",
+    lugar: "Colegio",
     descripcion:
-      "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida."
+      "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida.",
+    inscripcion: true,
+    formulario:"https://forms.gle/WSTquYZjhmH6McrG7"
   },
 
   {
@@ -107,7 +121,9 @@ export const programacionOSC = [
     entidad: "XentD100cia",
     lugar: "Colegio",
     descripcion:
-      "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!"
+      "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -120,7 +136,9 @@ export const programacionOSC = [
     entidad: "XentD100cia",
     lugar: "Colegio",
     descripcion:
-      "En este taller, descubriremos por medio de increibles experiencias, de la mano de la ciencia, las maravillas que esconde nuestro universo. Descubramos el universo juntos."
+      "En este taller, descubriremos por medio de increíbles experiencias, de la mano de la ciencia, las maravillas que esconde nuestro universo. Descubramos el universo juntos.",
+    inscripcion: true,
+    formulario:"https://forms.gle/2EXkBqCfmDGWGAqbA"
   },
 
   {
@@ -133,7 +151,9 @@ export const programacionOSC = [
     entidad: "Mariña",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -146,7 +166,9 @@ export const programacionOSC = [
     entidad: "XentD100cia",
     lugar: "Colegio",
     descripcion:
-      "¿Querrias crear tu propio cohete de agua? Apuntate y disfruta la Open Science Cambre con ciencia y diversión."
+      "¿Querrias crear tu propio cohete de agua? Apuntate y disfruta la Open Science Cambre con ciencia y diversión.",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -159,7 +181,9 @@ export const programacionOSC = [
     entidad: "David Ballesteros",
     lugar: "Anfiteatro",
     descripcion:
-      "Una furgoneta cargada de Ciencia y humor nos visita, no os la podeis perder."
+      "Una furgoneta cargada de Ciencia y humor nos visita, no os la podeis perder.",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -172,7 +196,9 @@ export const programacionOSC = [
     entidad: "Comisión Espectaculos",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -185,7 +211,9 @@ export const programacionOSC = [
     entidad: "OSC",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
 
   // ─────────────────────────────────
@@ -202,7 +230,9 @@ export const programacionOSC = [
     entidad: "XentD100cia",
     lugar: "Colegio",
     descripcion:
-      "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!"
+      "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -215,7 +245,9 @@ export const programacionOSC = [
     entidad: "XentD100cia",
     lugar: "Colegio",
     descripcion:
-      "Se realizará un concurso de los cohetes de agua hechos en los anteriores talleres. Se premiarán los mejores en dos categorías de premio: maxima altura y originalidad."
+      "Se realizará un concurso de los cohetes de agua hechos en los anteriores talleres. Se premiarán los mejores en dos categorías de premio: maxima altura y originalidad.",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -228,7 +260,9 @@ export const programacionOSC = [
     entidad: "CICA",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -241,7 +275,9 @@ export const programacionOSC = [
     entidad: "XentD100cia",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -254,7 +290,9 @@ export const programacionOSC = [
     entidad: "Espiciencia",
     lugar: "Colegio",
     descripcion:
-      "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida."
+      "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida.",
+    inscripcion: true,
+    formulario:"https://forms.gle/8uu3knmKryeEznns9"
   },
 
   {
@@ -267,7 +305,9 @@ export const programacionOSC = [
     entidad: "XentD100cia",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -280,7 +320,9 @@ export const programacionOSC = [
     entidad: "Comisión Espectaculos",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
   {
     id: "charla-06",
@@ -292,6 +334,8 @@ export const programacionOSC = [
     entidad: "OSC",
     lugar: "Anfiteatro",
     descripcion:
-      ""
+      "",
+    inscripcion: false,
+    formulario:""
   },
 ];
