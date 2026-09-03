@@ -141,9 +141,24 @@ const participantesActuales = (participantesOSC ?? [])
   .filter((participante) => participante.edition === edicionActual.ano)
   .sort((a, b) => a.name.localeCompare(b.name));
 
+const ordenApoyos = {
+  'Apoyo institucional': 1,
+  'Patrocinador': 2,
+  'Colaborador': 3
+};
+
 const apoyosActuales = (apoyosOSC ?? [])
   .filter((apoyo) => apoyo.edition === edicionActual.ano)
-  .sort((a, b) => a.name.localeCompare(b.name));
+  .sort((a, b) => {
+    const ordenA = ordenApoyos[a.type] ?? 99;
+    const ordenB = ordenApoyos[b.type] ?? 99;
+
+    if (ordenA !== ordenB) {
+      return ordenA - ordenB;
+    }
+
+    return a.name.localeCompare(b.name);
+  });
 
 ---
 

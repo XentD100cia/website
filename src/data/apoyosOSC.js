@@ -1,7 +1,7 @@
 export const apoyosOSC = [
   {
     name: 'Deputación da Coruña',
-    type: 'Apoyo Institucional',
+    type: 'Apoyo institucional',
     edition: 2026,
     website: 'https://www.dacoruna.gal/portada',
     logo: '/images/logos/apoyos/logo.Deputacion.png'
@@ -89,5 +89,68 @@ export const apoyosOSC = [
     edition: 2026,
     website: '',
     logo: '/images/logos/apoyos/logo.enter4.png'
+  },
+  {
+    name: 'Manuela Manuela',
+    type: 'Colaborador',
+    edition: 2026,
+    website: 'https://manuelamanuelamoda.com/',
+    logo: '/images/logos/apoyos/logo.manuela_manuela.png'
+  },
+  {
+    name: 'Moma Bar',
+    type: 'Colaborador',
+    edition: 2026,
+    website: 'https://www.instagram.com/moma_bar_momarizate/?hl=es',
+    logo: '/images/logos/apoyos/logo.moma_bar.jpg'
+  },
+  {
+    name: 'Casa Becerra',
+    type: 'Colaborador',
+    edition: 2026,
+    website: 'https://casabecerra.es/',
+    logo: '/images/logos/apoyos/logo.casa_becerra.jpg'
+  },
+  {
+    name: 'Churrería Valdés',
+    type: 'Colaborador',
+    edition: 2026,
+    website: '',
+    logo: ''
+  },
+  {
+    name: 'O Cesteiro',
+    type: 'Colaborador',
+    edition: 2026,
+    website: 'https://www.instagram.com/ocesteiro/?hl=es',
+    logo: '/images/logos/apoyos/logo.o_cesteiro.jpg'
+  },
+  {
+    name: 'Miuda Fisioterapia',
+    type: 'Colaborador',
+    edition: 2026,
+    website: 'https://www.instagram.com/miudafisioterapia/',
+    logo: '/images/logos/apoyos/logo.miuda_fisioterapia.jpg'
+  },
+  {
+    name: 'Don Bistec',
+    type: 'Colaborador',
+    edition: 2026,
+    website: '',
+    logo: ''
+  },
+  {
+    name: 'Úpala Shop',
+    type: 'Colaborador',
+    edition: 2026,
+    website: 'https://www.instagram.com/upalashop/?hl=es',
+    logo: '/images/logos/apoyos/logo.upala.jpg'
+  },
+  {
+    name: 'Cositas Leticris',
+    type: 'Colaborador',
+    edition: 2026,
+    website: 'https://www.instagram.com/cositasleticris/?hl=es',
+    logo: ''
   },
 ];
