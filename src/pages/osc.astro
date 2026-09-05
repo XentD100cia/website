@@ -8,6 +8,7 @@ import { edicionesOSC } from '../data/edicionesOSC';
 import { participantesOSC } from '../data/participantesOSC.js';
 import { apoyosOSC } from '../data/apoyosOSC.js';
 import { experienciasOSC } from '../data/experienciasOSC.js';
+import ProgramacionOSC from "../components/ProgramacionesOSC.astro";
 
 const eventSchema = {
   "@context": "https://schema.org",
@@ -361,6 +362,52 @@ const apoyosActuales = (apoyosOSC ?? [])
         </div>
       </div>
     </section>
+
+    <section class="px-5 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-12 max-w-3xl">
+          <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+            Horario
+          </p>
+
+          <h2 class="font-heading text-4xl font-extrabold text-ink md:text-5xl">
+            Horarios de la feria
+          </h2>
+
+          <p class="mt-5 text-lg leading-8 text-soft">
+            Open Science Cambre se celebrará del 18 al 20 de septiembre.
+            Cada día tendrá su propio horario y programa de actividades.
+          </p>
+        </div>
+
+          <div class="mt-10 grid gap-6 md:grid-cols-3">
+            {(edicionActual.horario ?? []).map((item) => (
+              <article class="rounded-card border border-line bg-scienceWhite p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+                <p class="mb-5 text-sm font-bold uppercase tracking-[0.22em] text-bioTeal">
+                  {item.dia}
+                </p>
+
+                <div class="rounded-2xl bg-white p-5">
+                  <p class="text-xs font-bold uppercase tracking-[0.18em] text-soft">
+                    Horario
+                  </p>
+
+                  <p class="mt-2 font-heading text-2xl font-extrabold text-ink">
+                    {item.hora}
+                  </p>
+                </div>
+
+                <h3 class="mt-6 font-heading text-2xl font-bold text-ink">
+                  {item.actividad}
+                </h3>
+
+              </article>
+            ))}
+          </div>
+      </div>
+    </section>
+
+    <ProgramacionOSC />
 
     <section class="bg-white px-5 py-24 md:py-0">
       <div class="mx-auto max-w-7xl">
