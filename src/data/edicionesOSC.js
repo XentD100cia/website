@@ -12,7 +12,7 @@ export const edicionesOSC = [
     horario: [
       {
         dia: 'Viernes 18',
-        hora: '19:00-23:00 horas',
+        hora: '19:00-22:30 horas',
         actividad: 'Espectaculos' 
       },
       {
