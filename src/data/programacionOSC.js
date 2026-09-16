@@ -104,7 +104,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "ARTE ÓPTICO",
     entidad: "Espiciencia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida.",
     inscripcion: true,
@@ -288,7 +288,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "ARTE ÓPTICO",
     entidad: "Espiciencia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida.",
     inscripcion: true,
