@@ -119,9 +119,24 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "Elaboración de chapas OSC",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!",
+    inscripcion: false,
+    formulario:""
+  },
+
+  {
+    id: "taller-09",
+    fecha: "2026-09-19",
+    inicio: "15:30",
+    fin: "16:30",
+    tipo: "taller",
+    titulo: "Lobo Científico",
+    entidad: "Comisión",
+    lugar: "Anfiteatro",
+    descripcion:
+      "",
     inscripcion: false,
     formulario:""
   },
@@ -134,7 +149,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "¿Qué pasa en nuestro universo cuando no miramos?",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "En este taller, descubriremos por medio de increíbles experiencias, de la mano de la ciencia, las maravillas que esconde nuestro universo. Descubramos el universo juntos.",
     inscripcion: true,
@@ -164,7 +179,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "Imos ao espazo?",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "¿Querrias crear tu propio cohete de agua? Apuntate y disfruta la Open Science Cambre con ciencia y diversión.",
     inscripcion: false,
@@ -228,7 +243,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "Elaboracion de chapas OSC",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!",
     inscripcion: false,
@@ -243,7 +258,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "¿Imos ao espazo?",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "Se realizará un concurso de los cohetes de agua hechos en los anteriores talleres. Se premiarán los mejores en dos categorías de premio: maxima altura y originalidad.",
     inscripcion: false,
