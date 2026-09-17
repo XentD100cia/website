@@ -256,7 +256,7 @@ export const programacionOSC = [
     inicio: "10:00",
     fin: "10:05",
     tipo: "espectaculo",
-    titulo: "Acto de apertura",
+    titulo: "Damos inicio",
     entidad: "OSC",
     lugar: "Megafonía",
     descripcion:
