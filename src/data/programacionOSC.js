@@ -326,21 +326,6 @@ export const programacionOSC = [
   },
 
   {
-    id: "charla-05",
-    fecha: "2026-09-20",
-    inicio: "12:00",
-    fin: "12:45",
-    tipo: "charla",
-    titulo: "Sorteo de premios de las rifas",
-    entidad: "XentD100cia",
-    lugar: "Anfiteatro",
-    descripcion:
-      "",
-    inscripcion: false,
-    formulario:""
-  },
-
-  {
     id: "taller-07",
     fecha: "2026-09-20",
     inicio: "12:00",
