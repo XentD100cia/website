@@ -251,6 +251,21 @@ export const programacionOSC = [
   // ─────────────────────────────────
 
   {
+    id: "espectaculo-11",
+    fecha: "2026-09-20",
+    inicio: "10:00",
+    fin: "10:05",
+    tipo: "espectaculo",
+    titulo: "Damos inicio",
+    entidad: "OSC",
+    lugar: "Megafonía",
+    descripcion:
+      "Daremos el inicio a la feria, para que todos podamos empezar a disfrutar de la ciencia",
+    inscripcion: false,
+    formulario:""
+  },
+
+  {
     id: "taller-05",
     fecha: "2026-09-20",
     inicio: "10:15",
