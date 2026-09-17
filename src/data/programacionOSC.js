@@ -54,8 +54,8 @@ export const programacionOSC = [
   {
     id: "espectaculo-04",
     fecha: "2026-09-19",
-    inicio: "12:00",
-    fin: "12:15",
+    inicio: "11:30",
+    fin: "11:45",
     tipo: "espectaculo",
     titulo: "Acto de apertura",
     entidad: "OSC",
@@ -69,8 +69,8 @@ export const programacionOSC = [
   {
     id: "espectaculo-05",
     fecha: "2026-09-19",
-    inicio: "12:15",
-    fin: "12:30",
+    inicio: "11:45",
+    fin: "12:00",
     tipo: "espectaculo",
     titulo: "Flashmob",
     entidad: "Comisión Espectaculos",
@@ -127,6 +127,21 @@ export const programacionOSC = [
   },
 
   {
+    id: "taller-10",
+    fecha: "2026-09-19",
+    inicio: "13:30",
+    fin: "14:15",
+    tipo: "taller",
+    titulo: "Lobo Científico",
+    entidad: "Comisión",
+    lugar: "Anfiteatro",
+    descripcion:
+      "",
+    inscripcion: true,
+    formulario:"https://forms.gle/E1FMr9m4Ra7yo2Fu6"
+  },
+
+  {
     id: "taller-09",
     fecha: "2026-09-19",
     inicio: "15:30",
@@ -137,8 +152,8 @@ export const programacionOSC = [
     lugar: "Anfiteatro",
     descripcion:
       "",
-    inscripcion: false,
-    formulario:""
+    inscripcion: true,
+    formulario:"https://forms.gle/E1FMr9m4Ra7yo2Fu6"
   },
 
   {
@@ -251,6 +266,21 @@ export const programacionOSC = [
   },
 
   {
+    id: "espectaculo-09",
+    fecha: "2026-09-20",
+    inicio: "10:30",
+    fin: "10:45",
+    tipo: "espectaculo",
+    titulo: "Flashmob",
+    entidad: "Comisión Espectaculos",
+    lugar: "Anfiteatro",
+    descripcion:
+      "",
+    inscripcion: false,
+    formulario:""
+  },
+
+  {
     id: "taller-06",
     fecha: "2026-09-20",
     inicio: "11:00",
@@ -311,6 +341,21 @@ export const programacionOSC = [
   },
 
   {
+    id: "espectaculo-10",
+    fecha: "2026-09-20",
+    inicio: "12:00",
+    fin: "12:30",
+    tipo: "espectaculo",
+    titulo: "Entrega de premios de las RIFAS",
+    entidad: "OSC",
+    lugar: "Anfiteatro",
+    descripcion:
+      "",
+    inscripcion: false,
+    formulario:""
+  },
+
+  {
     id: "taller-08",
     fecha: "2026-09-20",
     inicio: "12:30",
@@ -331,7 +376,7 @@ export const programacionOSC = [
     inicio: "12:45",
     fin: "13:00",
     tipo: "espectaculo",
-    titulo: "Flashmob",
+    titulo: "Entrega de premios gincana",
     entidad: "Comisión Espectaculos",
     lugar: "Anfiteatro",
     descripcion:
@@ -339,6 +384,7 @@ export const programacionOSC = [
     inscripcion: false,
     formulario:""
   },
+
   {
     id: "charla-06",
     fecha: "2026-09-20",

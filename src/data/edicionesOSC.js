@@ -17,7 +17,7 @@ export const edicionesOSC = [
       },
       {
         dia: 'Sábado 19',
-        hora: '12:00-19:00 horas',
+        hora: '11:30-19:00 horas',
         actividad: 'Feria abierta'
       },
       {
