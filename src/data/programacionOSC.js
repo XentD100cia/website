@@ -283,8 +283,8 @@ export const programacionOSC = [
   {
     id: "espectaculo-09",
     fecha: "2026-09-20",
-    inicio: "10:30",
-    fin: "10:45",
+    inicio: "12:15",
+    fin: "12:30",
     tipo: "espectaculo",
     titulo: "Flashmob",
     entidad: "Comisión Espectaculos",
@@ -303,7 +303,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "¿Imos ao espazo?",
     entidad: "XentD100cia",
-    lugar: "Carpa Igloo",
+    lugar: "Anfiteatro",
     descripcion:
       "Se realizará un concurso de los cohetes de agua hechos en los anteriores talleres. Se premiarán los mejores en dos categorías de premio: maxima altura y originalidad.",
     inscripcion: false,
@@ -318,7 +318,7 @@ export const programacionOSC = [
     tipo: "charla",
     titulo: "",
     entidad: "CICA",
-    lugar: "Anfiteatro",
+    lugar: "Carpa Igloo",
     descripcion:
       "",
     inscripcion: false,
