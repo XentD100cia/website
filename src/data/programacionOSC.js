@@ -54,8 +54,8 @@ export const programacionOSC = [
   {
     id: "espectaculo-04",
     fecha: "2026-09-19",
-    inicio: "12:00",
-    fin: "12:15",
+    inicio: "11:30",
+    fin: "11:45",
     tipo: "espectaculo",
     titulo: "Acto de apertura",
     entidad: "OSC",
@@ -69,8 +69,8 @@ export const programacionOSC = [
   {
     id: "espectaculo-05",
     fecha: "2026-09-19",
-    inicio: "12:15",
-    fin: "12:30",
+    inicio: "11:45",
+    fin: "12:00",
     tipo: "espectaculo",
     titulo: "Flashmob",
     entidad: "Comisión Espectaculos",
@@ -104,7 +104,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "ARTE ÓPTICO",
     entidad: "Espiciencia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida.",
     inscripcion: true,
@@ -119,11 +119,41 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "Elaboración de chapas OSC",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!",
     inscripcion: false,
     formulario:""
+  },
+
+  {
+    id: "taller-10",
+    fecha: "2026-09-19",
+    inicio: "13:30",
+    fin: "14:15",
+    tipo: "taller",
+    titulo: "Lobo Científico",
+    entidad: "Comisión",
+    lugar: "Anfiteatro",
+    descripcion:
+      "",
+    inscripcion: true,
+    formulario:"https://forms.gle/E1FMr9m4Ra7yo2Fu6"
+  },
+
+  {
+    id: "taller-09",
+    fecha: "2026-09-19",
+    inicio: "15:30",
+    fin: "16:30",
+    tipo: "taller",
+    titulo: "Lobo Científico",
+    entidad: "Comisión",
+    lugar: "Anfiteatro",
+    descripcion:
+      "",
+    inscripcion: true,
+    formulario:"https://forms.gle/E1FMr9m4Ra7yo2Fu6"
   },
 
   {
@@ -134,7 +164,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "¿Qué pasa en nuestro universo cuando no miramos?",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "En este taller, descubriremos por medio de increíbles experiencias, de la mano de la ciencia, las maravillas que esconde nuestro universo. Descubramos el universo juntos.",
     inscripcion: true,
@@ -164,7 +194,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "Imos ao espazo?",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "¿Querrias crear tu propio cohete de agua? Apuntate y disfruta la Open Science Cambre con ciencia y diversión.",
     inscripcion: false,
@@ -221,6 +251,21 @@ export const programacionOSC = [
   // ─────────────────────────────────
 
   {
+    id: "espectaculo-11",
+    fecha: "2026-09-20",
+    inicio: "10:00",
+    fin: "10:05",
+    tipo: "espectaculo",
+    titulo: "Damos inicio",
+    entidad: "OSC",
+    lugar: "Megafonía",
+    descripcion:
+      "Daremos el inicio a la feria, para que todos podamos empezar a disfrutar de la ciencia",
+    inscripcion: false,
+    formulario:""
+  },
+
+  {
     id: "taller-05",
     fecha: "2026-09-20",
     inicio: "10:15",
@@ -228,9 +273,24 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "Elaboracion de chapas OSC",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "¿Quieres un recuerdo único de la Open Science Cambre 2026? ¡Ven y haz tu propia chapa personalizada!",
+    inscripcion: false,
+    formulario:""
+  },
+
+  {
+    id: "espectaculo-09",
+    fecha: "2026-09-20",
+    inicio: "10:30",
+    fin: "10:45",
+    tipo: "espectaculo",
+    titulo: "Flashmob",
+    entidad: "Comisión Espectaculos",
+    lugar: "Anfiteatro",
+    descripcion:
+      "",
     inscripcion: false,
     formulario:""
   },
@@ -243,7 +303,7 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "¿Imos ao espazo?",
     entidad: "XentD100cia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "Se realizará un concurso de los cohetes de agua hechos en los anteriores talleres. Se premiarán los mejores en dos categorías de premio: maxima altura y originalidad.",
     inscripcion: false,
@@ -266,21 +326,6 @@ export const programacionOSC = [
   },
 
   {
-    id: "charla-05",
-    fecha: "2026-09-20",
-    inicio: "12:00",
-    fin: "12:45",
-    tipo: "charla",
-    titulo: "Sorteo de premios de las rifas",
-    entidad: "XentD100cia",
-    lugar: "Anfiteatro",
-    descripcion:
-      "",
-    inscripcion: false,
-    formulario:""
-  },
-
-  {
     id: "taller-07",
     fecha: "2026-09-20",
     inicio: "12:00",
@@ -288,11 +333,26 @@ export const programacionOSC = [
     tipo: "taller",
     titulo: "ARTE ÓPTICO",
     entidad: "Espiciencia",
-    lugar: "Colegio",
+    lugar: "Carpa Igloo",
     descripcion:
       "Crea ilusiones visuales, utilizando las matemáticas, la física y tu imaginación. Gracias a la geometría, la reflexión y la magia del color, fabricaremos nuestros propios caleidoscopios de una manera sencilla y muy divertida.",
     inscripcion: true,
     formulario:"https://forms.gle/8uu3knmKryeEznns9"
+  },
+
+  {
+    id: "espectaculo-10",
+    fecha: "2026-09-20",
+    inicio: "12:00",
+    fin: "12:30",
+    tipo: "espectaculo",
+    titulo: "Entrega de premios de las RIFAS",
+    entidad: "OSC",
+    lugar: "Anfiteatro",
+    descripcion:
+      "",
+    inscripcion: false,
+    formulario:""
   },
 
   {
@@ -316,7 +376,7 @@ export const programacionOSC = [
     inicio: "12:45",
     fin: "13:00",
     tipo: "espectaculo",
-    titulo: "Flashmob",
+    titulo: "Entrega de premios gincana",
     entidad: "Comisión Espectaculos",
     lugar: "Anfiteatro",
     descripcion:
@@ -324,6 +384,7 @@ export const programacionOSC = [
     inscripcion: false,
     formulario:""
   },
+
   {
     id: "charla-06",
     fecha: "2026-09-20",

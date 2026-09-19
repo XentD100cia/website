@@ -53,7 +53,7 @@ const horariosEspeciales = [
   {
     title: 'Recepción de participantes',
     day: 'Viernes',
-    time: 'De 16:00 a 19:00 horas',
+    time: 'De 17:30 a 19:00 horas',
     place: 'Entrada del colegio CEIP Wenceslao Fernández Flórez',
     text:
       'Recepción inicial de participantes, se les proporcionará las camisestas, acreditaciones, pulseras indicadoras del turno de comida y toda la información necesaria.'
@@ -70,22 +70,30 @@ const horariosEspeciales = [
     title: 'Montaje de stands',
     day: 'Sábado',
     time: 'De 10:00 a 12:00 horas',
-    place: 'Feria',
+    place: 'En la feria',
+    text:
+      'Franja destinada al montaje de materiales, revisión de necesidades técnicas y preparación de los espacios designados a cada proyecto.'
+  },
+  {
+    title: 'Montaje de stands',
+    day: 'Domingo',
+    time: 'De 9:00 a 10:00 horas',
+    place: 'En la feria',
     text:
       'Franja destinada al montaje de materiales, revisión de necesidades técnicas y preparación de los espacios designados a cada proyecto.'
   },
   {
     title: 'Punto de encuentro',
     day: 'Sábado y Domingo',
-    time: 'Horario por confirmar',
-    place: 'Lugar por confirmar',
+    time: 'A las 10:00',
+    place: 'Carpa Igloo',
     text:
       'Punto designado para que antes de empezar se encuentren los profesores y sus alumnos. Las familias acogedoras llevaran a los niños hasta este lugar y aqui se encontraran con los profesores encargados.'
   },
   {
     title: 'Encuentro de los niños con las familias acogedoras',
     day: 'Viernes',
-    time: 'A las 23:00 horas',
+    time: 'A las 22:30 horas',
     place: 'En la feria',
     text:
       'Los niños se podrán ir con sus familias acogedoras.'
@@ -108,11 +116,46 @@ const horariosEspeciales = [
   },
 ];
 
+const comidaSabado = {
+  eyebrow: 'Comidas sábado',
+  title: 'Turnos de comida',
+  text:
+    'Este año los turnos de comida del sábado estarán organizados según el color de la pulsera entregada a cada participante.',
+  menuTitle: 'Menú del sábado',
+  menu: [
+    'Spaghetti Bolognese',
+    'Ensaladilla',
+    'Empanada',
+    'Fruta/Postre Lácteo',
+    'Café + Dulce',
+    'Agua/Refresco'
+  ],
+  note:
+    'Los menús de las personas con variantes de dieta estarán preparados y será necesario avisar en el comedor, muchas gracias.'
+};
+
+const comidaDomingo = {
+  eyebrow: 'Comidas domingo',
+  title: 'Picnics del domingo',
+  text:
+    'Como acostumbramos a hacer, este año también repartiremos picnics el domingo a los participantes. El profesorado responsable podrá acercarse al colegio y recoger los picnics designados para su centro.',
+  menuTitle: 'Menú del picnic',
+  menu: [
+    'Hamburguesa Completa Sin Cebolla',
+    'Bocata con dos ingredientes',
+    'Barrita de cereales',
+    '1 Pieza de fruta',
+    'Botella de Agua'
+  ],
+  note:
+    'Los picnics de las personas con variantes de dieta estarán preparados y será necesario avisar en el momento de la recogida, muchas gracias.'
+};
+
 const turnosComida = [
   {
     color: 'Amarilla',
     className: 'bg-yellow-400',
-    time: 'Inicio a las 13:300'
+    time: 'Inicio a las 13:30'
   },
   {
     color: 'Fucsia',
@@ -301,57 +344,121 @@ const formularioCamisetas = {
           ))}
         </div>
 
-        <div class="mt-12 rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10">
-          <div class="mb-8 max-w-3xl">
-            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
-              Comidas Sábado
-            </p>
+        <div class="mt-12 grid gap-8">
+          <article class="rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10">
+            <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+              <div>
+                <div class="mb-8 max-w-3xl">
+                  <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+                    {comidaSabado.eyebrow}
+                  </p>
 
-            <h3 class="font-heading text-3xl font-extrabold text-ink">
-              Turnos de comida
-            </h3>
+                  <h3 class="font-heading text-3xl font-extrabold text-ink">
+                    {comidaSabado.title}
+                  </h3>
 
-            <p class="mt-4 leading-8 text-soft">
-              Este año los turnos de comida del sábado estarán organizados según el color de
-              la pulsera entregada a cada participante.
-            </p>
-          </div>
-
-          <div class="grid gap-5 md:grid-cols-3">
-            {turnosComida.map((turno) => (
-              <article class="rounded-3xl bg-scienceWhite p-6">
-                <div class="mb-5 flex items-center gap-4">
-                  <span class:list={[
-                    'h-6 w-6 rounded-full shadow-sm',
-                    turno.className
-                  ]}></span>
-
-                  <h4 class="font-heading text-2xl font-bold text-ink">
-                    Pulsera {turno.color}
-                  </h4>
+                  <p class="mt-4 leading-8 text-soft">
+                    {comidaSabado.text}
+                  </p>
                 </div>
 
-                <p class="leading-7 text-soft">
-                  {turno.time}
+                <p class="mb-5 text-sm font-bold uppercase tracking-[0.22em] text-soft">
+                  Turnos por pulsera
                 </p>
-              </article>
-            ))}
-          </div>
-        </div>
-        <div class="mt-12 rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10">
-          <div class="mb-8 max-w-3xl">
-            <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
-              Comidas Domingo
-            </p>
 
-            <h3 class="font-heading text-3xl font-extrabold text-ink">
-              El domingo a la hora de comer repartiremos picnics
-            </h3>
+                <div class="grid gap-5 md:grid-cols-3">
+                  {turnosComida.map((turno) => (
+                    <article class="rounded-3xl bg-scienceWhite p-6">
+                      <div class="mb-5 flex items-center gap-4">
+                        <span
+                          class:list={[
+                            'h-6 w-6 shrink-0 rounded-full shadow-sm',
+                            turno.className
+                          ]}
+                        ></span>
 
-            <p class="mt-4 leading-8 text-soft">
-              Como acostumbramos hacer este año tambien repartiremos picnics el domingo a los participantes, el profesor responsable puede acercarse al colegio y recoger los picnics designados para su colegio.
-            </p>
-          </div>
+                        <h4 class="font-heading text-2xl font-bold text-ink">
+                          Pulsera {turno.color}
+                        </h4>
+                      </div>
+
+                      <p class="leading-7 text-soft">
+                        {turno.time}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <aside class="rounded-[28px] bg-midnight p-7 text-white">
+                <p class="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-bioTeal">
+                  Menú
+                </p>
+
+                <h4 class="font-heading text-2xl font-extrabold">
+                  {comidaSabado.menuTitle}
+                </h4>
+
+                <ul class="mt-6 space-y-3">
+                  {comidaSabado.menu.map((item) => (
+                    <li class="flex gap-3 leading-7 text-white/75">
+                      <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-bioTeal"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {comidaSabado.note && (
+                  <p class="mt-6 rounded-2xl bg-white p-4 text-sm leading-6 text-soft">
+                    {comidaSabado.note}
+                  </p>
+                )}
+              </aside>
+            </div>
+          </article>
+
+          <article class="rounded-[32px] border border-line bg-white p-8 shadow-sm md:p-10">
+            <div class="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-start">
+              <div>
+                <p class="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-bioTeal">
+                  {comidaDomingo.eyebrow}
+                </p>
+
+                <h3 class="font-heading text-3xl font-extrabold text-ink">
+                  {comidaDomingo.title}
+                </h3>
+
+                <p class="mt-5 leading-8 text-soft">
+                  {comidaDomingo.text}
+                </p>
+              </div>
+
+              <aside class="rounded-[28px] bg-midnight p-7">
+                <p class="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-bioTeal">
+                  Menú
+                </p>
+
+                <h4 class="font-heading text-2xl font-extrabold text-white">
+                  {comidaDomingo.menuTitle}
+                </h4>
+
+                <ul class="mt-6 space-y-3">
+                  {comidaDomingo.menu.map((item) => (
+                    <li class="flex gap-3 leading-7 text-white/75">
+                      <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-bioTeal"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {comidaDomingo.note && (
+                  <p class="mt-6 rounded-2xl bg-white p-4 text-sm leading-6 text-soft">
+                    {comidaDomingo.note}
+                  </p>
+                )}
+              </aside>
+            </div>
+          </article>
         </div>
       </div>
     </section>

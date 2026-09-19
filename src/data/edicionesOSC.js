@@ -12,17 +12,17 @@ export const edicionesOSC = [
     horario: [
       {
         dia: 'Viernes 18',
-        hora: '19:00-23:00 horas',
+        hora: '19:00-22:30 horas',
         actividad: 'Espectaculos' 
       },
       {
         dia: 'Sábado 19',
-        hora: '12:00-19:00 horas',
+        hora: '11:30-19:00 horas',
         actividad: 'Feria abierta'
       },
       {
         dia: 'Domingo 20',
-        hora: '10:00-15:00 horas',
+        hora: '10:00-14:00 horas',
         actividad: 'Feria abierta'
       }
     ],
